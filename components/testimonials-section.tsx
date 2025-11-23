@@ -8,7 +8,8 @@ export function TestimonialsSection() {
       name: "Jyothi Yadav",
       role: "Intermediate Player",
       rating: 5,
-      content: "My daughter has improved tremendously since joining the academy. The instructors are patient, knowledgeable, and make learning chess fun and engaging.",
+      content:
+        "My daughter has improved tremendously since joining the academy. The instructors are patient, knowledgeable, and make learning chess fun and engaging.",
       image: "/jyothi.png",
       gradient: "from-purple-400 to-purple-600",
       lightBg: "bg-purple-50",
@@ -19,7 +20,8 @@ export function TestimonialsSection() {
       name: "Khilend Sahu",
       role: "Adult Beginner",
       rating: 5,
-      content: "I started as a complete beginner and now I'm competing in local tournaments. The structured curriculum and personalized attention made all the difference.",
+      content:
+        "I started as a complete beginner and now I'm competing in local tournaments. The structured curriculum and personalized attention made all the difference.",
       image: "/khilend.png",
       gradient: "from-blue-400 to-blue-600",
       lightBg: "bg-blue-50",
@@ -30,7 +32,8 @@ export function TestimonialsSection() {
       name: "Arjun Biru",
       role: "intermediate Player",
       rating: 5,
-      content: "The online coaching sessions are fantastic! I can learn from expert coaches from the comfort of my home. My rating has increased by 300 points in 6 months.",
+      content:
+        "The online coaching sessions are fantastic! I can learn from expert coaches from the comfort of my home. My rating has increased by 300 points in 6 months.",
       image: "/arjun.png",
       gradient: "from-emerald-400 to-emerald-600",
       lightBg: "bg-emerald-50",
@@ -41,7 +44,8 @@ export function TestimonialsSection() {
       name: "Dandu Ravi",
       role: "Tournament Player",
       rating: 5,
-      content: "The academy's focus on both tactical and strategic understanding has elevated my game to the next level. I recently won my first regional tournament!",
+      content:
+        "The academy's focus on both tactical and strategic understanding has elevated my game to the next level. I recently won my first regional tournament!",
       image: "/dandu.png",
       gradient: "from-pink-400 to-pink-600",
       lightBg: "bg-pink-50",
@@ -52,7 +56,8 @@ export function TestimonialsSection() {
       name: "Krarjun gaud",
       role: "Parent of 8-year-old",
       rating: 5,
-      content: "The coaches here understand how to work with young children. My son looks forward to every lesson and has developed excellent concentration skills.",
+      content:
+        "The coaches here understand how to work with young children. My son looks forward to every lesson and has developed excellent concentration skills.",
       image: "/gaud.png",
       gradient: "from-purple-400 to-purple-600",
       lightBg: "bg-purple-50",
@@ -63,7 +68,8 @@ export function TestimonialsSection() {
       name: "Chandu Shekhar",
       role: "Student",
       rating: 5,
-      content: "Never thought I could learn chess, but the patient instructors proved me wrong. Chess has become my favorite hobby and mental exercise.",
+      content:
+        "Never thought I could learn chess, but the patient instructors proved me wrong. Chess has become my favorite hobby and mental exercise.",
       image: "/andu.png",
       gradient: "from-blue-400 to-blue-600",
       lightBg: "bg-blue-50",
@@ -80,7 +86,8 @@ export function TestimonialsSection() {
             What Our Students Say
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Hear from our community of chess enthusiasts about their learning journey and achievements at our academy.
+            Hear from our community of chess enthusiasts about their learning
+            journey and achievements at our academy.
           </p>
         </div>
 
@@ -133,27 +140,35 @@ export function TestimonialsSection() {
           ))}
         </div>
 
-        {/* Bottom Stats Card */}
-        <div className="mt-20 bg-gradient-to-r from-blue-600 to-indigo-700 rounded-3xl p-10 md:p-14 text-white shadow-2xl">
-          <h3 className="text-3xl md:text-4xl font-bold text-center mb-6">
+        {/* Bottom Stats Card - Fully Responsive */}
+        <div className="mt-20 bg-gradient-to-r from-blue-600 to-indigo-700 rounded-3xl p-8 sm:p-10 md:p-14 text-white shadow-2xl">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6">
             Join Our Success Stories
           </h3>
-          <p className="text-center text-blue-100 text-lg mb-10 max-w-3xl mx-auto">
-            Whether you're a complete beginner or looking to improve your competitive play, our academy provides the perfect environment for chess growth and achievement.
+          <p className="text-center text-blue-100 text-base sm:text-lg mb-10 max-w-3xl mx-auto px-4">
+            Whether you're a complete beginner or looking to improve your
+            competitive play, our academy provides the perfect environment for
+            chess growth and achievement.
           </p>
 
-          <div className="grid grid-cols-3 gap-8 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-5xl font-black">500+</div>
-              <div className="text-blue-100 mt-2">Happy Students</div>
+              <div className="text-4xl sm:text-5xl font-black">500+</div>
+              <div className="text-blue-100 mt-2 text-sm sm:text-base">
+                Happy Students
+              </div>
             </div>
             <div>
-              <div className="text-5xl font-black">95%</div>
-              <div className="text-blue-100 mt-2">Satisfaction Rate</div>
+              <div className="text-4xl sm:text-5xl font-black">95%</div>
+              <div className="text-blue-100 mt-2 text-sm sm:text-base">
+                Satisfaction Rate
+              </div>
             </div>
             <div>
-              <div className="text-5xl font-black">50+</div>
-              <div className="text-blue-100 mt-2">Tournament Winners</div>
+              <div className="text-4xl sm:text-5xl font-black">50+</div>
+              <div className="text-blue-100 mt-2 text-sm sm:text-base">
+                Tournament Winners
+              </div>
             </div>
           </div>
         </div>
