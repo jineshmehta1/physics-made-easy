@@ -18,6 +18,7 @@ export function Header() {
   const [activeNav, setActiveNav] = useState("");
 
   const navItems: NavItem[] = [
+    { name: "Home", href: "/" },
     {
       name: "Online Coaching",
       href: "https://coaching.telanganachessacademy.com/",
@@ -28,7 +29,7 @@ export function Header() {
       href: "https://rzp.io/rzp/FbNCr8DK",
       isExternal: true 
     },
-    // { name: "Home", href: "/" },
+    { name: "Courses", href: "/courses" },
     {
       name: "About",
       href: "/about",
@@ -39,7 +40,6 @@ export function Header() {
         { name: "Achievements", href: "/about/#achievements" },
       ],
     },
-    { name: "Courses", href: "/courses" },
     { name: "Our Coaches", href: "/coaches" },
     { name: "Gallery", href: "/gallery" },
     { name: "Blogs", href: "/blogs" },
