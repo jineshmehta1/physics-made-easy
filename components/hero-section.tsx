@@ -78,7 +78,7 @@ export function HeroSection() {
                   className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 text-white font-bold px-8 py-5.5 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 text-lg group animate-pulse-glow w-full sm:w-auto"
                 >
                   <Users className="w-2 h-2" />
-                  Join Our ONLINE COACHING
+                  ONLINE COACHING
                   <ChevronRight className="w-2 h-2 group-hover:translate-x-2 transition-transform" />
                 </Button>
               </Link>
@@ -90,7 +90,7 @@ export function HeroSection() {
                   className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-bold px-8 py-5 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 text-lg group backdrop-blur-md bg-white/80 w-full sm:w-auto"
                 >
                   <Trophy className="w-2 h-2" />
-                  View Upcoming EVENTS
+                  EVENTS
                   <ChevronRight className="w-2 h-2 group-hover:translate-x-2 transition-transform" />
                 </Button>
               </Link>
