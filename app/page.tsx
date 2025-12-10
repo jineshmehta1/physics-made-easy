@@ -1,18 +1,22 @@
-import { HeroSection } from "@/components/hero-section"
-import { EventsPreview } from "@/components/events-preview"
-import { DemoBookingCTA } from "@/components/demo-booking-cta"
-import { TestimonialsSection } from "@/components/testimonials-section"
-import { StatsSection } from "@/components/stats-section"
+import  HeroSection  from "@/components/hero-section"
+import  CoursesSection  from "@/components/events-preview"
+import  DemoBookingCTA  from "@/components/demo-booking-cta"
+import  TestimonialsSection  from "@/components/testimonials-section"
+import  FaqSection  from "@/components/stats-section"
+import  FeaturesSection  from "@/components/features-section"
+import AchievementsSection from "@/components/ui/AchievementsSection"
+
 
 export default function HomePage() {
   return (
     <div className="min-h-screen">
       <main>
         <HeroSection />
-        <StatsSection />
-        <EventsPreview />
-        <DemoBookingCTA />
+        <FaqSection />
+        <AchievementsSection/>
+        <CoursesSection />
         <TestimonialsSection />
+        <DemoBookingCTA />
       </main>
     </div>
   )

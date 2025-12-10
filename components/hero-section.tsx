@@ -1,332 +1,186 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import {
-  Play,
-  Users,
-  Trophy,
-  Star,
-  Sparkles,
-  Award,
-  Video,
-  Bell,
-  ChevronRight,
-  Crown,
-  Zap,
-} from "lucide-react";
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { 
+  ArrowRight, 
+  ChevronRight, 
+  Facebook, 
+  Instagram, 
+  Star, 
+  BookOpen, 
+  MessageCircle 
+} from "lucide-react";
 
-export function HeroSection() {
-  const [activeTab, setActiveTab] = useState(0);
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const meetingLinks = [
-    {
-      href: "https://meet.google.com/vjj-cfpx-dav?pli=1",
-      icon: Video,
-      label: "G-Meet",
-      color: "#2B6CB0",
-      bg: "from-blue-500 to-blue-600",
-    },
-    {
-      href: "https://meet.jit.si/TelanganaChessAcademy",
-      icon: Play,
-      label: "Start Call",
-      color: "#2B6CB0",
-      bg: "from-cyan-500 to-blue-500",
-    },
-    {
-      href: "https://meet.google.com/wuk-nfie-mgx",
-      icon: Play,
-      label: "Call Naresh",
-      color: "#2B6CB0",
-      bg: "from-blue-600 to-indigo-600",
-    },
-    {
-      href: "https://meet.google.com/atu-ziid-ojg",
-      icon: Sparkles,
-      label: "TCS Meeting",
-      color: "#06402B",
-      bg: "from-emerald-600 to-teal-700",
-    },
-    {
-      href: "https://meet.google.com/uux-vyxa-pgq",
-      icon: Bell,
-      label: "BCA Meeting",
-      color: "#06402B",
-      bg: "from-green-600 to-emerald-700",
-    },
-    {
-      href: "https://meet.google.com/mxj-uwyj-vzp",
-      icon: Bell,
-      label: "Call Rohith",
-      color: "#06402B",
-      bg: "from-teal-600 to-green-700",
-    },
+export default function HeroSection() {
+  const features = [
+    "Live Interactive Online Chess Coaching",
+    "Flexible Class Timings – Perfect for Kids",
+    "Proven Record – 100+ Champions Trained",
   ];
 
-  const stats = [
-    {
-      icon: Trophy,
-      value: "120+",
-      label: "Tournaments",
-      gradient: "from-yellow-400 to-orange-500",
-    },
-    {
-      icon: Users,
-      value: "600+",
-      label: "Students",
-      gradient: "from-blue-400 to-purple-500",
-    },
-    {
-      icon: Award,
-      value: "60+",
-      label: "Champions",
-      gradient: "from-purple-400 to-pink-500",
-    },
+  const studentAvatars = [
+    "https://i.pravatar.cc/150?u=a042581f4e29026024d",
+    "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+    "https://i.pravatar.cc/150?u=a04258114e29026302d",
+    "https://i.pravatar.cc/150?u=a042581f4e29026704a",
   ];
-
-  const carouselImages = [
-    "/slider1.jpg",
-    "/slider3.jpg",
-    "/slider2.jpg",
-    "/slider4.jpg",
-  ];
-
-  const placeholderImages = [
-    "/slider1.jpg",
-    "/slider2.jpg",
-    "/slider3.jpg",
-    "/slider4.jpg",
-  ];
-
-  // Auto-slide every 4 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center overflow-hidden bg-slate-50 md:pt-28 pt-30"
-    >
-      {/* Animated mesh gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
-                           radial-gradient(circle at 75% 75%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
-                           radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.05) 0%, transparent 50%)`,
-          }}
-        />
-      </div>
+    <section className="relative min-h-screen  flex items-center bg-[#FDFBF7] overflow-hidden py-24 lg:py-34 font-sans">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          
+          {/* LEFT COLUMN: Text Content */}
+          <div className="space-y-8 relative z-10">
+            {/* Headline */}
+            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.15] font-extrabold text-[#0F172A]">
+              World’s{" "}
+              <span className="relative inline-block mx-2">
+                <span className="absolute inset-0 bg-[#FFC107] -skew-y-2 rounded-md transform rotate-[-3deg]"></span>
+                <span className="relative z-10 px-2 text-[#0F172A]">#1</span>
+              </span>{" "}
+              Online <br />
+              Chess Coaching For <br />
+              Kids
+            </h1>
 
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-12">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <div className="space-y-6">
-            {/* Animated Badge */}
-            <div className="inline-flex items-center gap-3 bg-white px-3 py-2 rounded-full shadow-lg border-2 border-purple-100 animate-bounce-slow">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                <Crown className="w-4 h-4 text-white" />
-              </div>
-              <span className="font-bold text-gray-800">
-                Certified FIDE Coaches
-              </span>
-              <Sparkles className="w-5 h-5 text-yellow-500" />
+            {/* Subhead with Emoji */}
+            <p className="text-lg text-gray-700 font-medium flex items-center gap-2 flex-wrap">
+              Learn From International 
+              
+              FIDE-Rated Trainers Here!
+            </p>
+
+            {/* Feature List */}
+            <div className="space-y-4">
+              {features.map((feature, idx) => (
+                <div key={idx} className="flex items-center gap-3 group">
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#FFC107] flex items-center justify-center">
+                    <ChevronRight className="w-4 h-4 text-black stroke-[3]" />
+                  </div>
+                  <span className="text-gray-800 font-medium text-lg">{feature}</span>
+                </div>
+              ))}
             </div>
 
-            {/* Dual CTA Buttons - Side by Side */}
-            <div className="flex flex-col sm:flex-row gap-2">
-              <Link href="https://rzp.io/rzp/FbNCr8DK" target="_blank">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-bold px-8 py-5 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 text-lg group backdrop-blur-md bg-white/80 w-full sm:w-auto"
+            {/* Actions */}
+            <div className="flex flex-wrap items-center gap-4 pt-4">
+              <button className="bg-[#5C4EE5] hover:bg-[#4a3ec2] text-white font-bold py-4 px-8 rounded-lg text-lg flex items-center gap-2 shadow-lg shadow-indigo-200 transition-all hover:-translate-y-1">
+                Book Free Trial
+                <ArrowRight className="w-5 h-5" />
+              </button>
+
+              <div className="flex gap-3">
+                <Link 
+                  href="#" 
+                  className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors text-gray-700"
                 >
-                  <Trophy className="w-2 h-2" />
-                  EVENTS
-                  <ChevronRight className="w-2 h-2 group-hover:translate-x-2 transition-transform" />
-                </Button>
-              </Link>
-
-              <Link
-                href="https://coaching.telanganachessacademy.com/login"
-                target="_blank"
-              >
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 text-white font-bold px-8 py-5.5 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 text-lg group animate-pulse-glow w-full sm:w-auto"
+                  <Facebook className="w-5 h-5" />
+                </Link>
+                <Link 
+                  href="#" 
+                  className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors text-gray-700"
                 >
-                  <Users className="w-2 h-2" />
-                  ONLINE COACHING
-                  <ChevronRight className="w-2 h-2 group-hover:translate-x-2 transition-transform" />
-                </Button>
-              </Link>
-            </div>
-
-            {/* Meeting Links */}
-            <div className="space-y-3">
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {meetingLinks.map((link, idx) => (
-                  <Link key={idx} href={link.href} target="_blank">
-                    <div
-                      className={`relative overflow-hidden bg-gradient-to-br ${link.bg} p-4 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer group`}
-                    >
-                      <div className="absolute inset-0 bg-white/20 group-hover:bg-white/30 transition-colors" />
-                      <div className="relative flex items-center gap-2 text-white">
-                        <link.icon className="w-5 h-5" />
-                        <span className="font-semibold text-sm">
-                          {link.label}
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
+                  <Instagram className="w-5 h-5" />
+                </Link>
               </div>
-            </div>
-
-            {/* Heading */}
-            <div className="space-y-6">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight">
-                <span className="text-gray-900">Become a</span>
-                <br />
-                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-gradient">
-                  Chess Master
-                </span>
-              </h1>
-
-              <p className="text-xl text-gray-600 leading-relaxed max-w-xl">
-                Telangana chess school empowers you with world-class training
-                from FIDE-rated coaches. Build unshakeable skills, dominate the
-                board, and rise to the top of the chess world.
-              </p>
             </div>
           </div>
 
-          {/* Right Side - Improved Image Carousel */}
-          <div className="relative h-80 sm:h-[400px] lg:h-[500px] rounded-xl overflow-hidden ml-2">
-            <div className="relative w-full h-full">
-              {carouselImages.map((src, idx) => (
-                <div
-                  key={idx}
-                  className={`absolute inset-0 transition-opacity duration-1000 ${
-                    currentSlide === idx ? "opacity-100" : "opacity-0"
-                  }`}
-                >
-                  <Image
-                    src={src}
-                    alt={`Chess academy highlight ${idx + 1}`}
-                    fill
-                    className="object-cover"
-                    priority={idx === 0}
-                    onError={(e) => {
-                      // Fallback to placeholder if image fails to load
-                      const target = e.target as HTMLImageElement;
-                      target.src = placeholderImages[idx];
-                    }}
-                  />
-                  {/* Dark overlay for better text visibility */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                </div>
-              ))}
+          {/* RIGHT COLUMN: Images & Floating Cards */}
+          <div className="relative">
+            {/* Dot Pattern Background (Abstract representation) */}
+            <div className="absolute -left-12 top-1/2 -translate-y-1/2 grid grid-cols-4 gap-4 opacity-30 z-0">
+               {[...Array(20)].map((_, i) => (
+                 <div key={i} className="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+               ))}
+            </div>
 
-              {/* Slide Indicators */}
-              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
-                {carouselImages.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setCurrentSlide(idx)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      currentSlide === idx
-                        ? "bg-white w-8"
-                        : "bg-white/50 hover:bg-white/80"
-                    }`}
-                  />
-                ))}
+            {/* Yellow Burst Lines (Top Left) */}
+            <div className="absolute -top-8 -left-8 z-0">
+               <svg width="60" height="60" viewBox="0 0 50 50">
+                 <path d="M10 40 L0 30 M25 35 L25 15 M40 40 L50 30" stroke="#FFC107" strokeWidth="3" strokeLinecap="round" />
+               </svg>
+            </div>
+
+            {/* Main Image Container */}
+            <div className="relative z-10 rounded-[40px] overflow-hidden border-4 border-white shadow-2xl bg-[#EFEFEF]">
+              {/* This is a placeholder for the girl with trophy image */}
+              <div className="relative h-[500px] w-full bg-gray-200">
+                <Image
+                  src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=1974&auto=format&fit=crop" 
+                  alt="Chess Champion"
+                  fill
+                  className="object-cover object-top"
+                  priority
+                />
               </div>
 
-              {/* Caption */}
-              <div className="absolute bottom-16 left-6 right-6 text-white z-10">
-                <h3 className="text-2xl sm:text-3xl font-bold mb-2">
-                  {currentSlide === 0 && "Professional Chess Training"}
-                  {currentSlide === 1 && "Dedicated Students Community"}
-                  {currentSlide === 2 && "Competitive Tournament Play"}
-                  {currentSlide === 3 && "Join Our Strong Community"}
-                </h3>
-                <p className="text-lg opacity-90">Telangana Chess School</p>
+              {/* Bottom Caption Pill */}
+              <div className="absolute bottom-0 left-0 w-full flex justify-center pb-6 pt-12 bg-gradient-to-t from-black/80 to-transparent">
+                <div className="bg-black text-white px-6 py-2 rounded-full font-bold text-lg border border-gray-700">
+                  National Runner Up Mishika
+                </div>
               </div>
             </div>
+
+            {/* FLOATING CARD 1: Students (Left) */}
+            <div className="absolute top-1/2 -left-6 lg:-left-12 -translate-y-1/2 z-20">
+              <div className="bg-white p-4 rounded-xl shadow-xl border border-gray-100 relative">
+                <div className="absolute inset-0 bg-gray-200 rounded-xl transform translate-x-1 translate-y-1 -z-10"></div>
+                <div className="flex items-center gap-3">
+                  <div className="flex -space-x-3">
+                    {studentAvatars.map((src, i) => (
+                      <div key={i} className="w-10 h-10 rounded-full border-2 border-white overflow-hidden relative">
+                        <Image src={src} alt="student" fill className="object-cover" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <p className="font-bold text-gray-900 mt-2 text-center">5000+ Students</p>
+              </div>
+            </div>
+
+            {/* FLOATING CARD 2: Reviews (Top Right) */}
+            <div className="absolute top-12 -right-4 lg:-right-12 z-20">
+              <div className="bg-white p-3 pr-6 rounded-xl shadow-xl border border-gray-100 flex items-center gap-4 relative">
+                 <div className="absolute inset-0 bg-gray-200 rounded-xl transform translate-x-1 translate-y-1 -z-10"></div>
+                 <div className="bg-[#FFC107] w-12 h-12 rounded-lg flex items-center justify-center text-white">
+                    <Star className="w-6 h-6 fill-white" />
+                 </div>
+                 <div>
+                    <p className="font-extrabold text-xl text-gray-900">4.8/5</p>
+                    <p className="text-sm text-gray-500 font-medium">2047+ Reviews</p>
+                 </div>
+              </div>
+            </div>
+
+            {/* FLOATING CARD 3: Champions (Bottom Right) */}
+            <div className="absolute bottom-20 -right-4 lg:-right-8 z-20">
+              <div className="bg-[#22C55E] p-4 pr-8 rounded-xl shadow-xl flex items-center gap-4 text-white">
+                 <div className="bg-white/20 w-12 h-12 rounded-lg flex items-center justify-center backdrop-blur-sm">
+                    <BookOpen className="w-6 h-6" />
+                 </div>
+                 <div>
+                    <p className="font-extrabold text-2xl">100+</p>
+                    <p className="text-sm font-medium opacity-90">Champions</p>
+                 </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
 
-      {/* Same animations as before */}
-      <style jsx>{`
-        @keyframes float-slow {
-          0%,
-          100% {
-            transform: translateY(0) rotate(var(--rotate, 0deg));
-          }
-          50% {
-            transform: translateY(-20px) rotate(var(--rotate, 0deg));
-          }
-        }
-        @keyframes spin-slow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-        @keyframes gradient {
-          0%,
-          100% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-        }
-        @keyframes bounce-s22 {
-          0%,
-          100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-10px);
-          }
-        }
-        @keyframes pulse-glow {
-          0%,
-          100% {
-            box-shadow: 0 20px 50px -10px rgba(139, 92, 246, 0.3);
-          }
-          50% {
-            box-shadow: 0 25px 60px -10px rgba(139, 92, 246, 0.5);
-          }
-        }
-        .animate-float-slow {
-          animation: float-slow 6s ease-in-out infinite;
-        }
-        .animate-gradient {
-          background-size: 200% 200%;
-          animation: gradient 3s ease infinite;
-        }
-        .animate-bounce-slow {
-          animation: bounce-s22 3s ease-in-out infinite;
-        }
-        .animate-pulse-glow {
-          animation: pulse-glow 2s ease-in-out infinite;
-        }
-      `}</style>
+      {/* Fixed Chat Button (Bottom Left) - Matches the crop in image */}
+      {/* <div className="fixed bottom-6 left-6 z-50">
+        <button className="bg-[#22C55E] hover:bg-[#1ea851] text-white px-5 py-2.5 rounded-full shadow-lg flex items-center gap-2 font-medium transition-transform hover:scale-105">
+          <MessageCircle className="w-5 h-5 fill-white" />
+          Chat with us
+        </button>
+      </div> */}
     </section>
   );
 }

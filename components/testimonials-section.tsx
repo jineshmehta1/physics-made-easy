@@ -1,178 +1,181 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Star, Quote } from "lucide-react";
+"use client";
 
-export function TestimonialsSection() {
-  const testimonials = [
-    {
-      id: 1,
-      name: "Jyothi Yadav",
-      role: "Intermediate Player",
-      rating: 5,
-      content:
-        "My daughter has improved tremendously since joining the academy. The instructors are patient, knowledgeable, and make learning chess fun and engaging.",
-      image: "/jyothi.png",
-      gradient: "from-purple-400 to-purple-600",
-      lightBg: "bg-purple-50",
-      border: "border-purple-200",
-    },
-    {
-      id: 2,
-      name: "Khilend Sahu",
-      role: "Adult Beginner",
-      rating: 5,
-      content:
-        "I started as a complete beginner and now I'm competing in local tournaments. The structured curriculum and personalized attention made all the difference.",
-      image: "/khilend.png",
-      gradient: "from-blue-400 to-blue-600",
-      lightBg: "bg-blue-50",
-      border: "border-blue-200",
-    },
-    {
-      id: 3,
-      name: "Arjun Biru",
-      role: "intermediate Player",
-      rating: 5,
-      content:
-        "The online coaching sessions are fantastic! I can learn from expert coaches from the comfort of my home. My rating has increased by 300 points in 6 months.",
-      image: "/arjun.png",
-      gradient: "from-emerald-400 to-emerald-600",
-      lightBg: "bg-emerald-50",
-      border: "border-emerald-200",
-    },
-    {
-      id: 4,
-      name: "Dandu Ravi",
-      role: "Tournament Player",
-      rating: 5,
-      content:
-        "The academy's focus on both tactical and strategic understanding has elevated my game to the next level. I recently won my first regional tournament!",
-      image: "/dandu.png",
-      gradient: "from-pink-400 to-pink-600",
-      lightBg: "bg-pink-50",
-      border: "border-pink-200",
-    },
-    {
-      id: 5,
-      name: "Krarjun gaud",
-      role: "Parent of 8-year-old",
-      rating: 5,
-      content:
-        "The coaches here understand how to work with young children. My son looks forward to every lesson and has developed excellent concentration skills.",
-      image: "/gaud.png",
-      gradient: "from-purple-400 to-purple-600",
-      lightBg: "bg-purple-50",
-      border: "border-purple-200",
-    },
-    {
-      id: 6,
-      name: "Chandu Shekhar",
-      role: "Student",
-      rating: 5,
-      content:
-        "Never thought I could learn chess, but the patient instructors proved me wrong. Chess has become my favorite hobby and mental exercise.",
-      image: "/andu.png",
-      gradient: "from-blue-400 to-blue-600",
-      lightBg: "bg-blue-50",
-      border: "border-blue-200",
-    },
-  ];
+import React, { useRef } from "react";
+import Image from "next/image";
+import { 
+  ArrowLeft, 
+  ArrowRight, 
+  MessageCircle, 
+  ChevronUp, 
+  Star, 
+  Quote 
+} from "lucide-react";
+
+// --- Data: Testimonials ---
+const testimonials = [
+  {
+    id: 1,
+    image: "https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=200&auto=format&fit=crop", // Mother & Son
+    text: "“We are immensely grateful to Cosmic Chess Academy for his exceptional coaching and for fostering such a positive learning environment. Cosmic Chess Academy has been instrumental in shaping our children's development and providing them with valuable life skills.”",
+  },
+  {
+    id: 2,
+    image: "https://images.unsplash.com/photo-1606041008023-472dfb5e530f?q=80&w=200&auto=format&fit=crop", // Boy at board
+    text: "“Lavith, a bright and enthusiastic 7-year-old, discovered his passion for chess at the age of 6. After a trial class with Cosmic Chess Academy, he was immediately drawn to engaging teaching style. Since then, Lavith has been a dedicated student, mastering chess rules and strategies.”",
+  },
+  {
+    id: 3,
+    image: "https://images.unsplash.com/photo-1517021897933-0e0319cfbc28?q=80&w=200&auto=format&fit=crop", // Girl
+    text: "“Thank you Cosmic Chess! This is what exactly I was looking for my son to develop his knowledge. He is really doing well and enjoying his sessions. The interactive method of teaching really helps him focus better.”",
+  },
+  {
+    id: 4,
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop", // Boy in suit
+    text: "“In just three months, Rushil has grasped the fundamentals, strategic thinking, and tactical maneuvers of the game. Teachers are in here are patient and their engaging teaching style has made learning chess a fun and rewarding experience for my kid”",
+  },
+];
+
+export default function TestimonialsSection() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  // Scroll Handler
+  const scroll = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const { current } = scrollContainerRef;
+      const scrollAmount = 350; // Card width + gap
+      if (direction === "left") {
+        current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+      } else {
+        current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      }
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
-    <section className="py-8 md:py-10 bg-gradient-to-b from-white to-gray-50">
-      <div className="container mx-auto px-6 max-w-7xl">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            What Our Students Say
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Hear from our community of chess enthusiasts about their learning
-            journey and achievements at our academy.
-          </p>
-        </div>
+    <section className="relative min-h-[700px] bg-white py-8 lg:py-8 font-sans overflow-hidden">
+      
+      {/* --- BACKGROUND DECORATION: Yellow Star (Top Left) --- */}
+      <div className="absolute top-8 left-8 lg:left-24 z-0">
+        <svg width="60" height="60" viewBox="0 0 50 50" fill="none">
+          <path d="M25 2 L31 16 L48 18 L36 30 L39 46 L25 38 L11 46 L14 30 L2 18 L19 16 Z" stroke="#FFC107" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        </svg>
+      </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((t) => (
-            <Card
-              key={t.id}
-              className="group relative bg-white border border-gray-200 rounded-3xl shadow-lg hover:shadow-2xl hover:-translate-y-3 transition-all duration-500 overflow-hidden"
-            >
-              {/* Gradient Top Bar */}
-              <div className={`h-1.5 bg-gradient-to-r ${t.gradient}`} />
-
-              <CardContent className="pt-8 pb-10 px-8">
-                {/* Stars */}
-                <div className="flex gap-1 mb-5">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-5 h-5 fill-yellow-400 text-yellow-400"
-                    />
-                  ))}
-                </div>
-
-                {/* Quote + Text */}
-                <div className="relative mb-8">
-                  <Quote className="absolute -top-3 -left-2 w-10 h-10 text-gray-200 -z-10" />
-                  <p className="text-gray-700 italic leading-relaxed pl-6 pr-4">
-                    "{t.content}"
-                  </p>
-                </div>
-
-                {/* Avatar + Name */}
-                <div className="flex items-center gap-4">
-                  <div className="relative">
-                    <img
-                      src={t.image || "/placeholder.svg"}
-                      alt={t.name}
-                      className="w-14 h-14 rounded-full object-cover ring-4 ring-white shadow-md"
-                    />
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-transparent to-gray-300 opacity-0 group-hover:opacity-30 transition-opacity" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-gray-900">{t.name}</h4>
-                    <p className="text-sm text-gray-500">{t.role}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* Bottom Stats Card - Fully Responsive */}
-        <div className="mt-20 bg-gradient-to-r from-blue-600 to-indigo-700 rounded-3xl p-8 sm:p-10 md:p-14 text-white shadow-2xl">
-          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6">
-            Join Our Success Stories
-          </h3>
-          <p className="text-center text-blue-100 text-base sm:text-lg mb-10 max-w-3xl mx-auto px-4">
-            Whether you're a complete beginner or looking to improve your
-            competitive play, our academy provides the perfect environment for
-            chess growth and achievement.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-4xl sm:text-5xl font-black">500+</div>
-              <div className="text-blue-100 mt-2 text-sm sm:text-base">
-                Happy Students
-              </div>
-            </div>
-            <div>
-              <div className="text-4xl sm:text-5xl font-black">95%</div>
-              <div className="text-blue-100 mt-2 text-sm sm:text-base">
-                Satisfaction Rate
-              </div>
-            </div>
-            <div>
-              <div className="text-4xl sm:text-5xl font-black">50+</div>
-              <div className="text-blue-100 mt-2 text-sm sm:text-base">
-                Tournament Winners
-              </div>
-            </div>
+      <div className="container mx-auto px-4 max-w-7xl relative z-10">
+        
+        {/* --- HEADER --- */}
+        <div className="text-center mb-12 lg:mb-16">
+          <div className="inline-block px-6 py-1.5 rounded-full bg-[#EBE9FE] mb-4">
+            <span className="text-[#5C4EE5] font-semibold text-sm">Our Testimonials</span>
           </div>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-[#0F172A] leading-tight">
+            What Students Think And <br className="hidden md:block" />
+            Say About Cosmic Chess
+          </h2>
+        </div>
+
+        {/* --- CAROUSEL WRAPPER --- */}
+        <div className="relative flex items-center">
+          
+          {/* Left Button */}
+          <button 
+            onClick={() => scroll("left")}
+            className="hidden md:flex absolute -left-4 lg:-left-12 z-20 w-12 h-12 bg-[#4338CA] hover:bg-[#3730a3] rounded-full items-center justify-center text-white shadow-lg transition-transform hover:scale-110"
+          >
+            <ArrowLeft className="w-6 h-6" />
+          </button>
+
+          {/* Scrollable Container */}
+          <div 
+            ref={scrollContainerRef}
+            className="flex gap-6 overflow-x-auto pb-10 pt-4 px-2 snap-x snap-mandatory scrollbar-hide"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {testimonials.map((item) => (
+              <div 
+                key={item.id} 
+                className="relative flex-shrink-0 w-[300px] md:w-[350px] snap-center"
+              >
+                {/* Card */}
+                <div className="bg-[#F8F9FE] p-8 rounded-[32px] h-full transition-transform duration-300 hover:shadow-md">
+                  
+                  {/* Card Header: Image + Stars + Quote */}
+                  <div className="flex justify-between items-start mb-6">
+                    {/* Profile Image */}
+                    <div className="relative w-20 h-20 rounded-full border-[5px] border-white overflow-hidden shadow-sm">
+                      <Image
+                        src={item.image}
+                        alt="Student"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+
+                    {/* Stars & Quote */}
+                    <div className="flex flex-col items-end gap-1">
+                      {/* Quote Icon Background */}
+                      <div className="relative">
+                         <Quote className="w-10 h-10 text-[#EBE9FE] fill-[#EBE9FE] transform scale-x-[-1]" />
+                         {/* Stars Overlay */}
+                         <div className="absolute top-2 right-0 flex gap-0.5">
+                            {[...Array(5)].map((_, i) => (
+                                <Star key={i} className="w-4 h-4 text-[#FFC107] fill-[#FFC107]" />
+                            ))}
+                         </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Testimonial Text */}
+                  <div className="relative">
+                    <p className="text-gray-500 text-[15px] leading-relaxed font-medium">
+                      {item.text}
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Right Button */}
+          <button 
+            onClick={() => scroll("right")}
+            className="hidden md:flex absolute -right-4 lg:-right-12 z-20 w-12 h-12 bg-[#4338CA] hover:bg-[#3730a3] rounded-full items-center justify-center text-white shadow-lg transition-transform hover:scale-110"
+          >
+            <ArrowRight className="w-6 h-6" />
+          </button>
+
         </div>
       </div>
+
+      {/* --- FIXED FLOATING BUTTONS --- */}
+
+      {/* WhatsApp Chat (Bottom Left) */}
+      {/* <div className="fixed bottom-6 left-6 z-50">
+        <a 
+          href="https://wa.me/123456789" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="bg-[#25D366] hover:bg-[#20b858] text-white px-5 py-2.5 rounded-full shadow-lg flex items-center gap-2 font-semibold transition-transform hover:scale-105"
+        >
+          <MessageCircle className="w-5 h-5 fill-white" />
+          <span>Chat with us</span>
+        </a>
+      </div> */}
+
+      {/* Scroll to Top (Bottom Right) */}
+      <button 
+        onClick={scrollToTop}
+        className="fixed bottom-6 right-6 z-50 w-10 h-10 bg-[#5C4EE5] hover:bg-[#4a3ec2] rounded-full flex items-center justify-center shadow-lg transition-transform hover:-translate-y-1"
+      >
+        <ChevronUp className="w-5 h-5 text-white" strokeWidth={2.5} />
+      </button>
+
     </section>
   );
 }

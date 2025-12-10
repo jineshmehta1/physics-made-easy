@@ -1,257 +1,157 @@
 "use client";
-import { useState } from "react";
-import { ChevronDown, Phone, Mail, Menu, X } from "lucide-react";
-import Link from "next/link";
-import Image from "next/image";
+import React, { useState, useEffect } from "react";
+import { MenuIcon, XIcon, ArrowRightIcon } from "./ui/BannerIcon";
 
 interface NavItem {
   name: string;
   href: string;
-  hasDropdown?: boolean;
-  dropdownItems?: { name: string; href: string }[];
-  isExternal?: boolean; // Added to identify external links
 }
 
-export function Header() {
-  const [isAboutOpen, setIsAboutOpen] = useState(false);
+const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeNav, setActiveNav] = useState("");
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navItems: NavItem[] = [
     { name: "Home", href: "/" },
-    {
-      name: "Online Coaching",
-      href: "https://coaching.telanganachessacademy.com/",
-      isExternal: true,
-    },
-    {
-      name: "Events",
-      href: "https://rzp.io/rzp/FbNCr8DK",
-      isExternal: true,
-    },
-    { name: "Courses", href: "/courses" },
-    // {
-    //   name: "About",
-    //   href: "/about",
-    //   hasDropdown: true,
-    //   dropdownItems: [
-    //     { name: "Our Story", href: "/about/#story" },
-    //     { name: "Our Mission", href: "/about/#mission" },
-    //     { name: "Achievements", href: "/about/#achievements" },
-    //   ],
-    // },
-    { name: "Our Coaches", href: "/coaches" },
+    { name: "About", href: "/about" },
+    { name: "Curriculum", href: "/curriculum" },
     { name: "Gallery", href: "/gallery" },
-    { name: "Blogs", href: "/blogs" },
+    { name: "Pricing", href: "/pricing" },
     { name: "Contact", href: "/contact" },
   ];
 
   return (
-    <header className="bg-white/95 backdrop-blur-md border-b border-gray-100 fixed w-full z-50 shadow-sm hover:shadow-lg transition-shadow duration-300">
-      {/* Top Contact Bar */}
-      <div className="bg-gradient-to-r from-blue-900 to-blue-700 text-white  py-2 px-4">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-sm">
-          <div className="flex items-center space-x-4 mb-2 md:mb-0">
-            <div className="flex items-center space-x-1.5">
-              <Phone className="w-3.5 h-3.5" />
-              <span>+91 9864646481</span>
-            </div>
-            <div className="w-px h-4 bg-white/30"></div>
-            <div className="flex items-center space-x-1.5">
-              <Mail className="w-3.5 h-3.5" />
-              <span>telanganachessschool@gmail.com</span>
-            </div>
-          </div>
-          <div className="text-xs opacity-90">
-            🏆 Professional Chess Training in INDIA
-          </div>
-        </div>
-      </div>
+    <>
+      <header
+        className={`fixed z-50 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] left-0 right-0 ${
+          scrolled
+            ? "top-4 mx-4 md:mx-auto max-w-6xl rounded-2xl bg-white/80 backdrop-blur-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/60 py-2.5"
+            : "top-0 py-6 bg-transparent"
+        }`}
+      >
+        <div className={`px-4 md:px-6 ${scrolled ? "" : "max-w-7xl mx-auto"}`}>
+          <div className="flex items-center justify-between">
+            {/* --- Logo Section --- */}
+            <a href="/" className="flex items-center gap-3 group shrink-0">
+              {/* <div
+                className={`relative transition-all duration-500 ${
+                  scrolled ? "w-8 h-8" : "w-10 h-10 md:w-12 md:h-12"
+                }`}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full blur opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-      {/* Main Navigation */}
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between py-3">
-          {/* Logo Section */}
-          <Link
-            href="/"
-            className="flex items-center space-x-3 group"
-            onMouseEnter={() => setActiveNav("")}
-          >
-            <div className="relative w-12 h-12  rounded-xl flex items-center justify-center transform group-hover:scale-105 transition-transform duration-300 ">
-              <Image
-                src="/logo.ico"
-                alt="Telangana Chess School Logo"
-                width={40}
-                height={40}
-              />
-            </div>
-            <div className="flex flex-col">
-              <span className="sm:text-xl text-md font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight">
-                Telangana Chess School
-              </span>
-              <span className="text-xs text-gray-500 font-medium">
-                Strategic Excellence
-              </span>
-            </div>
-          </Link>
+                <img
+                  src="https://cosmicchessacademy.com/images/logo-digital.png"
+                  alt="Cosmic Chess"
+                  className="relative w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-500"
+                />
+              </div> */}
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-1">
-            {navItems.map((item) => (
-              <div key={item.name} className="relative group">
-                {item.hasDropdown ? (
-                  <div className="relative">
-                    <button
-                      onMouseEnter={() => {
-                        setIsAboutOpen(true);
-                        setActiveNav(item.name);
-                      }}
-                      onMouseLeave={() => setIsAboutOpen(false)}
-                      className="flex items-center space-x-1 px-4 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 rounded-lg hover:bg-blue-50 group"
-                    >
-                      <span>{item.name}</span>
-                      <ChevronDown className="w-4 h-4 transform group-hover:rotate-180 transition-transform duration-200" />
-                    </button>
-
-                    <div className="absolute top-full left-0 mt-1 w-56 bg-white/95 backdrop-blur-md rounded-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-30">
-                      <div className="p-2">
-                        {item.dropdownItems?.map((dropItem, index) => (
-                          <Link
-                            key={dropItem.name}
-                            href={dropItem.href}
-                            className="block px-4 py-3 text-sm text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 transform hover:translate-x-1"
-                            style={{ transitionDelay: `${index * 50}ms` }}
-                            onClick={() => setIsAboutOpen(false)}
-                          >
-                            {dropItem.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ) : item.isExternal ? (
-                  <a
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 rounded-lg hover:bg-blue-50 flex items-center space-x-1 group"
-                  >
-                    <span>{item.name}</span>
-                    <span className="text-blue-500 transform group-hover:translate-x-0.5 transition-transform duration-200">
-                      ↗
-                    </span>
-                  </a>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className="px-4 py-2 text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200 rounded-lg hover:bg-blue-50 relative"
-                    onMouseEnter={() => setActiveNav(item.name)}
-                  >
-                    {item.name}
-                    {activeNav === item.name && (
-                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
-                    )}
-                  </Link>
-                )}
-              </div>
-            ))}
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden p-2 rounded-lg bg-gray-100 text-gray-600 hover:bg-blue-100 hover:text-blue-600 transition-colors duration-200"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-5 h-5" />
-            ) : (
-              <Menu className="w-5 h-5" />
-            )}
-          </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 bg-white/98 backdrop-blur-md border-t border-gray-100 shadow-xl rounded-b-2xl mx-4 mb-4 overflow-hidden">
-            <div className="p-4 space-y-1">
-              {navItems.map((item) => (
-                <div
-                  key={item.name}
-                  className="border-b border-gray-100 last:border-b-0"
+              {/* Text replaces Logo properly as requested, styled modernly */}
+              <div className="flex flex-col">
+                <span
+                  className={`font-black tracking-tight leading-none ${
+                    scrolled ? "text-lg" : "text-xl md:text-2xl"
+                  } text-[#1a1a4b]`}
                 >
-                  {item.hasDropdown ? (
-                    <div>
-                      <button
-                        onClick={() => setIsAboutOpen(!isAboutOpen)}
-                        className="flex items-center justify-between w-full px-4 py-3 text-gray-700 hover:text-blue-600 font-medium rounded-lg hover:bg-blue-50 transition-colors duration-200"
-                      >
-                        <span>{item.name}</span>
-                        <ChevronDown
-                          className={`w-4 h-4 transform transition-transform duration-200 ${
-                            isAboutOpen ? "rotate-180" : ""
-                          }`}
-                        />
-                      </button>
-
-                      {isAboutOpen && (
-                        <div className="ml-4 mt-1 space-y-1 bg-blue-50/50 rounded-lg p-2">
-                          {item.dropdownItems?.map((dropItem) => (
-                            <Link
-                              key={dropItem.name}
-                              href={dropItem.href}
-                              className="block px-4 py-2.5 text-sm text-gray-600 hover:text-blue-600 hover:bg-white rounded-lg transition-colors duration-200"
-                              onClick={() => {
-                                setIsAboutOpen(false);
-                                setIsMobileMenuOpen(false);
-                              }}
-                            >
-                              {dropItem.name}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ) : item.isExternal ? (
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-between px-4 py-3 text-gray-700 hover:text-blue-600 font-medium rounded-lg hover:bg-blue-50 transition-colors duration-200"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      <span>{item.name}</span>
-                      <span className="text-blue-500">↗</span>
-                    </a>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      className="block px-4 py-3 text-gray-700 hover:text-blue-600 font-medium rounded-lg hover:bg-blue-50 transition-colors duration-200"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            {/* Mobile Contact Info */}
-            <div className="bg-gradient-to-r from-blue-50 to-red-50 p-4 border-t border-gray-100">
-              <div className="space-y-2 text-sm">
-                <div className="flex items-center space-x-2 text-gray-600">
-                  <Phone className="w-4 h-4" />
-                  <span>+91 9864646481</span>
-                </div>
-                <div className="flex items-center space-x-2 text-gray-600">
-                  <Mail className="w-4 h-4" />
-                  <span>telanganachessschool@gmail.com</span>
-                </div>
+                  Cosmic
+                  <span className="ml-1 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
+                    Chess
+                  </span>
+                </span>
               </div>
+            </a>
+
+            {/* --- Center Navigation Pill (Desktop) --- */}
+            <nav className="hidden lg:flex items-center p-1 bg-gray-100/80 rounded-full border border-white/50 backdrop-blur-sm shadow-inner absolute left-1/2 -translate-x-1/2">
+              {navItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="px-5 py-2 text-sm font-semibold text-gray-600 rounded-full hover:bg-white hover:text-[#1a1a4b] hover:shadow-[0_2px_8px_rgba(0,0,0,0.08)] transition-all duration-300"
+                >
+                  {item.name}
+                </a>
+              ))}
+            </nav>
+
+            {/* --- Right Actions --- */}
+            <div className="flex items-center gap-3">
+              <a
+                href="/contact"
+                className={`hidden md:flex items-center gap-2 bg-[#1a1a4b] hover:bg-purple-700 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-purple-900/10 hover:-translate-y-0.5 ${
+                  scrolled ? "px-5 py-2" : "px-6 py-3"
+                }`}
+              >
+                Book Demo
+                <ArrowRightIcon className="w-4 h-4" />
+              </a>
+
+              {/* Mobile Toggle */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className={`lg:hidden p-2 rounded-xl transition-all duration-300 ${
+                  isMobileMenuOpen
+                    ? "bg-red-50 text-red-500 rotate-90"
+                    : "bg-gray-100 text-[#1a1a4b] hover:bg-gray-200"
+                }`}
+                aria-label="Toggle Menu"
+              >
+                {isMobileMenuOpen ? (
+                  <XIcon className="w-6 h-6" />
+                ) : (
+                  <MenuIcon className="w-6 h-6" />
+                )}
+              </button>
             </div>
           </div>
-        )}
-      </div>
-    </header>
+        </div>
+
+        {/* --- Mobile Menu Dropdown --- */}
+        {/* Floating panel style for mobile */}
+        <div
+          className={`lg:hidden absolute left-0 right-0 top-[calc(100%+8px)] mx-4 bg-white/95 backdrop-blur-2xl rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.1)] border border-white/40 overflow-hidden transition-all duration-500 origin-top ${
+            isMobileMenuOpen
+              ? "max-h-[80vh] opacity-100 translate-y-0"
+              : "max-h-0 opacity-0 -translate-y-4 pointer-events-none"
+          }`}
+        >
+          <div className="p-2 space-y-1">
+            {navItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="flex items-center justify-between p-4 rounded-2xl text-[#1a1a4b] font-bold hover:bg-purple-50 transition-colors group"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {item.name}
+                <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all shadow-sm">
+                  <ArrowRightIcon className="w-4 h-4 text-purple-600" />
+                </div>
+              </a>
+            ))}
+            <div className="p-2 pt-4">
+              <a
+                href="/contact"
+                className="block w-full text-center py-4 rounded-xl bg-[#1a1a4b] text-white font-bold shadow-lg shadow-purple-900/20 active:scale-95 transition-transform"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Start Free Trial
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+    </>
   );
-}
+};
+
+export default Header;
