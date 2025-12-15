@@ -74,7 +74,7 @@ export default function WhyChooseUsSection() {
               <div className="absolute inset-0 bg-indigo-500/20 rounded-full blur-3xl group-hover:bg-violet-500/30 transition-colors duration-500" />
               
               <img
-                src="/central-knight (2).png" // Ensure this image exists
+                src="/central.png" // Ensure this image exists
                 alt="Chess Knight"
                 className="w-48 h-48 sm:w-56 sm:h-56 lg:w-72 lg:h-72 object-contain z-10 relative transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3 drop-shadow-2xl"
               />
