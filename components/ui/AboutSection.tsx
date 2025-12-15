@@ -90,10 +90,10 @@ const AboutSection: React.FC = () => {
               />
               <div>
                 <p className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">
-                  CEO, National Instructor
+                  Founder & CEO, 15 Years of Experience
                 </p>
                 <h4 className="text-xl font-bold text-[#1a1a4b]">
-                  Hardik Khurana
+                  Vivek Singh
                 </h4>
                 <p className="text-sm text-gray-400">From India</p>
               </div>
