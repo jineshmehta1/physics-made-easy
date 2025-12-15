@@ -9,7 +9,7 @@ import { Footer } from "@/components/footer"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Cosmic Chess Academy - Professional Chess Training",
+  title: " Checkmate Sensei  Academy - Professional Chess Training",
   description:
     "Professional chess training academy with FIDE rated coaches. Learn chess from beginners to advanced levels with online and offline classes.",
   generator: "v0.app",
@@ -32,7 +32,7 @@ export default function RootLayout({
         {
           "@context": "https://schema.org",
           "@type": "Organization",
-          "name": " Cosmic Chess Academy",
+          "name": "  Checkmate Sensei  Academy",
           "url": "https://telanganachessschool.com",
           "sameAs": [
             "https://thegeniuschessacademy.com"

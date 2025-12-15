@@ -108,19 +108,6 @@ export function Footer() {
            </div>
         </div>
 
-        {/* Bottom Center Dinosaur */}
-        <div className="absolute bottom-[15%] left-[50%] transform -translate-x-1/2 z-0 opacity-80">
-            <svg width="100" height="80" viewBox="0 0 100 80" fill="#22c55e" xmlns="http://www.w3.org/2000/svg">
-               {/* Simple Dino Shape */}
-               <path d="M80 20 C 90 20, 95 30, 90 40 C 85 50, 80 45, 75 45 L 75 60 C 75 70, 65 75, 55 70 L 45 70 C 45 75, 40 80, 30 75 L 35 65 L 20 65 L 15 70 C 5 70, 0 60, 5 55 L 10 50 C 5 45, 10 30, 30 35 L 50 35 C 50 25, 60 10, 70 15 Z" />
-               {/* Spikes */}
-               <path d="M40 35 L 45 25 L 50 35" fill="#15803d"/>
-               <path d="M50 35 L 55 20 L 60 30" fill="#15803d"/>
-               <path d="M60 30 L 65 20 L 70 25" fill="#15803d"/>
-               {/* Eye */}
-               <circle cx="82" cy="28" r="2" fill="white"/>
-            </svg>
-        </div>
 
         {/* Bottom Left Pink Scribble */}
         <div className="absolute bottom-[20%] left-[-2%] md:left-[2%] z-0 transform rotate-[-20deg]">
@@ -146,7 +133,7 @@ export function Footer() {
                   </div>
                </div>
                <div>
-                  <h3 className="text-2xl font-serif text-white tracking-wide leading-none">Cosmic Chess</h3>
+                  <h3 className="text-2xl font-serif text-white tracking-wide leading-none"> Checkmate Sensei </h3>
                   <p className="text-[10px] uppercase tracking-[0.2em] text-gray-300 mt-1">Learn to be limitless</p>
                </div>
             </div>
@@ -162,7 +149,7 @@ export function Footer() {
                    <div className="w-8 h-8 rounded-full border border-gray-600 flex items-center justify-center group-hover:border-white transition-colors flex-shrink-0">
                      <Mail size={14} className="text-gray-300 group-hover:text-white" />
                   </div>
-                  <span className="text-gray-300 text-sm font-medium break-all">support@cosmicchessacademy.com</span>
+                  <span className="text-gray-300 text-sm font-medium break-all">support@ checkmatesenseiacademy.com </span>
                </div>
             </div>
           </div>
@@ -223,7 +210,7 @@ export function Footer() {
       {/* 4. Bottom Footer Bar */}
       <div className="container mx-auto px-6 pb-6 pt-12 relative z-30">
           <div className="flex flex-col md:flex-row items-center justify-center text-center">
-             <p className="text-gray-400 text-sm">Cosmic Chess. All rights reserved.</p>
+             <p className="text-gray-400 text-sm"> Checkmate Sensei . All rights reserved.</p>
           </div>
       </div>
 

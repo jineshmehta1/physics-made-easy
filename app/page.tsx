@@ -5,6 +5,7 @@ import  TestimonialsSection  from "@/components/testimonials-section"
 import  FaqSection  from "@/components/stats-section"
 import  FeaturesSection  from "@/components/features-section"
 import AchievementsSection from "@/components/ui/AchievementsSection"
+import WhyChooseUsSection from "@/components/why-choose"
 
 
 export default function HomePage() {
@@ -12,10 +13,11 @@ export default function HomePage() {
     <div className="min-h-screen">
       <main>
         <HeroSection />
-        <FaqSection />
+        <WhyChooseUsSection/>
         <AchievementsSection/>
         <CoursesSection />
         <TestimonialsSection />
+        <FaqSection />
         <DemoBookingCTA />
       </main>
     </div>

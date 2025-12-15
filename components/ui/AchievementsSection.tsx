@@ -97,7 +97,7 @@ const AchievementsSection: React.FC = () => {
             Hall of Fame
           </div>
           <h2 className="text-4xl md:text-5xl font-extrabold text-[#1a1a4b] tracking-tight">
-            Winners At <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Cosmic Chess</span>
+            Winners At <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"> Checkmate Sensei </span>
           </h2>
           <p className="mt-4 text-gray-500 max-w-2xl mx-auto">
             Celebrating the brilliance and dedication of our top-performing students in tournaments around the globe.

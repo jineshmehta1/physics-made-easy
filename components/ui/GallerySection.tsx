@@ -255,7 +255,7 @@ const GallerySection: React.FC = () => {
               
               <div className="mt-8 pt-8 border-t border-gray-100 text-sm text-gray-400 flex items-center gap-2">
                  <CameraIcon className="w-4 h-4" />
-                 <span>Cosmic Chess Academy</span>
+                 <span> Checkmate Sensei  Academy</span>
               </div>
             </div>
           </div>

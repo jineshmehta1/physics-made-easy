@@ -22,12 +22,12 @@ const faqData = [
       "5 to 7 years old is considered the ideal age to start. Chess helps young children develop concentration, pattern recognition, and patience early in their development.",
   },
   {
-    question: "Why Cosmic Chess Academy is the best suit for my kid?",
+    question: "Why  Checkmate Sensei  Academy is the best suit for my kid?",
     answer:
       "We offer FIDE-rated trainers, a structured curriculum, regular tournaments, and a fun, interactive learning environment tailored specifically for children.",
   },
   {
-    question: "Are we going to get a completion certificate after my kid completes a course from Cosmic Chess?",
+    question: "Are we going to get a completion certificate after my kid completes a course from  Checkmate Sensei ?",
     answer:
       "Yes, every student receives a certificate of completion upon finishing their specific level and passing the assessment.",
   },
@@ -125,10 +125,10 @@ export default function FaqSection() {
                   If you have the local asset, replace src with "/images/your-image.png"
                 */}
                 <Image 
-                  src="https://cosmicchessacademy.com/images/author.png" 
+                  src="faqimage.jpg" 
                   alt="Student Reading"
-                  width={400}
-                  height={400}
+                  width={500}
+                  height={500}
                   className="object-contain drop-shadow-xl"
                   priority
                 />
