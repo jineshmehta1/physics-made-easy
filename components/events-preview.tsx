@@ -127,7 +127,7 @@ export default function CoursesSection() {
 
               {/* --- Action Button (Bottom) --- */}
               <div className="mt-10">
-                <Link href="https://wa.me/+000000000" target="_blank">
+                <Link href="https://wa.me/+918130627389" target="_blank">
                     <button className="w-full bg-[#5C4EE5] cursor-pointer  hover:bg-[#4a3ec2] text-white font-bold py-3.5 px-6 rounded-lg transition-colors shadow-lg shadow-indigo-100">
                     Register Now
                     </button>

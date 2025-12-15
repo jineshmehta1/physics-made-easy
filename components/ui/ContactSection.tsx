@@ -49,7 +49,7 @@ const ContactSection: React.FC = () => {
                   </div>
                   <div>
                     <span className="block text-xs font-bold text-blue-300 uppercase tracking-wide mb-1">Email Address</span>
-                    <p className="text-lg font-medium break-all">support@ checkmatesenseiacademy.com </p>
+                    <p className="text-lg font-medium break-all">checkmatesensei@gmail.com </p>
                   </div>
                 </div>
 

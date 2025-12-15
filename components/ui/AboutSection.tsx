@@ -65,7 +65,7 @@ const AboutSection: React.FC = () => {
 
             {/* Heading */}
             <h2 className="text-3xl md:text-5xl font-bold text-[#1a1a4b] mb-6 leading-tight">
-              About Cosmic <span className="relative inline-block px-3 py-1 mt-2 md:mt-0">
+              About Checkmate Sensei <span className="relative inline-block px-3 py-1 mt-2 md:mt-0">
                 <span className="absolute inset-0 bg-yellow-400 rounded-lg transform -rotate-2"></span>
                 <span className="relative text-white z-10">Chess</span>
               </span>

@@ -48,15 +48,18 @@ export default function BookDemoPage() {
         }
       );
       setSubmitStatus("success");
-      setIsFormOpen(false);
-      setFormData({
-        studentName: "",
-        parentName: "",
-        email: "",
-        phone: "",
-        age: "",
-        experience: "beginner",
-      });
+      setTimeout(() => {
+         setIsFormOpen(false);
+         setSubmitStatus(null);
+         setFormData({
+            studentName: "",
+            parentName: "",
+            email: "",
+            phone: "",
+            age: "",
+            experience: "beginner",
+          });
+      }, 2000);
     } catch {
       setSubmitStatus("error");
     } finally {
@@ -104,11 +107,11 @@ export default function BookDemoPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 font-sans">
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         {/* Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 -right-40 w-96 h-96 bg-gradient-to-r from-purple-100 to-pink-100 rounded-full blur-3xl opacity-20"></div>
           <div className="absolute bottom-1/4 -left-40 w-96 h-96 bg-gradient-to-r from-amber-100 to-yellow-100 rounded-full blur-3xl opacity-20"></div>
         </div>
@@ -133,7 +136,7 @@ export default function BookDemoPage() {
               </h1>
               
               <p className="text-xl text-gray-600 leading-relaxed">
-                Experience world-class chess coaching with Grandmaster Ravindra Raju. 
+                Experience world-class chess coaching with Checkmate Sensei. 
                 Join our free demo class and discover why thousands of students choose us.
               </p>
 
@@ -174,8 +177,7 @@ export default function BookDemoPage() {
                     <div className="w-32 h-32 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-8">
                       <Crown className="w-16 h-16 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Meet Grandmaster</h3>
-                    <p className="text-gray-600">Ravindra Raju</p>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Meet Best Coaches</h3>
                     <p className="text-sm text-gray-500 mt-2">FIDE Instructor & International Coach</p>
                   </div>
                 </div>
@@ -360,153 +362,154 @@ export default function BookDemoPage() {
         </div>
       </section>
 
-      {/* Enrollment Form Modal */}
+      {/* Enrollment Form Modal - ADJUSTED TO BE COMPACT & RESPONSIVE */}
       {isFormOpen && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-3xl max-w-lg w-full p-8 relative animate-in fade-in duration-300">
-            {/* Close Button */}
-            <button 
-              onClick={() => setIsFormOpen(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
-            >
-              <X className="w-6 h-6" />
-            </button>
-
-            {/* Form Header */}
-            <div className="text-center mb-8">
-              <div className="w-20 h-20 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Calendar className="w-10 h-10 text-white" />
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-3xl w-full max-w-lg relative animate-in fade-in zoom-in duration-300 shadow-2xl flex flex-col max-h-[90vh]">
+            
+            {/* Header (Fixed) */}
+            <div className="p-6 border-b border-gray-100 flex items-center justify-between shrink-0">
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900">Book Free Demo</h3>
+                <p className="text-gray-500 text-sm">We'll contact you within 24 hours</p>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                Book Your Free Demo Class
-              </h3>
-              <p className="text-gray-600">
-                Fill in your details and we'll contact you within 24 hours
-              </p>
+              <button 
+                onClick={() => setIsFormOpen(false)}
+                className="p-2 bg-gray-100 rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-200 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
 
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Student Name *
-                </label>
-                <input
-                  type="text"
-                  name="studentName"
-                  value={formData.studentName}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                  placeholder="Enter student's name"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Parent's Name *
-                </label>
-                <input
-                  type="text"
-                  name="parentName"
-                  value={formData.parentName}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                  placeholder="Enter parent's name"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                  placeholder="Enter your email"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Phone Number *
-                </label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                  placeholder="Enter phone number"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Age *
-                  </label>
-                  <input
-                    type="number"
-                    name="age"
-                    value={formData.age}
-                    onChange={handleChange}
-                    required
-                    min="5"
-                    max="18"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                    placeholder="Age"
-                  />
+            {/* Scrollable Form Body */}
+            <div className="p-6 overflow-y-auto custom-scrollbar">
+              <form onSubmit={handleSubmit} className="space-y-4">
+                
+                {/* Row 1: Names */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-700 mb-1.5 uppercase tracking-wide">
+                      Student Name *
+                    </label>
+                    <input
+                      type="text"
+                      name="studentName"
+                      value={formData.studentName}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-sm"
+                      placeholder="Student Name"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-700 mb-1.5 uppercase tracking-wide">
+                      Parent Name *
+                    </label>
+                    <input
+                      type="text"
+                      name="parentName"
+                      value={formData.parentName}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-sm"
+                      placeholder="Parent Name"
+                    />
+                  </div>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Experience Level *
-                  </label>
-                  <select
-                    name="experience"
-                    value={formData.experience}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                  >
-                    <option value="beginner">Beginner</option>
-                    <option value="intermediate">Intermediate</option>
-                    <option value="advanced">Advanced</option>
-                  </select>
+                {/* Row 2: Contacts */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-700 mb-1.5 uppercase tracking-wide">
+                      Email *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-sm"
+                      placeholder="Email Address"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-700 mb-1.5 uppercase tracking-wide">
+                      Phone *
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-sm"
+                      placeholder="Phone Number"
+                    />
+                  </div>
                 </div>
-              </div>
 
-              {submitStatus === "success" && (
-                <div className="p-4 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-xl font-semibold flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5" />
-                  Demo booked successfully! We'll contact you soon.
+                {/* Row 3: Age & Level */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-700 mb-1.5 uppercase tracking-wide">
+                      Age *
+                    </label>
+                    <input
+                      type="number"
+                      name="age"
+                      value={formData.age}
+                      onChange={handleChange}
+                      required
+                      min="5"
+                      max="18"
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-sm"
+                      placeholder="Age"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-700 mb-1.5 uppercase tracking-wide">
+                      Level *
+                    </label>
+                    <select
+                      name="experience"
+                      value={formData.experience}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-sm bg-white"
+                    >
+                      <option value="beginner">Beginner</option>
+                      <option value="intermediate">Intermediate</option>
+                      <option value="advanced">Advanced</option>
+                    </select>
+                  </div>
                 </div>
-              )}
-              {submitStatus === "error" && (
-                <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl font-semibold flex items-center gap-2">
-                  ❌ Something went wrong. Please try again.
-                </div>
-              )}
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-4 rounded-xl text-lg transition-all duration-300 disabled:opacity-50"
-              >
-                {isSubmitting ? "Booking..." : "Book Free Demo Class"}
-              </button>
+                {submitStatus === "success" && (
+                  <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-xl font-medium text-sm flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4" />
+                    Booked successfully!
+                  </div>
+                )}
+                {submitStatus === "error" && (
+                  <div className="p-3 bg-red-50 border border-red-200 text-red-700 rounded-xl font-medium text-sm flex items-center gap-2">
+                    ❌ Something went wrong.
+                  </div>
+                )}
 
-              <p className="text-center text-sm text-gray-500">
-                By submitting, you agree to our Terms & Privacy Policy
-              </p>
-            </form>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3.5 rounded-xl text-lg transition-all duration-300 disabled:opacity-50 mt-2 shadow-lg shadow-purple-200"
+                >
+                  {isSubmitting ? "Booking..." : "Confirm Booking"}
+                </button>
+
+                <p className="text-center text-xs text-gray-400">
+                  By submitting, you agree to our Terms & Privacy Policy
+                </p>
+              </form>
+            </div>
           </div>
         </div>
       )}

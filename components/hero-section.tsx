@@ -62,9 +62,9 @@ export default function HeroSection() {
             </h1>
 
             {/* Value Props Grid */}
-            <p className="text-lg text-slate-600 leading-relaxed max-w-lg">
+            {/* <p className="text-lg text-slate-600 leading-relaxed max-w-lg">
               Unlock your child's potential with world-class chess coaching. Boost concentration, strategy, and confidence in a fun, interactive online environment.
-            </p>
+            </p> */}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                {[

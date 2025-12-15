@@ -125,7 +125,7 @@ export default function FaqSection() {
                   If you have the local asset, replace src with "/images/your-image.png"
                 */}
                 <Image 
-                  src="faqimage.jpg" 
+                  src="knight-think.png" 
                   alt="Student Reading"
                   width={500}
                   height={500}

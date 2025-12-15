@@ -1,5 +1,7 @@
+"use client";
+
 import React from 'react';
-import { CheckIcon, ClockIcon, UsersIcon, DollarIcon, SparklesIcon } from './BannerIcon';
+import { CheckIcon, ClockIcon, UsersIcon, SparklesIcon } from 'lucide-react';
 
 interface Course {
   title: string;
@@ -22,20 +24,20 @@ const courses: Course[] = [
     goals: "Understanding the game, basic strategies and concepts in a fun way. Develop confidence to play matches.",
     schedule: "Weekly: 2 sessions, each lasting 45 minutes.",
     groupSize: "Determined based on the coach's recommendation.",
-    price: "55 USD",
-    privatePrice: "19 USD Per Session",
+    price: "45 USD",
+    privatePrice: "20 USD (1:1) | 18 USD (2:1)",
     benefits: "Complimentary guided practice sessions on zoom call.",
     accentColor: "border-green-400"
   },
   {
     title: "Intermediate",
     subtitle: "Master Chess Like a Pro",
-    image: "https:// checkmatesenseiacademy.com /images/md2.png",
+    image: "https://checkmatesenseiacademy.com/images/md2.png",
     goals: "Gain the confidence to participate in competitive chess tournaments. Progress towards earning a FIDE rating.",
     schedule: "Weekly: 2 sessions, each lasting 45 minutes.",
     groupSize: "Determined based on the coach's recommendation.",
-    price: "59 USD",
-    privatePrice: "22 USD Per Session",
+    price: "52 USD",
+    privatePrice: "20 USD (1:1) | 18 USD (2:1)",
     benefits: "Complimentary guided practice sessions on zoom call.",
     accentColor: "border-blue-400"
   },
@@ -46,8 +48,8 @@ const courses: Course[] = [
     goals: "Enhance performance in FIDE-rated tournaments. Master the finer points and nuances of chess.",
     schedule: "Weekly: 2 sessions, each 45 minutes long.",
     groupSize: "Determined based on the coach's recommendation.",
-    price: "65 USD",
-    privatePrice: "25 USD Per Session",
+    price: "62 USD",
+    privatePrice: "20 USD (1:1) | 18 USD (2:1)",
     benefits: "Free guided practice sessions.",
     accentColor: "border-purple-400"
   }
@@ -83,6 +85,9 @@ const CoursesSection: React.FC = () => {
                   src={course.image} 
                   alt={course.title} 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1580541832626-2a7131ee809f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                  }}
                 />
                 <div className="absolute bottom-4 left-6 z-20 text-white">
                   <h3 className="text-2xl font-bold">{course.title}</h3>
@@ -136,9 +141,12 @@ const CoursesSection: React.FC = () => {
                      <span className="text-sm text-gray-500 font-medium">Group Class</span>
                      <span className="text-xl font-bold text-[#1a1a4b]">{course.price} <span className="text-xs font-normal text-gray-400">/mo</span></span>
                   </div>
-                  <div className="flex items-center justify-between pt-2 border-t border-gray-200">
-                     <span className="text-sm text-gray-500 font-medium">1:1 Session</span>
-                     <span className="text-md font-bold text-purple-600">{course.privatePrice}</span>
+                  <div className="flex flex-col pt-2 border-t border-gray-200">
+                     <div className="flex justify-between items-center">
+                        <span className="text-sm text-gray-500 font-medium">1:1 Session</span>
+                        <span className="text-sm font-bold text-purple-600 text-right">{course.privatePrice}</span>
+                     </div>
+                     <span className="text-[10px] text-gray-400 text-right mt-1">per session</span>
                   </div>
                 </div>
 
