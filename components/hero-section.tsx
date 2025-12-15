@@ -38,10 +38,12 @@ export default function HeroSection() {
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           
           {/* LEFT COLUMN: Copy & CTA (Span 6 columns) */}
-          <div className={`lg:col-span-6 space-y-6 lg:space-y-8 transition-all duration-1000 transform ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          {/* Added 'text-center lg:text-left' here */}
+          <div className={`lg:col-span-6 space-y-6 lg:space-y-8 transition-all duration-1000 transform text-center lg:text-left ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             
             {/* Trust Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-white border border-indigo-100 shadow-sm text-indigo-900 font-medium text-xs md:text-sm mb-2">
+            {/* Added 'mx-auto lg:mx-0' to center it on mobile but left on desktop */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-white border border-indigo-100 shadow-sm text-indigo-900 font-medium text-xs md:text-sm mb-2 mx-auto lg:mx-0">
               <span className="relative flex h-2.5 w-2.5 md:h-3 md:w-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 md:h-3 md:w-3 bg-indigo-500"></span>
@@ -69,7 +71,8 @@ export default function HeroSection() {
                  { icon: ShieldCheck, text: "Beginner Friendly" },
                  { icon: Users, text: "Small Batch Size" },
                ].map((item, idx) => (
-                 <div key={idx} className="flex items-center gap-3 text-slate-700 font-medium text-sm md:text-base">
+                 /* Added 'justify-center lg:justify-start' to center items on mobile */
+                 <div key={idx} className="flex items-center gap-3 text-slate-700 font-medium text-sm md:text-base justify-center lg:justify-start">
                    <div className="w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600 shrink-0">
                       <item.icon size={16} strokeWidth={2.5} />
                    </div>
@@ -79,7 +82,8 @@ export default function HeroSection() {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-2 md:pt-4">
+            {/* Added 'justify-center lg:justify-start' */}
+            <div className="flex flex-col sm:flex-row gap-4 pt-2 md:pt-4 justify-center lg:justify-start">
               <button className="w-full sm:w-auto group relative px-8 py-4 bg-slate-900 text-white rounded-2xl font-bold text-lg shadow-xl shadow-indigo-900/20 hover:shadow-2xl hover:shadow-indigo-900/40 hover:-translate-y-1 transition-all duration-300 overflow-hidden">
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   Book Free Trial Class
@@ -90,13 +94,14 @@ export default function HeroSection() {
             </div>
 
             {/* Social Proof (Small) */}
-            <div className="flex items-center gap-4 pt-2">
+            {/* Added 'justify-center lg:justify-start' */}
+            <div className="flex items-center gap-4 pt-2 justify-center lg:justify-start">
                <div className="flex -space-x-3">
                  {[1,2,3,4].map(i => (
                    <img key={i} src={`https://i.pravatar.cc/100?u=chess${i}`} alt="user" className="w-10 h-10 rounded-full border-2 border-white" />
                  ))}
                </div>
-               <div className="text-sm">
+               <div className="text-sm text-left"> {/* Kept text-left here specifically for the "4.9/5" text block so it aligns with stars, but the whole block is centered by parent */}
                  <div className="flex text-yellow-500 mb-0.5">
                    {[1,2,3,4,5].map(i => <Star key={i} size={14} fill="currentColor" />)}
                  </div>
