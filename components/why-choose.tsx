@@ -9,7 +9,7 @@ export default function WhyChooseUsSection() {
     textDark: '#1F2937',          // gray-800
     textMuted: '#4B5563',         // gray-600
     cardBg: '#FFFFFF',            // white
-    cardBorder: '#FEF08A',        // yellow-200
+    cardBorder: '#FEF08A',        // yellow-20
   };
 
   const benefits = [
