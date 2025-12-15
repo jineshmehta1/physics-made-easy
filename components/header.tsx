@@ -137,7 +137,7 @@ const Header: React.FC = () => {
             ))}
             <div className="p-2 pt-4">
               <a
-                href="/contact"
+                href="/bookdemo"
                 className="block w-full text-center py-4 rounded-xl bg-[#1a1a4b] text-white font-bold shadow-lg shadow-purple-900/20 active:scale-95 transition-transform"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
