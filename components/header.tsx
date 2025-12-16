@@ -41,32 +41,22 @@ const Header: React.FC = () => {
           <div className="flex items-center justify-between">
             {/* --- Logo Section --- */}
             <a href="/" className="flex items-center gap-3 group shrink-0">
-              <div
-                className={`relative transition-all duration-500 ${
-                  scrolled ? "w-30 h-30" : "w-32 h-32 md:w-34 md:h-34"
-                }`}
-              >
-                <img
-                  src="https://checkmatesensei.com/wp-content/uploads/2025/07/checkmate-logo.png"
-                  alt="Cosmic Chess Academy"
-                  className="relative w-full h-full object-contain drop-shadow-md transform group-hover:scale-110 transition-transform duration-500"
-                />
-              </div>
+  <div
+    className={`relative transition-all duration-500 ${
+      scrolled
+        ? "w-28 h-28"
+        : "w-32 h-32 md:w-40 md:h-40"
+    }`}
+  >
+    <img
+      src="/logo6.png"
+      alt="Cosmic Chess Academy"
+      className="w-full h-full object-contain drop-shadow-md 
+                 group-hover:scale-110 transition-transform duration-500"
+    />
+  </div>
+</a>
 
-              {/* Optional: Brand name next to logo (comment out if you want logo only) */}
-              {/* <div className="flex flex-col">
-                <span
-                  className={`font-black tracking-tight leading-none ${
-                    scrolled ? "text-lg" : "text-xl md:text-2xl"
-                  } text-[#1a1a4b]`}
-                >
-                  Cosmic
-                  <span className="ml-1 text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
-                    Chess
-                  </span>
-                </span>
-              </div> */}
-            </a>
 
             {/* --- Center Navigation Pill (Desktop) --- */}
             <nav className="hidden lg:flex items-center p-1 bg-gray-100/80 rounded-full border border-white/50 backdrop-blur-sm shadow-inner absolute left-1/2 -translate-x-1/2">
