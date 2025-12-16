@@ -30,16 +30,16 @@ const categories = [
 const galleryImages: GalleryImage[] = [
   {
     id: 1,
-    src: "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+    src: "/gallery1.jpeg",
     alt: "Chess Tournament 2024",
     category: "tournaments",
-    title: "Championship 2024",
+    title: "Championship",
     description: "Students competing in the annual championship finals.",
     span: "md:col-span-2 md:row-span-2"
   },
   {
     id: 2,
-    src: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+    src: "/gallery2.jpeg",
     alt: "Beginner Chess Class",
     category: "events",
     title: "Young Minds",
@@ -48,49 +48,170 @@ const galleryImages: GalleryImage[] = [
   },
   {
     id: 3,
-    src: "https://images.unsplash.com/photo-1611195974226-a6a9be9dd763?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+    src: "/gallery3.jpeg",
     alt: "Fide Arbiter",
     category: "certificate",
-    title: "FIDE Arbiter",
+    title: "Young Champions",
     description: "Official certification ceremony.",
     span: "md:col-span-1 md:row-span-2"
   },
   {
     id: 4,
-    src: "https://images.unsplash.com/photo-1560174038-da43ac74f01b?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+    src: "/gallery4.jpeg",
     alt: "Chess Workshop",
     category: "events",
-    title: "Strategy Workshop",
+    title: "Strategy Winners",
     description: "Deep dive into grandmaster tactics.",
     span: "md:col-span-1 md:row-span-1"
   },
   {
     id: 5,
-    src: "https://images.unsplash.com/photo-1523875194681-bedd468c58bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    src: "/gallery5.jpeg",
     alt: "Award Ceremony",
     category: "certificate",
-    title: "Arena Master",
-    description: "Awarding the International Arena Master title.",
+    title: "Award Ceremony",
+    description: "Awarding the champions.",
     span: "md:col-span-2 md:row-span-1"
   },
   {
     id: 6,
-    src: "https://images.unsplash.com/photo-1580541832626-2a7131ee809f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+    src: "/gallery6.jpeg",
     alt: "Tournament Hall",
     category: "tournaments",
-    title: "National Finals",
-    description: "The intense atmosphere of the nationals.",
+    title: "Winning Finals",
+    description: "The intense atmosphere of the tournaments.",
     span: "md:col-span-1 md:row-span-1"
   },
   {
     id: 7,
-    src: "https://images.unsplash.com/photo-1586165368502-1bad197a6461?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+    src: "/gallery7.jpeg",
     alt: "Trophy",
     category: "tournaments",
     title: "Victory",
     description: "Taking home the gold.",
     span: "md:col-span-1 md:row-span-1"
   },
+  {
+    id: 8,
+    src: "/gallery8.jpeg",
+    alt: "Trophy",
+    category: "tournaments",
+    title: "Victory",
+    description: "Taking home the gold.",
+    span: "md:col-span-1 md:row-span-1"
+  },
+
+  {
+    id: 9,
+    src: "/9.jpeg",
+    alt: "Trophy",
+    category: "tournaments",
+    title: "Champion Minds",
+    description: "Making great moves.",
+    span: "md:col-span-1 md:row-span-1"
+  },
+  {
+    id: 10,
+    src: "/gallery10.jpeg",
+    alt: "Trophy",
+    category: "tournaments",
+    title: "Mentorship results",
+    description: "Winning at every level.",
+    span: "md:col-span-1 md:row-span-1"
+  },
+
+  {
+    id: 11,
+    src: "/gallery11.jpeg",
+    alt: "Trophy",
+    category: "tournaments",
+    title: "Future masters",
+    description: "Masters in the making.",
+    span: "md:col-span-1 md:row-span-1"
+  },
+  {
+    id: 12,
+    src: "/gallery12.jpeg",
+    alt: "Trophy",
+    category: "tournaments",
+    title: "Triumph",
+    description: "Winning at every level.",
+    span: "md:col-span-1 md:row-span-1"
+  },
+  {
+    id: 13,
+    src: "/gallery13.jpeg",
+    alt: "Trophy",
+    category: "tournaments",
+    title: "Young Champions",
+    description: "Frist steps.",
+    span: "md:col-span-1 md:row-span-1"
+  },
+  {
+    id: 14,
+    src: "/gallery14.jpeg",
+    alt: "Trophy",
+    category: "tournaments",
+    title: "Awards",
+    description: "Winning at every level.",
+    span: "md:col-span-1 md:row-span-1"
+  },
+  {
+    id: 15,
+    src: "/gallery15.jpeg",
+    alt: "Trophy",
+    category: "tournaments",
+    title: "Focussed Minds",
+    description: "Future champions.",
+    span: "md:col-span-1 md:row-span-1"
+  },
+  {
+    id: 16,
+    src: "/gallery16.jpeg",
+    alt: "Trophy",
+    category: "tournaments",
+    title: "Award Ceremony",
+    description: "Making the difference.",
+    span: "md:col-span-1 md:row-span-1"
+  },
+  {
+    id: 17,
+    src: "/gallery17.jpeg",
+    alt: "Trophy",
+    category: "tournaments",
+    title: "Victory",
+    description: "Taking home the gold.",
+    span: "md:col-span-1 md:row-span-1"
+  },
+  {
+    id: 18,
+    src: "/gallery19.jpeg",
+    alt: "Trophy",
+    category: "tournaments",
+    title: "Academy Pride",
+    description: "Guiding the students.",
+    span: "md:col-span-1 md:row-span-1"
+  },
+  {
+    id: 19,
+    src: "/gallery18.jpeg",
+    alt: "Trophy",
+    category: "tournaments",
+    title: "Awarded",
+    description: "Winning with the moves.",
+    span: "md:col-span-1 md:row-span-1"
+  },
+  {
+    id: 20,
+    src: "/gallery20.jpeg",
+    alt: "Trophy",
+    category: "tournaments",
+    title: "Winner",
+    description: "Enhancing the bars.",
+    span: "md:col-span-1 md:row-span-1"
+  },
+
+
 ];
 
 const GallerySection: React.FC = () => {

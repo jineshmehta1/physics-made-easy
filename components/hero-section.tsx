@@ -120,7 +120,7 @@ export default function HeroSection() {
                {/* Main Image - Adjusted height for mobile */}
                <div className="relative h-[350px] sm:h-[450px] lg:h-[500px] w-full rounded-[1.5rem] md:rounded-[2rem] overflow-hidden">
                   <img 
-                    src="https://checkmatesensei.com/wp-content/uploads/2025/07/hero-chess-img.webp" 
+                    src="9.jpeg" 
                     alt="Happy kid playing chess"
                     className="object-cover w-full h-full"
                   />
@@ -136,7 +136,7 @@ export default function HeroSection() {
                   </div>
                   <div>
                      <p className="text-[10px] md:text-xs text-slate-500 font-semibold uppercase tracking-wider">Achievement</p>
-                     <p className="text-xs md:text-sm font-bold text-slate-900">Tournament Winner</p>
+                     <p className="text-xs md:text-sm font-bold text-slate-900">National Winner</p>
                   </div>
                </div>
 

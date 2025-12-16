@@ -12,34 +12,34 @@ import {
 const testimonials = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=200&auto=format&fit=crop", 
-    name: "Sarah Jenkins",
-    role: "Mother of Leo (Age 8)",
-    text: "We are immensely grateful to Checkmate Sensei Academy. It has been instrumental in shaping our children's development and providing them with valuable life skills.",
+    image: "https://images.unsplash.com/photo-1517021897933-0e0319cfbc28?q=80&w=200&auto=format&fit=crop", 
+    name: "Eshan Gupta",
+    role: "Student",
+    text: "Humble, kind, and truly dedicated. My child loves his classes—clear explanations, great patience, and real passion for chess. Amazing progress in just weeks. Highly recommend Vivek! 👍",
     rating: 5
   },
   {
     id: 2,
     image: "https://images.unsplash.com/photo-1606041008023-472dfb5e530f?q=80&w=200&auto=format&fit=crop", 
-    name: "David Chen",
+    name: "Shalini kanth",
     role: "Father of Lavith (Age 7)",
-    text: "After a trial class, Lavith was immediately drawn to the engaging teaching style. Since then, he has been a dedicated student, mastering chess rules with speed.",
+    text: "Had a great experience with Coach Mr. Vivek Singh sir....He's very passionate towards chess and Hardworking.",
     rating: 5
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1517021897933-0e0319cfbc28?q=80&w=200&auto=format&fit=crop", 
-    name: "Priya Patel",
-    role: "Mother of Aryan (Age 10)",
-    text: "Thank you Checkmate Sensei! This is exactly what I was looking for. He is really doing well. The interactive method of teaching helps him focus better.",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop", 
+    name: "Tarun Aggarwal",
+    role: "Father of student",
+    text: "Exceptional. If you want your child should grow fast in chess, you should consider this academy. Vivek sir is expert in teaching chess to kids.",
     rating: 5
   },
   {
     id: 4,
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop", 
-    name: "Michael Ross",
-    role: "Father of Rushil (Age 9)",
-    text: "In just three months, Rushil has grasped the fundamentals, strategic thinking, and tactical maneuvers. Teachers here are patient and make learning fun.",
+    image: "https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=200&auto=format&fit=crop", 
+    name: "Aarti Parmar",
+    role: "Mother of Student",
+    text: "Well Planned Classes and Individual detailed attention for over all development of kid.",
     rating: 5
   },
 ];

@@ -24,7 +24,7 @@ const AboutSection: React.FC = () => {
               {/* Image 1: Top Left (Teacher/Student) */}
               <div className="absolute top-0 left-0 w-[70%] h-[60%] z-10">
                 <img 
-                  src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=800&auto=format&fit=crop" 
+                  src="/gallery20.jpeg" 
                   alt="Teacher guiding student"
                   className="w-full h-full object-cover rounded-tr-[80px] rounded-bl-[20px] rounded-tl-[20px] rounded-br-[20px] shadow-lg"
                 />
@@ -34,7 +34,7 @@ const AboutSection: React.FC = () => {
               <div className="absolute bottom-4 right-0 w-[70%] h-[60%] z-20">
                 <div className="w-full h-full p-2 bg-white rounded-tl-[80px] rounded-br-[20px] rounded-tr-[20px] rounded-bl-[20px] shadow-xl">
                   <img 
-                    src="https://images.unsplash.com/photo-1586165368502-1bad197a6461?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                    src="/gallery19.jpeg" 
                     alt="Focused chess game"
                     className="w-full h-full object-cover rounded-tl-[70px] rounded-br-[15px] rounded-tr-[15px] rounded-bl-[15px]"
                   />
@@ -84,7 +84,7 @@ const AboutSection: React.FC = () => {
             {/* Profile Section */}
             <div className="flex items-center gap-4 mt-8 pt-8 border-t border-gray-100">
               <img 
-                src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" 
+                src="/gallery21.jpeg" 
                 alt="CEO Portrait"
                 className="w-16 h-16 rounded-full object-cover shadow-md border-2 border-white ring-2 ring-gray-100"
               />
