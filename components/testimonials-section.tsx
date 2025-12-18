@@ -1,168 +1,125 @@
 "use client";
 
-import React, { useRef } from "react";
-import { 
-  ArrowLeft, 
-  ArrowRight, 
-  Quote, 
-  Star, 
-  Sparkles
-} from "lucide-react";
+import React from "react";
+import { Star, Quote, Sparkles } from "lucide-react";
 
+// --- Demo Data (Based on your provided text) ---
 const testimonials = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1517021897933-0e0319cfbc28?q=80&w=200&auto=format&fit=crop", 
     name: "Eshan Gupta",
     role: "Student",
     text: "Humble, kind, and truly dedicated. My child loves his classes—clear explanations, great patience, and real passion for chess. Amazing progress in just weeks. Highly recommend Vivek! 👍",
-    rating: 5
+    rating: 5,
+    initials: "EG",
+    gradient: "from-amber-100 to-yellow-200"
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1606041008023-472dfb5e530f?q=80&w=200&auto=format&fit=crop", 
-    name: "Shalini kanth",
-    role: "Father of Lavith (Age 7)",
-    text: "Had a great experience with Coach Mr. Vivek Singh sir....He's very passionate towards chess and Hardworking.",
-    rating: 5
+    name: "Shalini Kanth",
+    role: "Parent of Lavith (Age 7)",
+    text: "Had a great experience with Coach Mr. Vivek Singh sir. He's very passionate towards chess and Hardworking.",
+    rating: 5,
+    initials: "SK",
+    gradient: "from-blue-100 to-indigo-200"
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop", 
     name: "Tarun Aggarwal",
-    role: "Father of student",
+    role: "Father of Student",
     text: "Exceptional. If you want your child should grow fast in chess, you should consider this academy. Vivek sir is expert in teaching chess to kids.",
-    rating: 5
+    rating: 5,
+    initials: "TA",
+    gradient: "from-green-100 to-emerald-200"
   },
   {
     id: 4,
-    image: "https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=200&auto=format&fit=crop", 
     name: "Aarti Parmar",
     role: "Mother of Student",
     text: "Well Planned Classes and Individual detailed attention for over all development of kid.",
-    rating: 5
+    rating: 5,
+    initials: "AP",
+    gradient: "from-purple-100 to-violet-200"
   },
 ];
 
 export default function TestimonialsSection() {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-  const scroll = (direction: "left" | "right") => {
-    if (scrollContainerRef.current) {
-      const { current } = scrollContainerRef;
-      const scrollAmount = 320; // Approx card width
-      if (direction === "left") {
-        current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-      } else {
-        current.scrollBy({ left: scrollAmount, behavior: "smooth" });
-      }
-    }
-  };
-
   return (
-    <section className="relative py-16 md:py-24 bg-white font-sans overflow-hidden">
+    <section className="relative py-20 bg-slate-50 font-sans overflow-hidden">
       
-      {/* Background Ambience (Light Theme) */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        {/* Soft Indigo Gradient Blob */}
-        <div className="absolute top-0 right-0 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-indigo-50/80 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2"></div>
-        {/* Soft Teal Gradient Blob */}
-        <div className="absolute bottom-0 left-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-teal-50/80 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2"></div>
-        {/* Subtle Grid Pattern */}
-        <div className="absolute inset-0 opacity-[0.4]" 
-             style={{ backgroundImage: 'radial-gradient(#cbd5e1 1px, transparent 1px)', backgroundSize: '32px 32px' }}>
-        </div>
+      {/* --- Background Pattern --- */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-5"
+           style={{ backgroundImage: 'radial-gradient(#fbbf24 1px, transparent 1px)', backgroundSize: '30px 30px' }}>
       </div>
 
-      <div className="container mx-auto px-4 md:px-6 max-w-7xl relative z-10">
+      <div className="container mx-auto px-4 max-w-6xl relative z-10">
         
-        {/* Header Section */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 md:mb-16 gap-6">
-          <div className="space-y-3 md:space-y-4 max-w-2xl text-center md:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 text-xs md:text-sm font-medium">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Wall of Love</span>
-            </div>
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-slate-900 leading-tight">
-              Trusted by parents, <br className="hidden md:block"/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">
-                Loved by kids
-              </span>
-            </h2>
+        {/* --- Centered Title --- */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-sm text-slate-600 text-xs font-bold uppercase tracking-widest mb-4">
+            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+            <span>Success Stories</span>
           </div>
-          
-          {/* Navigation Buttons (Desktop Only) */}
-          <div className="hidden md:flex gap-4">
-            <button 
-              onClick={() => scroll("left")}
-              className="w-12 h-12 rounded-full border border-slate-200 bg-white text-slate-600 flex items-center justify-center hover:bg-indigo-600 hover:text-white hover:border-indigo-600 shadow-sm transition-all duration-300"
-              aria-label="Scroll left"
-            >
-              <ArrowLeft className="w-5 h-5" />
-            </button>
-            <button 
-              onClick={() => scroll("right")}
-              className="w-12 h-12 rounded-full border border-slate-200 bg-white text-slate-600 flex items-center justify-center hover:bg-indigo-600 hover:text-white hover:border-indigo-600 shadow-sm transition-all duration-300"
-              aria-label="Scroll right"
-            >
-              <ArrowRight className="w-5 h-5" />
-            </button>
-          </div>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">
+            Loved by Parents, <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-600">
+              Celebrated by Students
+            </span>
+          </h2>
+          <div className="h-1 w-24 bg-amber-400 mx-auto rounded-full"></div>
         </div>
 
-        {/* Testimonials Carousel */}
-        <div 
-            ref={scrollContainerRef}
-            className="flex gap-4 md:gap-6 overflow-x-auto pb-8 md:pb-12 px-2 snap-x snap-mandatory -mx-4 md:mx-0"
-            style={{ 
-              scrollbarWidth: 'none', 
-              msOverflowStyle: 'none',
-              scrollPaddingLeft: '1rem' 
-            }}
-        >
-            {testimonials.map((item) => (
-              <div 
-                key={item.id} 
-                className="relative flex-shrink-0 w-[85vw] sm:w-[320px] md:w-[400px] snap-center group pl-4 md:pl-0 first:pl-4 md:first:pl-0 last:pr-4 md:last:pr-0"
-              >
-                {/* Card Container */}
-                <div className="h-full bg-white border border-slate-100 p-6 md:p-8 rounded-[2rem] shadow-xl shadow-slate-200/40 transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-indigo-900/10 hover:border-indigo-100 flex flex-col">
-                  
-                  {/* Quote Icon */}
-                  <div className="mb-4 md:mb-6">
-                    <div className="w-10 h-10 md:w-12 md:h-12 bg-indigo-50 rounded-2xl flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300 text-indigo-600">
-                      <Quote className="w-5 h-5 md:w-6 md:h-6 fill-current" />
-                    </div>
-                  </div>
+        {/* --- Grid Layout (Whole different UI) --- */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {testimonials.map((item) => (
+            <div 
+              key={item.id} 
+              className="relative bg-white p-8 rounded-3xl border border-slate-100 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:shadow-amber-500/10 hover:-translate-y-1 transition-all duration-300 group"
+            >
+              
+              {/* Decorative Quote Icon Background */}
+              <div className="absolute top-6 right-8 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Quote size={60} className="fill-amber-500 text-amber-500" />
+              </div>
 
-                  {/* Text */}
-                  <p className="text-slate-600 text-base md:text-lg leading-relaxed italic mb-6 md:mb-8 flex-grow font-medium line-clamp-4 md:line-clamp-none">
-                    "{item.text}"
+              {/* Stars */}
+              <div className="flex gap-1 mb-6">
+                {[...Array(item.rating)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
+                ))}
+              </div>
+
+              {/* Review Text */}
+              <p className="text-slate-600 text-lg leading-relaxed mb-8 relative z-10 font-medium">
+                "{item.text}"
+              </p>
+
+              {/* Author Section */}
+              <div className="flex items-center gap-4 border-t border-slate-100 pt-6">
+                {/* Initials Avatar */}
+                <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${item.gradient} flex items-center justify-center text-slate-700 font-bold text-lg shadow-inner`}>
+                  {item.initials}
+                </div>
+                
+                <div>
+                  <h4 className="text-slate-900 font-bold text-base">
+                    {item.name}
+                  </h4>
+                  <p className="text-slate-400 text-sm font-medium">
+                    {item.role}
                   </p>
-
-                  {/* Author Info */}
-                  <div className="flex items-center gap-3 md:gap-4 pt-4 md:pt-6 border-t border-slate-100">
-                    <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-slate-100 group-hover:border-indigo-200 transition-colors shrink-0">
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="min-w-0">
-                      <h4 className="text-slate-900 font-bold font-display text-sm md:text-base truncate">{item.name}</h4>
-                      <p className="text-indigo-600 text-xs md:text-sm font-medium truncate">{item.role}</p>
-                    </div>
-                    <div className="ml-auto flex gap-0.5">
-                      {[...Array(item.rating)].map((_, i) => (
-                        <Star key={i} className="w-3.5 h-3.5 md:w-4 md:h-4 text-amber-400 fill-amber-400" />
-                      ))}
-                    </div>
-                  </div>
-
                 </div>
               </div>
-            ))}
+
+            </div>
+          ))}
+        </div>
+
+        {/* --- Bottom CTA --- */}
+        <div className="text-center mt-12">
+            <p className="text-slate-500 text-sm">
+                Join 500+ happy families at Aacharya Academy.
+            </p>
         </div>
 
       </div>

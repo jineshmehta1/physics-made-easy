@@ -2,51 +2,63 @@
 
 import React from "react";
 import Link from "next/link";
-import { ChevronRight, Star, MessageCircle, ArrowUp } from "lucide-react";
+import { 
+  Crown,          // Chess
+  Calculator,     // Abacus
+  Bot,            // Robotics
+  Backpack,       // Primary School
+  BookOpen,       // Coaching
+  ArrowRight, 
+  ArrowUp,
+  Sparkles
+} from "lucide-react";
 
-// --- Course Data ---
-const courses = [
+// --- Program Data ---
+const programs = [
   {
-    title: "Beginner",
-    stars: 1,
-    topics: [
-      "Chess Board, Pieces and Notation",
-      "Opening principles",
-      "Principle of developments",
-      "Forks, Pins, Double Check, Skewer etc.",
-      "Checks and threats",
-      "King safety",
-      "Strategy (basics)",
-      "Stalemate",
-      "Fools Mate and Scholars Mate",
-    ],
+    id: "chess",
+    title: "Chess Coaching",
+    description: "From beginner moves to Grandmaster strategy. Enhance concentration and tactical thinking with FIDE-rated trainers.",
+    icon: <Crown className="w-8 h-8 text-amber-600" />,
+    features: ["FIDE Rated Trainers", "Tactical Analysis", "Tournament Prep"],
+    color: "bg-amber-50 border-amber-100",
+    iconBg: "bg-amber-100",
   },
   {
-    title: "Intermediate",
-    stars: 2,
-    topics: [
-      "Imagination in chess",
-      "Middlegame plans",
-      "Zugzwang ideas!",
-      "Opposition and Distant Opposition",
-      "Bishop vs Knight (Open and closed positions)",
-      "Learning from the mistake series",
-      "Playing Sessions with Deep Analysis",
-      "Smothered Mate, Boden’s Mate",
-    ],
+    id: "abacus",
+    title: "Abacus Training",
+    description: "Boost mental math speed, memory, and visualization skills. A proven method to make your child fall in love with numbers.",
+    icon: <Calculator className="w-8 h-8 text-yellow-600" />,
+    features: ["Speed Calculation", "Visual Memory", "Brain Development"],
+    color: "bg-yellow-50 border-yellow-100",
+    iconBg: "bg-yellow-100",
   },
   {
-    title: "Advanced",
-    stars: 3,
-    topics: [
-      "Prophylaxis Thinking",
-      "Static and dynamic advantages and how to play with or against it!",
-      "Playing Against Different Openings",
-      "Opening Theory and Novelties",
-      "Endgame studies!",
-      "All sorts of pawn structure with modern theory!",
-      "Initiative and critical points",
-    ],
+    id: "robotics",
+    title: "Robotics Classes",
+    description: "Hands-on STEM learning. Students build, code, and operate their own robots using modern kits and AI concepts.",
+    icon: <Bot className="w-8 h-8 text-orange-600" />,
+    features: ["STEM Foundations", "Coding Logic", "Hardware Projects"],
+    color: "bg-orange-50 border-orange-100",
+    iconBg: "bg-orange-100",
+  },
+  {
+    id: "school",
+    title: "Primary School",
+    description: "A complete CBSE-aligned academic program focusing on holistic growth, curiosity, and strong foundational values.",
+    icon: <Backpack className="w-8 h-8 text-indigo-600" />,
+    features: ["CBSE Curriculum", "Value Education", "Activity Based"],
+    color: "bg-indigo-50 border-indigo-100",
+    iconBg: "bg-indigo-100",
+  },
+  {
+    id: "coaching",
+    title: "Coaching (CBSE)",
+    description: "Subject-specific tuition for higher grades. rigorous practice, doubt solving, and exam-oriented preparation.",
+    icon: <BookOpen className="w-8 h-8 text-slate-600" />,
+    features: ["Maths & Science", "Exam Strategy", "Small Batches"],
+    color: "bg-slate-50 border-slate-200",
+    iconBg: "bg-slate-200",
   },
 ];
 
@@ -57,82 +69,78 @@ export default function CoursesSection() {
   };
 
   return (
-    <section className="relative bg-white py-8 lg:py-12 font-sans overflow-hidden">
+    <section className="relative bg-slate-50 py-16 lg:py-24 font-sans overflow-hidden" id="programs">
       
-      {/* --- Floating Decorative Dot (Purple) --- */}
+      {/* --- Background Pattern --- */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-5 pointer-events-none">
+        <div className="absolute top-10 right-10 w-64 h-64 bg-yellow-400 rounded-full blur-[80px]"></div>
+        <div className="absolute bottom-10 left-10 w-80 h-80 bg-orange-400 rounded-full blur-[100px]"></div>
+      </div>
 
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
         
         {/* --- Header --- */}
-        <div className="mb-16">
-          <div className="inline-block px-5 py-1.5 rounded-full bg-[#EBE9FE] mb-4">
-            <span className="text-[#5C4EE5] font-semibold text-sm">Courses Fees</span>
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-100 mb-4">
+            <Sparkles className="w-4 h-4 text-amber-600 fill-amber-600" />
+            <span className="text-amber-800 font-bold text-xs uppercase tracking-wider">Holistic Education</span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-[#0F172A]">
-            Explore Courses
+          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4">
+            Our Academic & Skill <span className="text-amber-500">Programs</span>
           </h2>
+          <p className="text-slate-600 text-lg">
+            Whether you want to top the class or master a new skill, we have a structured path for you.
+          </p>
         </div>
 
         {/* --- Cards Grid --- */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {courses.map((course, idx) => (
+        {/* Grid logic: 3 columns for skills, then centered row for academics */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
+          
+          {programs.map((program, idx) => (
             <div 
-              key={idx} 
-              className="relative bg-white rounded-[20px] border border-gray-200 p-8 shadow-sm hover:shadow-xl transition-shadow duration-300 flex flex-col"
+              key={program.id}
+              className={`
+                group relative bg-white rounded-3xl p-8 border border-slate-100 shadow-sm 
+                hover:shadow-2xl hover:shadow-slate-200/50 hover:-translate-y-2 
+                transition-all duration-300 flex flex-col justify-between
+                ${idx >= 3 ? 'lg:col-span-1.5' : ''} /* This keeps the grid alignment clean if needed, or remove for standard grid */
+              `}
             >
-              
-              {/* --- Floating Stars --- */}
-              <div className="absolute -top-6 left-8 flex gap-1">
-                {[...Array(course.stars)].map((_, i) => (
-                  <div key={i} className="relative">
-                     {/* SVG Star Shape matching the yellow icon style */}
-                     <svg 
-                       width="50" 
-                       height="50" 
-                       viewBox="0 0 50 50" 
-                       fill="none" 
-                       className={`drop-shadow-md transform ${i % 2 === 0 ? '-rotate-6' : 'rotate-12'}`}
-                     >
-                        <path 
-                          d="M25 2 L32 17 L48 19 L36 30 L39 46 L25 38 L11 46 L14 30 L2 19 L18 17 Z" 
-                          fill="#FFC107" 
-                          stroke="none"
-                        />
-                     </svg>
-                  </div>
-                ))}
-              </div>
+              {/* Hover Line Top */}
+              <div className="absolute top-0 left-8 right-8 h-1 bg-gradient-to-r from-amber-400 to-orange-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
 
-              {/* --- Card Content --- */}
-              <div className="mt-6 flex-grow">
-                <h3 className="text-2xl text-gray-500 font-medium mb-8">
-                  {course.title}
+              <div>
+                {/* Icon Box */}
+                <div className={`w-16 h-16 rounded-2xl ${program.iconBg} flex items-center justify-center mb-6 transition-transform group-hover:rotate-6`}>
+                  {program.icon}
+                </div>
+
+                {/* Content */}
+                <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-amber-600 transition-colors">
+                  {program.title}
                 </h3>
+                <p className="text-slate-600 leading-relaxed mb-6">
+                  {program.description}
+                </p>
 
-                <ul className="space-y-5">
-                  {course.topics.map((topic, i) => (
-                    <li key={i} className="flex items-start gap-4">
-                      {/* Yellow Circle Arrow Icon */}
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#FFC107] flex items-center justify-center mt-0.5 shadow-sm">
-                        <ChevronRight className="w-4 h-4 text-[#0F172A] stroke-[3]" />
-                      </div>
-                      {/* Topic Text */}
-                      <span className="text-[#505D6F] text-[15px] leading-relaxed font-normal">
-                        {topic}
-                      </span>
-                    </li>
+                {/* Mini Features Pills */}
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {program.features.map((feat, i) => (
+                    <span key={i} className="px-3 py-1 bg-slate-50 text-slate-500 text-xs font-semibold rounded-md border border-slate-100">
+                      {feat}
+                    </span>
                   ))}
-                </ul>
+                </div>
               </div>
 
-              {/* --- Action Button (Bottom) --- */}
-              <div className="mt-10">
-                <Link href="https://wa.me/+918130627389" target="_blank">
-                    <button className="w-full bg-[#5C4EE5] cursor-pointer  hover:bg-[#4a3ec2] text-white font-bold py-3.5 px-6 rounded-lg transition-colors shadow-lg shadow-indigo-100">
-                    Register Now
-                    </button>
-                </Link>
-              </div>
+              {/* Action Button */}
+              <Link href="https://wa.me/+918130627389" target="_blank" className="mt-auto">
+                <button className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-900 text-white font-semibold hover:bg-amber-500 hover:text-white transition-all duration-300 group-hover:shadow-lg">
+                  Enquire Now
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </Link>
 
             </div>
           ))}
@@ -140,27 +148,13 @@ export default function CoursesSection() {
 
       </div>
 
-      {/* --- FIXED FLOATING BUTTONS --- */}
-
-      {/* WhatsApp Chat (Bottom Left) */}
-      {/* <div className="fixed bottom-6 left-6 z-50">
-        <a 
-          href="https://wa.me/123456789" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="bg-[#25D366] hover:bg-[#20b858] text-white px-5 py-2.5 rounded-full shadow-lg flex items-center gap-2 font-semibold transition-transform hover:scale-105"
-        >
-          <MessageCircle className="w-5 h-5 fill-white" />
-          <span>Chat with us</span>
-        </a>
-      </div> */}
-
-      {/* Scroll to Top (Bottom Right) */}
+      {/* --- Scroll to Top Button --- */}
       <button 
         onClick={scrollToTop}
-        className="fixed bottom-6 right-6 z-50 w-10 h-10 bg-[#5C4EE5] hover:bg-[#4a3ec2] rounded-full flex items-center justify-center shadow-lg transition-transform hover:-translate-y-1"
+        className="fixed bottom-6 right-6 z-50 w-12 h-12 bg-amber-500 hover:bg-amber-600 text-white rounded-full flex items-center justify-center shadow-lg shadow-amber-500/30 transition-all hover:-translate-y-1 hover:scale-110"
+        aria-label="Scroll to top"
       >
-        <ArrowUp className="w-5 h-5 text-white" strokeWidth={2.5} />
+        <ArrowUp className="w-6 h-6" strokeWidth={3} />
       </button>
 
     </section>

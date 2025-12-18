@@ -1,57 +1,63 @@
 "use client";
 
-import React, { useRef } from 'react';
-import { ChevronLeft, ChevronRight, Crown, Trophy, Star, MapPin } from 'lucide-react';
+import React, { useRef } from "react";
+import { 
+  ChevronLeft, 
+  ChevronRight, 
+  Trophy, 
+  Medal, 
+  Star, 
+  GraduationCap, 
+  Users,
+  Award
+} from "lucide-react";
 
-interface Achiever {
-  id: number;
-  name: string;
-  country: string;
-  flag: string;
-  image: string;
-  title: string;
-}
-
-const achievers: Achiever[] = [
+// --- Demo Data: Mixed Achievements (Chess, School, Robotics) ---
+const achievers = [
   {
     id: 1,
-    name: "Suhana",
-    country: "USA",
-    flag: "🇺🇸",
-    image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-    title: "National Champion",
+    name: "Aditya Verma",
+    category: "Chess",
+    award: "State Gold Medalist",
+    image: "https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=600&auto=format&fit=crop",
+    desc: "Undefeated in U-14 State Championship 2024",
+    icon: <Trophy className="w-4 h-4" />
   },
   {
     id: 2,
-    name: "Ashleen",
-    country: "Saudi Arabia",
-    flag: "🇸🇦",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-    title: "Regional Winner",
+    name: "Riya Sharma",
+    category: "Academics",
+    award: "District Topper (98.6%)",
+    image: "https://images.unsplash.com/photo-1590012314607-cda9d9b699ae?q=80&w=600&auto=format&fit=crop",
+    desc: "Class 10th CBSE Board Exams",
+    icon: <GraduationCap className="w-4 h-4" />
   },
   {
     id: 3,
-    name: "Hari",
-    country: "Oman",
-    flag: "🇴🇲",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-    title: "Chess Master",
+    name: "Team Robo-X",
+    category: "Robotics",
+    award: "National Innovation Award",
+    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=600&auto=format&fit=crop",
+    desc: "Best AI Integration in Lego League",
+    icon: <Award className="w-4 h-4" />
   },
   {
     id: 4,
-    name: "Vikas",
-    country: "USA",
-    flag: "🇺🇸",
-    image: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-    title: "Grand Prix Winner",
+    name: "Vihaan Gupta",
+    category: "Abacus",
+    award: "Grand Master Title",
+    image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=600&auto=format&fit=crop",
+    desc: "Solved 100 sums in 5 minutes",
+    icon: <Medal className="w-4 h-4" />
   },
   {
     id: 5,
-    name: "Rahul",
-    country: "India",
-    flag: "🇮🇳",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
-    title: "State Champion",
+    name: "Sanya Malhotra",
+    category: "Chess",
+    award: "FIDE Rated 1600+",
+    image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=600&auto=format&fit=crop",
+    desc: "Youngest player to achieve rating in District",
+    icon: <Trophy className="w-4 h-4" />
   }
 ];
 
@@ -60,7 +66,7 @@ const AchievementsSection: React.FC = () => {
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
-      const scrollAmount = 340; // Card width + gap
+      const scrollAmount = 350;
       const newScrollLeft = direction === 'left' 
         ? scrollContainerRef.current.scrollLeft - scrollAmount 
         : scrollContainerRef.current.scrollLeft + scrollAmount;
@@ -73,104 +79,128 @@ const AchievementsSection: React.FC = () => {
   };
 
   return (
-    <section className="relative py-16 lg:py-24 bg-slate-50 overflow-hidden font-sans">
+    <section className="relative py-20 lg:py-28 bg-white overflow-hidden font-sans">
       
-      {/* --- Background Elements (Matching Hero Theme) --- */}
-      {/* Grid Pattern */}
-      <div className="absolute inset-0 z-0 opacity-[0.03]" 
-           style={{ backgroundImage: 'radial-gradient(#4f46e5 1px, transparent 1px)', backgroundSize: '32px 32px' }}>
+      {/* --- Background Texture --- */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+           style={{ backgroundImage: 'radial-gradient(#d97706 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
       </div>
       
-      {/* Abstract Blobs */}
-      <div className="absolute top-20 left-0 -translate-x-1/2 w-[400px] h-[400px] bg-indigo-200/40 rounded-full blur-3xl filter opacity-50 pointer-events-none"></div>
-      <div className="absolute bottom-20 right-0 translate-x-1/2 w-[300px] h-[300px] bg-violet-200/40 rounded-full blur-3xl filter opacity-50 pointer-events-none"></div>
+      {/* Golden Glows */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-100/40 rounded-full blur-[100px] pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-yellow-100/40 rounded-full blur-[100px] pointer-events-none translate-y-1/2 -translate-x-1/2"></div>
 
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl relative z-10">
+      <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-7xl">
         
-        {/* --- Header --- */}
-        <div className="text-center mb-12 md:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-xs font-bold text-indigo-700 bg-indigo-50 rounded-full border border-indigo-100 uppercase tracking-wider shadow-sm">
-            <Trophy className="w-3 h-3" />
-            Hall of Fame
+        {/* --- SECTION HEADER --- */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8">
+          
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full bg-amber-50 border border-amber-200 shadow-sm">
+              <Trophy className="w-4 h-4 text-amber-600" />
+              <span className="text-xs font-bold text-amber-800 uppercase tracking-widest">Hall of Glory</span>
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-none mb-4">
+              Aacharya's <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-yellow-500">
+                Achievements
+              </span>
+            </h2>
+            <p className="text-lg text-slate-500 max-w-lg leading-relaxed">
+              Excellence is not an act, but a habit. Here are the stars who made us proud on State, National, and International levels.
+            </p>
           </div>
-          
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight mb-4">
-            Winners At <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">Checkmate Sensei</span>
-          </h2>
-          
-          <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            Celebrating the brilliance and dedication of our top-performing students in tournaments around the globe.
-          </p>
+
+          {/* --- STATS RIBBON (Floating) --- */}
+          <div className="flex gap-8 lg:gap-12 pb-2">
+            <div>
+              <p className="text-3xl md:text-4xl font-black text-slate-900">50+</p>
+              <p className="text-sm font-semibold text-slate-500 uppercase tracking-wide mt-1">Trophies Won</p>
+            </div>
+            <div>
+              <p className="text-3xl md:text-4xl font-black text-slate-900">100%</p>
+              <p className="text-sm font-semibold text-slate-500 uppercase tracking-wide mt-1">Pass Rate</p>
+            </div>
+            <div>
+              <p className="text-3xl md:text-4xl font-black text-slate-900">2k+</p>
+              <p className="text-sm font-semibold text-slate-500 uppercase tracking-wide mt-1">Alumni</p>
+            </div>
+          </div>
         </div>
 
-        {/* --- Carousel Wrapper --- */}
+        {/* --- CAROUSEL AREA --- */}
         <div className="relative group">
           
-          {/* Navigation Buttons (Hidden on Mobile, Visible on Desktop) */}
-          <button 
-            onClick={() => scroll('left')}
-            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-12 z-20 w-12 h-12 bg-white rounded-full shadow-xl shadow-indigo-900/10 border border-slate-100 items-center justify-center text-slate-700 hover:text-indigo-600 hover:scale-110 transition-all duration-300"
-            aria-label="Scroll Left"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          
-          <button 
-            onClick={() => scroll('right')}
-            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-12 z-20 w-12 h-12 bg-white rounded-full shadow-xl shadow-indigo-900/10 border border-slate-100 items-center justify-center text-slate-700 hover:text-indigo-600 hover:scale-110 transition-all duration-300"
-            aria-label="Scroll Right"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
+          {/* Custom Nav Buttons */}
+          <div className="hidden md:flex gap-3 absolute -top-24 right-0">
+            <button 
+              onClick={() => scroll('left')}
+              className="w-12 h-12 rounded-full border border-slate-200 bg-white text-slate-600 flex items-center justify-center hover:bg-amber-500 hover:text-white hover:border-amber-500 shadow-sm transition-all duration-300 active:scale-95"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button 
+              onClick={() => scroll('right')}
+              className="w-12 h-12 rounded-full border border-slate-200 bg-white text-slate-600 flex items-center justify-center hover:bg-amber-500 hover:text-white hover:border-amber-500 shadow-sm transition-all duration-300 active:scale-95"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
 
-          {/* Scroll Container */}
+          {/* Scroll Track */}
           <div 
             ref={scrollContainerRef}
-            className="flex gap-4 md:gap-8 overflow-x-auto snap-x snap-mandatory pb-12 pt-4 px-4 -mx-4 md:mx-0 scrollbar-hide"
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-12 pt-4 px-2 -mx-2 scrollbar-hide"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            {achievers.map((person) => (
+            {achievers.map((item) => (
               <div 
-                key={person.id}
-                className="snap-center shrink-0 w-[85vw] sm:w-[300px] md:w-[320px]"
+                key={item.id}
+                className="snap-center shrink-0 w-[85vw] sm:w-[320px] md:w-[360px]"
               >
-                <div className="relative h-[400px] md:h-[450px] rounded-[2rem] overflow-hidden bg-white shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:shadow-indigo-900/20 transition-all duration-500 group/card transform hover:-translate-y-2 border border-slate-100">
+                {/* --- THE CARD --- */}
+                <div className="relative h-[500px] rounded-[2rem] overflow-hidden bg-slate-900 shadow-2xl shadow-slate-200 group/card cursor-pointer border-[3px] border-white">
                   
-                  {/* Image */}
+                  {/* Background Image */}
                   <img 
-                    src={person.image} 
-                    alt={person.name} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110"
+                    src={item.image} 
+                    alt={item.name} 
+                    className="w-full h-full object-cover opacity-90 transition-transform duration-700 group-hover/card:scale-110"
                   />
                   
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent opacity-80"></div>
+                  {/* Dark Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
 
-                  {/* Top Badge (Winner) */}
-                  <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm text-indigo-900 text-[10px] font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5 uppercase tracking-wide">
-                    <Crown className="w-3 h-3 text-yellow-500 fill-yellow-500" />
-                    Winner
+                  {/* Top Badge (Category) */}
+                  <div className="absolute top-6 left-6">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold uppercase tracking-wider">
+                      {item.icon}
+                      {item.category}
+                    </span>
                   </div>
 
-                  {/* Top Right (Flag) */}
-                  <div className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-xl shadow-inner border border-white/30" title={person.country}>
-                    {person.flag}
-                  </div>
-
-                  {/* Bottom Info Card */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white translate-y-2 group-hover/card:translate-y-0 transition-transform duration-500">
+                  {/* Bottom Content Area */}
+                  <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-2 transition-transform duration-500 group-hover/card:translate-y-0">
                     
-                    {/* Floating Title (Moves up on hover) */}
-                    <div className="bg-indigo-600/90 backdrop-blur-md inline-block px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider mb-2 shadow-lg">
-                      {person.title}
+                    {/* Golden Line Decoration */}
+                    <div className="w-12 h-1 bg-amber-500 mb-4 rounded-full"></div>
+
+                    {/* Title */}
+                    <h3 className="text-2xl font-bold text-white mb-2 leading-tight">
+                      {item.name}
+                    </h3>
+
+                    {/* Award Highlight */}
+                    <div className="text-amber-400 font-bold text-lg mb-3 flex items-center gap-2">
+                      <Star className="w-4 h-4 fill-amber-400" />
+                      {item.award}
                     </div>
 
-                    <h3 className="text-2xl font-bold mb-1 leading-tight">{person.name}</h3>
-                    
-                    <div className="flex items-center gap-2 text-slate-300 text-sm font-medium">
-                       <MapPin className="w-3.5 h-3.5" />
-                       {person.country}
-                    </div>
+                    {/* Description */}
+                    <p className="text-slate-300 text-sm leading-relaxed border-l-2 border-white/20 pl-3">
+                      {item.desc}
+                    </p>
                   </div>
 
                 </div>

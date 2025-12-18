@@ -1,168 +1,180 @@
 "use client";
 
 import React from 'react';
-import { Trophy, Award, Medal, Star, Target, TrendingUp } from 'lucide-react';
+import { Trophy, Award, Medal, Star, Target, Crown, CheckCircle2 } from 'lucide-react';
 
 export default function AchievementsSection() {
-  const achievements = [
+  const stats = [
+    { label: "Students Trained", value: "2,000+", icon: <UsersIcon /> },
+    { label: "Trophies Won", value: "150+", icon: <Trophy /> },
+    { label: "Rated Players", value: "50+", icon: <Star /> },
+    { label: "Success Rate", value: "100%", icon: <CheckCircle2 /> },
+  ];
+
+  const milestones = [
     {
       year: '2024',
       title: 'National Champions',
-      description: '5 students won national-level tournaments',
-      icon: <Trophy className="w-8 h-8" />,
-      count: '5',
-      color: 'from-amber-500 to-yellow-500',
+      subtitle: 'Excellence in Competitive Chess',
+      description: '5 students secured Gold at the National Youth Championship, setting a new academy record.',
+      icon: <Crown className="w-6 h-6 text-white" />,
+      bg: "bg-slate-900",
+      accent: "border-amber-500"
     },
     {
       year: '2023',
-      title: 'International Recognition',
-      description: 'Featured in Chess.com Top Academies',
-      icon: <Award className="w-8 h-8" />,
-      count: '2',
-      color: 'from-purple-500 to-pink-500',
+      title: 'Global Recognition',
+      subtitle: 'International Standards',
+      description: 'Voted "Top 10 Emerging Academies" by Chess.com. expanded curriculum to include Robotics.',
+      icon: <Award className="w-6 h-6 text-slate-900" />,
+      bg: "bg-amber-400",
+      accent: "border-slate-900"
     },
     {
       year: '2022',
-      title: 'FIDE Ratings',
-      description: '50+ students achieved FIDE ratings',
-      icon: <Target className="w-8 h-8" />,
-      count: '50+',
-      color: 'from-blue-500 to-cyan-500',
+      title: 'FIDE Rated Squad',
+      subtitle: 'Professional Development',
+      description: 'A milestone year where 50+ students officially achieved their opening FIDE ratings.',
+      icon: <Target className="w-6 h-6 text-white" />,
+      bg: "bg-slate-800",
+      accent: "border-slate-700"
     },
     {
       year: '2021',
-      title: 'Tournament Wins',
-      description: '100+ tournament victories across categories',
-      icon: <Medal className="w-8 h-8" />,
-      count: '100+',
-      color: 'from-emerald-500 to-green-500',
+      title: 'Tournament Sweep',
+      subtitle: 'District Domination',
+      description: 'Secured 100+ victories across U-9, U-11, and U-15 categories in state-level tournaments.',
+      icon: <Medal className="w-6 h-6 text-slate-900" />,
+      bg: "bg-white",
+      accent: "border-slate-200"
     },
   ];
 
-  const recognitions = [
-    {
-      title: 'Best Online Chess Academy 2023',
-      issuer: 'Chess Federation of India',
-      icon: <Star className="w-6 h-6" />,
-    },
-    {
-      title: 'Excellence in Youth Training',
-      issuer: 'International Chess Council',
-      icon: <TrendingUp className="w-6 h-6" />,
-    },
-    {
-      title: 'Innovative Teaching Methods',
-      issuer: 'Global Education Awards',
-      icon: <Award className="w-6 h-6" />,
-    },
+  const certifications = [
+    "Affiliated with Chess Federation of India",
+    "Excellence in Youth Training Award '23",
+    "Certified STEM Educators (Robotics)",
   ];
 
   return (
-    <section className="py-14 bg-gradient-to-b from-white to-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-100 to-yellow-100 border border-amber-200 rounded-full px-4 py-2 mb-6">
-            <span className="text-sm font-semibold text-amber-800">Our Legacy</span>
-          </div>
-          
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Awards &{" "}
-            <span className="relative">
-              <span className="relative z-10 bg-gradient-to-r from-amber-500 to-yellow-500 bg-clip-text text-transparent">
-                Achievements
-              </span>
-              <span className="absolute -bottom-2 left-0 w-full h-3 bg-gradient-to-r from-purple-200 to-pink-200 transform rotate-[-1deg] z-0"></span>
-            </span>
-          </h2>
-          
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            A testament to our commitment to excellence in chess education
-          </p>
-        </div>
+    <section className="relative py-20 bg-white font-sans overflow-hidden">
+      
+      {/* Background Texture */}
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-slate-50 skew-x-12 translate-x-20 z-0"></div>
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-amber-50 rounded-full blur-3xl opacity-50 z-0"></div>
 
-        {/* Main Achievements Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-          {achievements.map((achievement, index) => (
-            <div 
-              key={index}
-              className="group relative bg-white rounded-2xl p-8 border border-gray-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-            >
-              {/* Year Badge */}
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                <div className="bg-gradient-to-r from-gray-900 to-gray-700 text-white px-4 py-1 rounded-full text-sm font-bold">
-                  {achievement.year}
-                </div>
-              </div>
-
-              {/* Icon */}
-              <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${achievement.color} flex items-center justify-center text-white mb-6 mx-auto`}>
-                {achievement.icon}
-              </div>
-
-              {/* Content */}
-              <h3 className="text-xl font-bold text-gray-900 text-center mb-2">
-                {achievement.title}
-              </h3>
-              <p className="text-gray-600 text-center text-sm mb-4">
-                {achievement.description}
-              </p>
-              
-              {/* Count */}
-              <div className="text-center">
-                <p className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-                  {achievement.count}
-                </p>
-              </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
+        
+        {/* --- PART 1: HEADER & STATS BAR --- */}
+        <div className="flex flex-col lg:flex-row gap-12 mb-20 items-end">
+          <div className="lg:w-1/2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full bg-amber-100 text-amber-800 text-xs font-bold uppercase tracking-wider">
+              <Trophy className="w-3.5 h-3.5" />
+              <span>Hall of Fame</span>
             </div>
-          ))}
-        </div>
-
-        {/* Recognitions Section */}
-        <div className="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-100 rounded-3xl p-8 md:p-12">
-          <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-            Certifications & Recognitions
-          </h3>
-          
-          <div className="grid md:grid-cols-3 gap-6">
-            {recognitions.map((recognition, index) => (
-              <div 
-                key={index}
-                className="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-purple-100 hover:shadow-lg transition-all duration-300"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-r from-purple-100 to-pink-100 flex items-center justify-center">
-                    <div className="text-purple-600">
-                      {recognition.icon}
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-gray-900 mb-2">{recognition.title}</h4>
-                    <p className="text-gray-600 text-sm">{recognition.issuer}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight">
+              A Legacy of <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-yellow-500">
+                Unbeatable Results.
+              </span>
+            </h2>
+            <p className="mt-4 text-slate-600 text-lg leading-relaxed border-l-4 border-amber-500 pl-4">
+              We don't just teach; we transform potential into performance. 
+              Our track record speaks for the quality of education at Aacharya.
+            </p>
           </div>
 
-          {/* Trophy Showcase */}
-          <div className="mt-12 pt-8 border-t border-purple-200">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-r from-amber-400 to-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Trophy className="w-8 h-8 text-gray-900" />
+          {/* Floating Stats Card */}
+          <div className="lg:w-1/2 w-full">
+            <div className="grid grid-cols-2 gap-4">
+              {stats.map((stat, idx) => (
+                <div key={idx} className="bg-white border border-slate-100 p-6 rounded-2xl shadow-xl shadow-slate-200/50 hover:-translate-y-1 transition-transform">
+                  <div className="flex items-center gap-3 mb-2 text-amber-500">
+                    {/* Icon Wrapper */}
+                    {React.cloneElement(stat.icon as React.ReactElement, { size: 24, strokeWidth: 2 })}
                   </div>
-                  <p className="text-2xl font-bold text-gray-900">50+</p>
-                  <p className="text-gray-600 text-sm">Trophies Year {2023 - i}</p>
+                  <div className="text-3xl font-black text-slate-900">{stat.value}</div>
+                  <div className="text-sm font-semibold text-slate-500">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-      
+        {/* --- PART 2: MILESTONE CARDS (The New Achievements UI) --- */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+          {milestones.map((item, index) => (
+            <div 
+              key={index} 
+              className={`
+                group relative p-1 rounded-2xl transition-all duration-300 hover:scale-105
+                bg-gradient-to-b from-slate-100 to-white hover:from-amber-400 hover:to-amber-500
+              `}
+            >
+              <div className="h-full bg-white rounded-xl p-6 relative overflow-hidden border border-slate-100">
+                
+                {/* Year Tag */}
+                <div className="absolute top-0 right-0 px-4 py-2 bg-slate-900 rounded-bl-xl text-white font-bold text-sm z-10">
+                  {item.year}
+                </div>
+
+                {/* Icon Circle */}
+                <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-6 shadow-lg ${item.bg}`}>
+                  {item.icon}
+                </div>
+
+                {/* Content */}
+                <h3 className="text-lg font-bold text-slate-900 mb-1 group-hover:text-amber-600 transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-wide mb-4">
+                  {item.subtitle}
+                </p>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  {item.description}
+                </p>
+
+                {/* Decorative Bottom Bar */}
+                <div className={`absolute bottom-0 left-0 w-full h-1 ${index % 2 === 0 ? 'bg-amber-500' : 'bg-slate-900'}`}></div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* --- PART 3: CERTIFICATIONS STRIP --- */}
+        <div className="bg-slate-900 rounded-3xl p-8 md:p-10 relative overflow-hidden">
+          {/* Decorative Pattern */}
+          <div className="absolute top-0 right-0 p-4 opacity-5">
+            <Trophy size={200} textAnchor="middle" fill="white" />
+          </div>
+
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="text-center md:text-left">
+              <h3 className="text-2xl font-bold text-white mb-2">Officially Recognized</h3>
+              <p className="text-slate-400 text-sm"> Accredited by leading educational and sports bodies.</p>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+              {certifications.map((cert, i) => (
+                <div key={i} className="flex items-center gap-3 bg-white/10 backdrop-blur-md px-5 py-3 rounded-full border border-white/10">
+                  <div className="w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center shrink-0">
+                    <CheckCircle2 className="w-5 h-5 text-slate-900" />
+                  </div>
+                  <span className="text-sm font-semibold text-white">{cert}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
+  );
+}
+
+// Helper Icon for Stats
+function UsersIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
   );
 }

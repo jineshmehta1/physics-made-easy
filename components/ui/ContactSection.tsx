@@ -1,172 +1,178 @@
+"use client";
+
 import React from 'react';
-import { PhoneIcon, MailIcon, MapPinIcon, ArrowRightIcon } from './BannerIcon';
+import { Phone, Mail, MapPin, ArrowRight, MessageSquare, User, AtSign, Smartphone } from 'lucide-react';
 
 const ContactSection: React.FC = () => {
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section className="relative py-24 bg-slate-50 overflow-hidden font-sans" id="contact">
       
-      {/* Decorative background circle */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-50 rounded-full blur-3xl opacity-50 translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+      {/* --- Background Elements --- */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-amber-50 -skew-x-12 translate-x-32 z-0"></div>
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-slate-200 rounded-full blur-3xl opacity-50 z-0"></div>
+      
+      <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
+        
+        {/* --- Header --- */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm mb-4">
+             <MessageSquare className="w-4 h-4 text-amber-500" />
+             <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">Admissions Open</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">
+             Start Your Journey <br />
+             <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-yellow-500">
+               With Aacharya.
+             </span>
+          </h2>
+          <p className="text-slate-500 max-w-xl mx-auto text-lg">
+             Have questions about our curriculum or fee structure? Fill out the form and our academic counselor will get in touch.
+          </p>
+        </div>
 
-      <div className="container mx-auto px-6 md:px-12 relative z-10">
-        <div className="flex flex-col lg:flex-row rounded-[40px] overflow-hidden shadow-2xl bg-white">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
           
-          {/* --- Left Column: Contact Info --- */}
-          <div className="w-full lg:w-[40%] bg-[#1a1a4b] p-12 text-white flex flex-col justify-between relative overflow-hidden">
-            
-            {/* Pattern Overlay */}
-            <div className="absolute inset-0 opacity-10 pointer-events-none">
-              <svg width="100%" height="100%">
-                 <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
-                   <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="1"/>
-                 </pattern>
-                 <rect width="100%" height="100%" fill="url(#grid-pattern)" />
-              </svg>
+          {/* --- LEFT: Contact Info Card (Premium Glass Style) --- */}
+          <div className="w-full lg:w-5/12">
+            <div className="bg-slate-900 rounded-[2.5rem] p-8 md:p-12 text-white relative overflow-hidden shadow-2xl shadow-slate-900/20 h-full flex flex-col justify-between">
+               
+               {/* Decor */}
+               <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2"></div>
+               <div className="absolute bottom-0 left-0 w-64 h-64 bg-indigo-500/20 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2"></div>
+
+               <div className="relative z-10">
+                  <h3 className="text-2xl font-bold mb-2">Contact Information</h3>
+                  <p className="text-slate-400 mb-10 text-sm">Reach out to us directly via phone or email.</p>
+
+                  <div className="space-y-8">
+                     {/* Phone Item */}
+                     <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                           <Phone className="w-5 h-5 text-amber-500" />
+                        </div>
+                        <div>
+                           <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Call Us</p>
+                           <p className="text-lg font-medium text-white hover:text-amber-400 transition-colors cursor-pointer">+91 81306 27389</p>
+                        </div>
+                     </div>
+
+                     {/* Email Item */}
+                     <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                           <Mail className="w-5 h-5 text-amber-500" />
+                        </div>
+                        <div>
+                           <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Email Us</p>
+                           <p className="text-lg font-medium text-white hover:text-amber-400 transition-colors cursor-pointer break-all">info@aacharya.com</p>
+                        </div>
+                     </div>
+
+                     {/* Location Item */}
+                     <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                           <MapPin className="w-5 h-5 text-amber-500" />
+                        </div>
+                        <div>
+                           <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Main Campus</p>
+                           <p className="text-lg font-medium text-white leading-snug">
+                              Sector 45, Gurgaon, <br /> Haryana - 122003
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               {/* Bottom Quote */}
+               <div className="relative z-10 pt-12 mt-8 border-t border-white/10">
+                  <p className="text-slate-400 text-sm italic">
+                    "Education is the passport to the future."
+                  </p>
+               </div>
+
             </div>
-
-            <div className="relative z-10">
-              <h3 className="text-3xl font-bold mb-6">Get In Touch</h3>
-              <p className="text-blue-200 mb-12 leading-relaxed">
-                Have questions about our chess programs? We're here to help you guide your child's journey to mastery.
-              </p>
-
-              <div className="space-y-8">
-                {/* Phone */}
-                <div className="flex items-start gap-4 group">
-                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-yellow-400 group-hover:text-[#1a1a4b] transition-all duration-300">
-                    <PhoneIcon className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="block text-xs font-bold text-blue-300 uppercase tracking-wide mb-1">Phone</span>
-                    <p className="text-lg font-medium">+91 99960 20268</p>
-                  </div>
-                </div>
-
-                {/* Email */}
-                <div className="flex items-start gap-4 group">
-                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-yellow-400 group-hover:text-[#1a1a4b] transition-all duration-300">
-                    <MailIcon className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="block text-xs font-bold text-blue-300 uppercase tracking-wide mb-1">Email Address</span>
-                    <p className="text-lg font-medium break-all">checkmatesensei@gmail.com </p>
-                  </div>
-                </div>
-
-                {/* Location (Optional - Adds visual balance) */}
-                <div className="flex items-start gap-4 group">
-                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-yellow-400 group-hover:text-[#1a1a4b] transition-all duration-300">
-                    <MapPinIcon className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="block text-xs font-bold text-blue-300 uppercase tracking-wide mb-1">Location</span>
-                    <p className="text-lg font-medium">Online & Global</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Social / Extra decoration */}
-            <div className="relative z-10 mt-12 pt-8 border-t border-white/10">
-               <p className="text-sm text-blue-300 italic">"Chess is the gymnasium of the mind."</p>
-            </div>
-            
-            {/* Giant decorative circle at bottom right of this panel */}
-            <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-blue-600 rounded-full opacity-20 blur-2xl"></div>
           </div>
 
-          {/* --- Right Column: Form --- */}
-          <div className="w-full lg:w-[60%] p-8 md:p-12 bg-white">
-            <h3 className="text-2xl md:text-3xl font-bold text-[#1a1a4b] mb-2">Send Us a Message</h3>
-            <p className="text-gray-500 text-sm mb-8">Your email address will not be published. Required fields are marked *</p>
+          {/* --- RIGHT: The Form (Clean & Spacious) --- */}
+          <div className="w-full lg:w-7/12">
+            <div className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100">
+               
+               <form className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                     
+                     {/* Parent Name */}
+                     <div className="space-y-2">
+                        <label className="text-sm font-bold text-slate-700 ml-1">Parent's Name <span className="text-red-500">*</span></label>
+                        <div className="relative">
+                           <User className="absolute left-4 top-3.5 w-5 h-5 text-slate-400" />
+                           <input 
+                             type="text" 
+                             placeholder="Enter your name" 
+                             className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium text-slate-900 placeholder:text-slate-400"
+                           />
+                        </div>
+                     </div>
 
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
-                {/* Father Name */}
-                <div className="space-y-1">
-                  <label className="text-sm font-semibold text-gray-700 ml-1">Father Name *</label>
-                  <input 
-                    type="text" 
-                    placeholder="Enter father's name" 
-                    className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all outline-none"
-                  />
-                </div>
+                     {/* Student Name */}
+                     <div className="space-y-2">
+                        <label className="text-sm font-bold text-slate-700 ml-1">Student's Name <span className="text-red-500">*</span></label>
+                        <div className="relative">
+                           <User className="absolute left-4 top-3.5 w-5 h-5 text-slate-400" />
+                           <input 
+                             type="text" 
+                             placeholder="Enter child's name" 
+                             className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium text-slate-900 placeholder:text-slate-400"
+                           />
+                        </div>
+                     </div>
 
-                {/* Last Name */}
-                <div className="space-y-1">
-                  <label className="text-sm font-semibold text-gray-700 ml-1">Last Name *</label>
-                  <input 
-                    type="text" 
-                    placeholder="Enter last name" 
-                    className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all outline-none"
-                  />
-                </div>
+                     {/* Email */}
+                     <div className="space-y-2">
+                        <label className="text-sm font-bold text-slate-700 ml-1">Email Address <span className="text-red-500">*</span></label>
+                        <div className="relative">
+                           <AtSign className="absolute left-4 top-3.5 w-5 h-5 text-slate-400" />
+                           <input 
+                             type="email" 
+                             placeholder="example@gmail.com" 
+                             className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium text-slate-900 placeholder:text-slate-400"
+                           />
+                        </div>
+                     </div>
 
-                {/* Kid Full Name */}
-                <div className="md:col-span-2 space-y-1">
-                  <label className="text-sm font-semibold text-gray-700 ml-1">Kid Full Name *</label>
-                  <input 
-                    type="text" 
-                    placeholder="Enter child's full name" 
-                    className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all outline-none"
-                  />
-                </div>
+                     {/* Phone */}
+                     <div className="space-y-2">
+                        <label className="text-sm font-bold text-slate-700 ml-1">Phone Number <span className="text-red-500">*</span></label>
+                        <div className="relative">
+                           <Smartphone className="absolute left-4 top-3.5 w-5 h-5 text-slate-400" />
+                           <input 
+                             type="tel" 
+                             placeholder="+91 98765 43210" 
+                             className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium text-slate-900 placeholder:text-slate-400"
+                           />
+                        </div>
+                     </div>
 
-                {/* Email */}
-                <div className="space-y-1">
-                  <label className="text-sm font-semibold text-gray-700 ml-1">E-mail *</label>
-                  <input 
-                    type="email" 
-                    placeholder="example@email.com" 
-                    className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all outline-none"
-                  />
-                </div>
+                     {/* Message */}
+                     <div className="md:col-span-2 space-y-2">
+                        <label className="text-sm font-bold text-slate-700 ml-1">Message / Query</label>
+                        <textarea 
+                          rows={4}
+                          placeholder="Tell us about your requirements..." 
+                          className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all font-medium text-slate-900 placeholder:text-slate-400 resize-none"
+                        ></textarea>
+                     </div>
 
-                {/* Phone */}
-                <div className="space-y-1">
-                  <label className="text-sm font-semibold text-gray-700 ml-1">Phone *</label>
-                  <input 
-                    type="tel" 
-                    placeholder="+1 234 567 890" 
-                    className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all outline-none"
-                  />
-                </div>
+                  </div>
 
-                {/* WhatsApp */}
-                <div className="md:col-span-2 space-y-1">
-                  <label className="text-sm font-semibold text-gray-700 ml-1">WhatsApp Number *</label>
-                  <input 
-                    type="tel" 
-                    placeholder="WhatsApp number (if different)" 
-                    className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all outline-none"
-                  />
-                </div>
+                  {/* Submit Button */}
+                  <div className="pt-4">
+                     <button type="button" className="w-full md:w-auto bg-amber-500 hover:bg-amber-600 text-white font-bold py-4 px-10 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-amber-500/20 hover:-translate-y-1">
+                        Submit Enquiry
+                        <ArrowRight className="w-5 h-5" />
+                     </button>
+                  </div>
 
-                {/* Comment */}
-                <div className="md:col-span-2 space-y-1">
-                  <label className="text-sm font-semibold text-gray-700 ml-1">Comment</label>
-                  <textarea 
-                    rows={4}
-                    placeholder="How can we help you?" 
-                    className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all outline-none resize-none"
-                  ></textarea>
-                </div>
-
-              </div>
-
-              {/* Submit Button */}
-              <div className="pt-4">
-                <button 
-                  type="button" 
-                  className="group bg-yellow-400 text-[#1a1a4b] hover:bg-yellow-300 font-bold py-4 px-10 rounded-xl flex items-center gap-3 transition-all duration-300 shadow-lg hover:shadow-yellow-400/50 hover:-translate-y-1"
-                >
-                  Submit Now
-                  <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </div>
-            </form>
-
+               </form>
+            </div>
           </div>
 
         </div>

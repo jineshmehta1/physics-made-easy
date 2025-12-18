@@ -3,33 +3,35 @@
 import React, { useState } from "react";
 import { 
   Calendar, 
-  CheckCircle, 
-  Clock, 
+  CheckCircle2, 
   Users, 
   Trophy, 
   Star, 
-  Award,
-  ChevronRight,
-  Target,
-  BookOpen,
-  Sparkles,
-  X,
+  ShieldCheck,
   ArrowRight,
-  Crown
+  Clock,
+  Sparkles,
+  PlayCircle
 } from "lucide-react";
 
 export default function BookDemoPage() {
+  // Form State
   const [formData, setFormData] = useState({
     studentName: "",
     parentName: "",
     email: "",
     phone: "",
     age: "",
+    course: "Chess", // Added course selection
     experience: "beginner",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(null);
-  const [isFormOpen, setIsFormOpen] = useState(false);
+
+  // Form Handlers
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,7 +39,6 @@ export default function BookDemoPage() {
     setSubmitStatus(null);
 
     try {
-      // Your Google Script URL
       await fetch(
         "https://script.google.com/macros/s/AKfycbwPBxWXpnQ4ywqrdfmKvfFi7g5Uu6hjmaTFVDE5EiMI0YEyqjRNTCxionf65Q5Zqlg/exec",
         {
@@ -48,8 +49,8 @@ export default function BookDemoPage() {
         }
       );
       setSubmitStatus("success");
+      // Optional: Reset form after delay
       setTimeout(() => {
-         setIsFormOpen(false);
          setSubmitStatus(null);
          setFormData({
             studentName: "",
@@ -57,9 +58,10 @@ export default function BookDemoPage() {
             email: "",
             phone: "",
             age: "",
+            course: "Chess",
             experience: "beginner",
           });
-      }, 2000);
+      }, 3000);
     } catch {
       setSubmitStatus("error");
     } finally {
@@ -67,452 +69,311 @@ export default function BookDemoPage() {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const features = [
-    { icon: <Clock className="w-6 h-6" />, text: "30-minute interactive session", subtext: "Live with expert coach" },
-    { icon: <Target className="w-6 h-6" />, text: "Skill assessment", subtext: "Personalized feedback" },
-    { icon: <BookOpen className="w-6 h-6" />, text: "Sample lesson", subtext: "Experience our teaching" },
-    { icon: <Trophy className="w-6 h-6" />, text: "Growth roadmap", subtext: "Custom learning plan" },
-  ];
-
-  const successStories = [
-    { 
-      name: "Aarav Mehta", 
-      achievement: "Under-12 State Champion", 
-      rating: "+400 points in 6 months",
-      avatar: "https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=400"
-    },
-    { 
-      name: "Diya Sharma", 
-      achievement: "Rapid Rating 1650+", 
-      rating: "First tournament win in 3 months",
-      avatar: "https://images.unsplash.com/photo-1517021897933-0e0319cfbc28?q=80&w=400"
-    },
-    { 
-      name: "Rohan Patel", 
-      achievement: "National Finalist 2024", 
-      rating: "From beginner to champion",
-      avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400"
-    },
-  ];
-
-  const stats = [
-    { value: "5,000+", label: "Students Trained", icon: Users },
-    { value: "100+", label: "Tournament Champions", icon: Trophy },
-    { value: "4.9/5", label: "Satisfaction Rating", icon: Star },
-    { value: "94%", label: "Success Rate", icon: Award },
-  ];
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 font-sans">
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 -right-40 w-96 h-96 bg-gradient-to-r from-purple-100 to-pink-100 rounded-full blur-3xl opacity-20"></div>
-          <div className="absolute bottom-1/4 -left-40 w-96 h-96 bg-gradient-to-r from-amber-100 to-yellow-100 rounded-full blur-3xl opacity-20"></div>
-        </div>
+    <div className="min-h-screen bg-slate-50 font-sans selection:bg-amber-100">
+      
+      {/* =======================
+          HERO SECTION (Split Layout)
+         ======================= */}
+      <section className="relative pt-12 pb-20 lg:pt-11 lg:pb-32 overflow-hidden">
+        
+        {/* Background Decor */}
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-amber-50/50 -skew-x-12 translate-x-20 z-0 pointer-events-none"></div>
+        <div className="absolute top-20 left-10 w-64 h-64 bg-blue-100/40 rounded-full blur-[80px] z-0 pointer-events-none"></div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="space-y-8">
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-100 to-pink-100 border border-purple-200 rounded-full px-4 py-2">
-                <Sparkles className="w-4 h-4 text-purple-600" />
-                <span className="text-sm font-semibold text-purple-800">Limited Free Sessions</span>
-              </div>
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
+            
+            {/* --- LEFT COLUMN: Value Proposition --- */}
+            <div className="lg:col-span-7 space-y-8">
               
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900">
-                Your First Step{" "}
-                <span className="relative">
-                  <span className="relative z-10 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                    To Chess Mastery
-                  </span>
-                  <span className="absolute -bottom-2 left-0 w-full h-3 bg-gradient-to-r from-amber-200 to-yellow-200 transform rotate-[-1deg] z-0"></span>
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm animate-fade-in-up">
+                <Sparkles className="w-4 h-4 text-amber-500" />
+                <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">
+                  Limited Free Slots Available
+                </span>
+              </div>
+
+              <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 leading-[1.15]">
+                Unlock Your Child's <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-orange-500">
+                  Genius Potential.
                 </span>
               </h1>
               
-              <p className="text-xl text-gray-600 leading-relaxed">
-                Experience world-class chess coaching with Checkmate Sensei. 
-                Join our free demo class and discover why thousands of students choose us.
+              <p className="text-lg text-slate-600 max-w-xl leading-relaxed">
+                Join 5,000+ students mastering Chess, Robotics, and Academics. 
+                Book a <strong>free 30-minute assessment</strong> session with our expert mentors today.
               </p>
 
-              {/* Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4">
-                {stats.map((stat, index) => {
-                  const Icon = stat.icon;
-                  return (
-                    <div key={index} className="bg-white/80 backdrop-blur-sm p-4 rounded-xl border border-gray-100">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="text-purple-600">
-                          <Icon className="w-5 h-5" />
+              {/* Trust Indicators */}
+              <div className="flex flex-col sm:flex-row gap-6 border-t border-slate-200 pt-8">
+                <div className="flex items-center gap-3">
+                   <div className="flex -space-x-3">
+                      {[1,2,3,4].map(i => (
+                        <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-slate-200 overflow-hidden">
+                           <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="Student" className="w-full h-full object-cover" />
                         </div>
-                        <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-                      </div>
-                      <p className="text-sm text-gray-600">{stat.label}</p>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* CTA Button */}
-              <button 
-                onClick={() => setIsFormOpen(true)}
-                className="group bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-5 px-10 rounded-xl text-lg flex items-center gap-3 shadow-lg shadow-purple-200 hover:shadow-xl transition-all duration-300"
-              >
-                <Calendar className="w-6 h-6" />
-                <span>Book Free Demo Class</span>
-                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
-
-            {/* Right Image */}
-            <div className="relative">
-              <div className="relative rounded-3xl overflow-hidden border-4 border-white shadow-2xl">
-                <div className="aspect-square bg-gradient-to-br from-purple-500/10 to-pink-500/10 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <div className="w-32 h-32 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-8">
-                      <Crown className="w-16 h-16 text-white" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Meet Best Coaches</h3>
-                    <p className="text-sm text-gray-500 mt-2">FIDE Instructor & International Coach</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating Elements */}
-              <div className="absolute -top-6 -left-6 z-10">
-                <div className="bg-white p-4 rounded-2xl shadow-xl border border-gray-100">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 flex items-center justify-center">
-                      <Trophy className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <p className="font-bold text-gray-900">15+ Years</p>
-                      <p className="text-sm text-gray-500">Coaching Experience</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute -bottom-6 -right-6 z-10">
-                <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 rounded-2xl shadow-xl">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
-                      <Award className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <p className="font-bold text-xl">2500+</p>
-                      <p className="text-sm text-purple-200">FIDE Rating</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              What You'll{" "}
-              <span className="relative">
-                <span className="relative z-10 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                  Experience
-                </span>
-                <span className="absolute -bottom-2 left-0 w-full h-3 bg-gradient-to-r from-amber-200 to-yellow-200 transform rotate-[-1deg] z-0"></span>
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our free demo class gives you a complete taste of our teaching methodology
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <div 
-                key={index}
-                className="group bg-gradient-to-b from-white to-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-              >
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-r from-purple-50 to-pink-50 flex items-center justify-center text-purple-600 mb-6 group-hover:scale-110 transition-transform">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.text}</h3>
-                <p className="text-gray-600">{feature.subtext}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Success Stories */}
-      <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Success{" "}
-              <span className="relative">
-                <span className="relative z-10 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                  Stories
-                </span>
-                <span className="absolute -bottom-2 left-0 w-full h-3 bg-gradient-to-r from-amber-200 to-yellow-200 transform rotate-[-1deg] z-0"></span>
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              See how our students transformed from beginners to champions
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {successStories.map((student, index) => (
-              <div 
-                key={index}
-                className="group relative bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-              >
-                <div className="relative h-64 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
-                  <div 
-                    className="w-full h-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 group-hover:scale-110 transition-transform duration-700"
-                    style={{
-                      backgroundImage: `url(${student.avatar})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center'
-                    }}
-                  ></div>
-                </div>
-                
-                <div className="p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h3 className="text-xl font-bold text-gray-900">{student.name}</h3>
-                      <div className="flex items-center gap-2 mt-1">
-                        <Trophy className="w-4 h-4 text-amber-500" />
-                        <span className="text-sm font-semibold text-amber-600">{student.achievement}</span>
-                      </div>
-                    </div>
-                    <div className="flex">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
                       ))}
+                   </div>
+                   <div>
+                      <div className="flex items-center gap-1">
+                        <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
+                        <span className="font-bold text-slate-900">4.9/5</span>
+                      </div>
+                      <p className="text-xs text-slate-500 font-medium">from 2000+ Parents</p>
+                   </div>
+                </div>
+                
+                <div className="h-10 w-px bg-slate-200 hidden sm:block"></div>
+
+                <div className="flex items-center gap-3">
+                   <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center">
+                      <Trophy className="w-5 h-5 text-amber-600" />
+                   </div>
+                   <div>
+                      <p className="font-bold text-slate-900">National Winners</p>
+                      <p className="text-xs text-slate-500 font-medium">Produced yearly</p>
+                   </div>
+                </div>
+              </div>
+
+              {/* Features List */}
+              <div className="space-y-3">
+                {[
+                  "1-on-1 Skill Assessment",
+                  "Personalized Learning Roadmap",
+                  "Live Interaction with Coaches"
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-green-500" />
+                    <span className="text-slate-700 font-medium">{item}</span>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+
+            {/* --- RIGHT COLUMN: Embedded Form --- */}
+            <div className="lg:col-span-5">
+              <div className="bg-white rounded-[2rem] shadow-2xl shadow-slate-200/50 border border-slate-100 p-6 md:p-8 relative overflow-hidden">
+                
+                {/* Form Header */}
+                <div className="text-center mb-6">
+                   <h3 className="text-2xl font-bold text-slate-900">Book Free Demo</h3>
+                   <p className="text-slate-500 text-sm mt-1">No credit card required. 100% Free.</p>
+                </div>
+
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  
+                  {/* Student & Parent Name */}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-1">
+                       <label className="text-xs font-bold text-slate-700 uppercase">Student Name</label>
+                       <input 
+                         type="text" 
+                         name="studentName"
+                         value={formData.studentName}
+                         onChange={handleChange}
+                         required
+                         placeholder="Enter Name"
+                         className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all text-sm font-medium"
+                       />
+                    </div>
+                    <div className="space-y-1">
+                       <label className="text-xs font-bold text-slate-700 uppercase">Parent Name</label>
+                       <input 
+                         type="text" 
+                         name="parentName"
+                         value={formData.parentName}
+                         onChange={handleChange}
+                         required
+                         placeholder="Enter Name"
+                         className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all text-sm font-medium"
+                       />
                     </div>
                   </div>
-                  
-                  <p className="text-gray-600 mb-4">{student.rating}</p>
-                  
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5 text-emerald-500" />
-                    <span className="text-sm text-gray-600">Started with free demo</span>
+
+                  {/* Contacts */}
+                  <div className="space-y-1">
+                     <label className="text-xs font-bold text-slate-700 uppercase">Email Address</label>
+                     <input 
+                       type="email" 
+                       name="email"
+                       value={formData.email}
+                       onChange={handleChange}
+                       required
+                       placeholder="parent@example.com"
+                       className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all text-sm font-medium"
+                     />
                   </div>
-                </div>
+
+                  <div className="space-y-1">
+                     <label className="text-xs font-bold text-slate-700 uppercase">Phone Number</label>
+                     <input 
+                       type="tel" 
+                       name="phone"
+                       value={formData.phone}
+                       onChange={handleChange}
+                       required
+                       placeholder="+91 98765 43210"
+                       className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all text-sm font-medium"
+                     />
+                  </div>
+
+                  {/* Course Selection */}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-1">
+                       <label className="text-xs font-bold text-slate-700 uppercase">Interested In</label>
+                       <select 
+                         name="course"
+                         value={formData.course}
+                         onChange={handleChange}
+                         className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all text-sm font-medium text-slate-700"
+                       >
+                         <option value="Chess">Chess</option>
+                         <option value="Robotics">Robotics</option>
+                         <option value="Abacus">Abacus</option>
+                         <option value="Academics">Academics</option>
+                       </select>
+                    </div>
+                    <div className="space-y-1">
+                       <label className="text-xs font-bold text-slate-700 uppercase">Skill Level</label>
+                       <select 
+                         name="experience"
+                         value={formData.experience}
+                         onChange={handleChange}
+                         className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all text-sm font-medium text-slate-700"
+                       >
+                         <option value="beginner">Beginner</option>
+                         <option value="intermediate">Intermediate</option>
+                         <option value="advanced">Advanced</option>
+                       </select>
+                    </div>
+                  </div>
+
+                  {/* Messages */}
+                  {submitStatus === "success" && (
+                    <div className="p-3 bg-green-50 text-green-700 text-sm font-bold rounded-lg flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4" /> Request Received! We'll call you shortly.
+                    </div>
+                  )}
+                  {submitStatus === "error" && (
+                    <div className="p-3 bg-red-50 text-red-700 text-sm font-bold rounded-lg">
+                      Something went wrong. Please try again.
+                    </div>
+                  )}
+
+                  {/* Submit Button */}
+                  <button 
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-amber-500/20 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed mt-2"
+                  >
+                    {isSubmitting ? (
+                      "Booking Slot..."
+                    ) : (
+                      <>
+                        Confirm Free Booking <ArrowRight className="w-5 h-5" />
+                      </>
+                    )}
+                  </button>
+
+                  <p className="text-center text-[10px] text-slate-400 mt-4">
+                    By booking, you agree to our Terms & Privacy Policy.
+                  </p>
+
+                </form>
               </div>
-            ))}
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-24 bg-gradient-to-br from-purple-900 to-pink-900 relative overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-20 w-64 h-64 border-2 border-white rounded-full"></div>
-          <div className="absolute bottom-20 right-20 w-96 h-96 border-2 border-white rounded-full"></div>
-        </div>
+      {/* =======================
+          PROCESS SECTION (What Happens Next?)
+         ======================= */}
+      <section className="py-20 bg-white border-t border-slate-100">
+        <div className="container mx-auto px-4 max-w-6xl">
+           <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold text-slate-900 mb-4">How it works</h2>
+              <p className="text-slate-500">Your journey to excellence starts in 3 simple steps</p>
+           </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500/20 to-yellow-500/20 border border-amber-400/30 rounded-full px-4 py-2 mb-8 backdrop-blur-sm">
-            <Sparkles className="w-4 h-4 text-amber-300" />
-            <span className="text-sm font-semibold text-amber-300">Limited Slots Available This Week</span>
-          </div>
-          
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8">
-            Ready to Transform{" "}
-            <span className="relative">
-              <span className="relative z-10 bg-gradient-to-r from-amber-400 to-yellow-400 bg-clip-text text-transparent">
-                Your Chess Journey?
-              </span>
-              <span className="absolute -bottom-2 left-0 w-full h-3 bg-gradient-to-r from-purple-500/50 to-pink-500/50 transform rotate-[-1deg] z-0"></span>
-            </span>
-          </h2>
-          
-          <p className="text-xl text-purple-200 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Join thousands of successful students. Take the first step towards becoming a champion with our risk-free demo class.
-          </p>
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+              {/* Connecting Line */}
+              <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200 z-0"></div>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <button 
-              onClick={() => setIsFormOpen(true)}
-              className="group bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-gray-900 font-bold py-5 px-12 rounded-xl text-lg flex items-center gap-3 shadow-lg shadow-amber-500/20 hover:shadow-xl transition-all duration-300"
-            >
-              <Calendar className="w-6 h-6" />
-              <span>Book Free Demo Now</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-            
-            <button className="group border-2 border-white/30 hover:border-white/60 text-white font-bold py-5 px-12 rounded-xl text-lg flex items-center gap-3 backdrop-blur-sm hover:bg-white/10 transition-all duration-300">
-              <span>View All Programs</span>
-              <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-          </div>
+              {[
+                { 
+                  icon: <Calendar className="w-6 h-6" />, 
+                  title: "Book a Slot", 
+                  desc: "Fill the form and choose your preferred learning area." 
+                },
+                { 
+                  icon: <Users className="w-6 h-6" />, 
+                  title: "Meet the Expert", 
+                  desc: "Join a 30-min live session for skill assessment." 
+                },
+                { 
+                  icon: <PlayCircle className="w-6 h-6" />, 
+                  title: "Start Journey", 
+                  desc: "Get a customized roadmap and start your first class." 
+                }
+              ].map((step, idx) => (
+                <div key={idx} className="relative z-10 flex flex-col items-center text-center">
+                   <div className="w-24 h-24 bg-white rounded-full border-4 border-slate-50 shadow-xl flex items-center justify-center mb-6 group hover:scale-110 transition-transform duration-300">
+                      <div className="w-16 h-16 bg-amber-500 rounded-full flex items-center justify-center text-white shadow-inner">
+                         {step.icon}
+                      </div>
+                   </div>
+                   <h3 className="text-xl font-bold text-slate-900 mb-2">{step.title}</h3>
+                   <p className="text-slate-500 text-sm px-4">{step.desc}</p>
+                </div>
+              ))}
+           </div>
         </div>
       </section>
 
-      {/* Enrollment Form Modal - ADJUSTED TO BE COMPACT & RESPONSIVE */}
-      {isFormOpen && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-3xl w-full max-w-lg relative animate-in fade-in zoom-in duration-300 shadow-2xl flex flex-col max-h-[90vh]">
-            
-            {/* Header (Fixed) */}
-            <div className="p-6 border-b border-gray-100 flex items-center justify-between shrink-0">
+      {/* =======================
+          REASSURANCE SECTION
+         ======================= */}
+      <section className="py-16 bg-slate-50">
+        <div className="container mx-auto px-4 max-w-5xl">
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
               <div>
-                <h3 className="text-2xl font-bold text-gray-900">Book Free Demo</h3>
-                <p className="text-gray-500 text-sm">We'll contact you within 24 hours</p>
+                 <h3 className="text-2xl font-bold text-slate-900 mb-4">Why is the Demo Free?</h3>
+                 <p className="text-slate-600 mb-6 leading-relaxed">
+                    We believe in our teaching quality. The demo session is an opportunity for us to understand your child's current level and for you to experience our pedagogy risk-free.
+                 </p>
+                 <div className="flex gap-4">
+                    <div className="flex items-center gap-2 text-sm font-semibold text-slate-700">
+                       <ShieldCheck className="w-5 h-5 text-green-500" /> No Obligation
+                    </div>
+                    <div className="flex items-center gap-2 text-sm font-semibold text-slate-700">
+                       <ShieldCheck className="w-5 h-5 text-green-500" /> Zero Cost
+                    </div>
+                 </div>
               </div>
-              <button 
-                onClick={() => setIsFormOpen(false)}
-                className="p-2 bg-gray-100 rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-200 transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Scrollable Form Body */}
-            <div className="p-6 overflow-y-auto custom-scrollbar">
-              <form onSubmit={handleSubmit} className="space-y-4">
-                
-                {/* Row 1: Names */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-gray-700 mb-1.5 uppercase tracking-wide">
-                      Student Name *
-                    </label>
-                    <input
-                      type="text"
-                      name="studentName"
-                      value={formData.studentName}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-sm"
-                      placeholder="Student Name"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-gray-700 mb-1.5 uppercase tracking-wide">
-                      Parent Name *
-                    </label>
-                    <input
-                      type="text"
-                      name="parentName"
-                      value={formData.parentName}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-sm"
-                      placeholder="Parent Name"
-                    />
-                  </div>
-                </div>
-
-                {/* Row 2: Contacts */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-gray-700 mb-1.5 uppercase tracking-wide">
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-sm"
-                      placeholder="Email Address"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-gray-700 mb-1.5 uppercase tracking-wide">
-                      Phone *
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-sm"
-                      placeholder="Phone Number"
-                    />
-                  </div>
-                </div>
-
-                {/* Row 3: Age & Level */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-gray-700 mb-1.5 uppercase tracking-wide">
-                      Age *
-                    </label>
-                    <input
-                      type="number"
-                      name="age"
-                      value={formData.age}
-                      onChange={handleChange}
-                      required
-                      min="5"
-                      max="18"
-                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-sm"
-                      placeholder="Age"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-gray-700 mb-1.5 uppercase tracking-wide">
-                      Level *
-                    </label>
-                    <select
-                      name="experience"
-                      value={formData.experience}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-sm bg-white"
-                    >
-                      <option value="beginner">Beginner</option>
-                      <option value="intermediate">Intermediate</option>
-                      <option value="advanced">Advanced</option>
-                    </select>
-                  </div>
-                </div>
-
-                {submitStatus === "success" && (
-                  <div className="p-3 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-xl font-medium text-sm flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4" />
-                    Booked successfully!
-                  </div>
-                )}
-                {submitStatus === "error" && (
-                  <div className="p-3 bg-red-50 border border-red-200 text-red-700 rounded-xl font-medium text-sm flex items-center gap-2">
-                    ❌ Something went wrong.
-                  </div>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3.5 rounded-xl text-lg transition-all duration-300 disabled:opacity-50 mt-2 shadow-lg shadow-purple-200"
-                >
-                  {isSubmitting ? "Booking..." : "Confirm Booking"}
-                </button>
-
-                <p className="text-center text-xs text-gray-400">
-                  By submitting, you agree to our Terms & Privacy Policy
-                </p>
-              </form>
-            </div>
-          </div>
+              <div className="flex justify-center">
+                 <div className="relative w-full max-w-sm bg-slate-900 text-white p-6 rounded-2xl shadow-xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                    <div className="flex items-center gap-4 mb-4">
+                       <div className="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center text-2xl font-bold">A</div>
+                       <div>
+                          <p className="font-bold">Aacharya Promise</p>
+                          <p className="text-xs text-slate-400">Official Guarantee</p>
+                       </div>
+                    </div>
+                    <p className="text-sm text-slate-300 italic">
+                       "If you don't find value in our assessment, we will provide a free resource kit worth ₹2000 as a thank you for your time."
+                    </p>
+                 </div>
+              </div>
+           </div>
         </div>
-      )}
+      </section>
+
     </div>
   );
 }
