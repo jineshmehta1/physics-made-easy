@@ -1,24 +1,22 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { 
   ArrowRight, 
   Atom,           
   Brain,          
   Trophy,         
-  Target,         
   CheckCircle2,
   GraduationCap,
-  Microscope,
   Phone
 } from "lucide-react";
 import Link from "next/link";
 
 export default function HeroSection() {
   
-  // Animation Variants
-  const containerVariants = {
+  // 1. Defined with explicit Variants type to fix 'ease' string error
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { 
       opacity: 1,
@@ -26,20 +24,33 @@ export default function HeroSection() {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeInOut" } }
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 0.5, ease: "easeInOut" } 
+    }
   };
 
+  // 2. Used 'as const' to ensure 'easeInOut' is treated as a specific literal
   const floatAnimation = {
     y: [-10, 10, -10],
-    transition: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-  };
+    transition: { 
+      duration: 4, 
+      repeat: Infinity, 
+      ease: "easeInOut" 
+    }
+  } as const;
 
   const rotateAnimation = {
     rotate: 360,
-    transition: { duration: 20, repeat: Infinity, ease: "linear" }
-  };
+    transition: { 
+      duration: 20, 
+      repeat: Infinity, 
+      ease: "linear" 
+    }
+  } as const;
 
   return (
     <section className="relative min-h-[90vh] bg-white flex items-center overflow-hidden font-sans pt-10 pb-20 lg:py-4">
@@ -175,7 +186,7 @@ export default function HeroSection() {
             {/* Floating Card 2 */}
             <motion.div 
               animate={floatAnimation}
-              transition={{ delay: 1, duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              transition={{ delay: 1, duration: 4, repeat: Infinity, ease: "easeInOut" } as any}
               className="absolute bottom-20 -right-6 bg-white/95 backdrop-blur shadow-xl border border-white p-4 rounded-2xl flex items-center gap-3"
             >
               <div className="p-2.5 bg-purple-100 text-purple-700 rounded-lg">
