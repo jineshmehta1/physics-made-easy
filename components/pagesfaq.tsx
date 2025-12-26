@@ -11,19 +11,23 @@ const faqs = [
   {
     question: "Is this just another boring tuition center?",
     answer: "Negative. We don't do rote learning. We use Chess strategies to hack Physics problems. Think of it as learning the meta of the game before you play.",
-    category: "Gameplay"
+    category: "Gameplay",
+    theme: "blue"
   },
   {
     question: "Can I join online if I'm too lazy to travel?",
     answer: "Affirmative. We have a high-res discord-style online setup. Live streams, digital whiteboards, and recordings available 24/7.",
-    category: "Logistics"
+    category: "Logistics",
+    theme: "amber"
   },
   {
     question: "What if I'm failing Physics right now?",
     answer: "Then you're our favorite kind of student. We specialize in 'respawning' grades. Our crash courses are designed to boost stats fast.",
-    category: "Difficulty"
+    category: "Difficulty",
+    theme: "green"
   },
 ];
+
 
   // Helper to get dynamic style classes based on theme
   const getThemeStyles = (theme: string, isOpen: boolean) => {
