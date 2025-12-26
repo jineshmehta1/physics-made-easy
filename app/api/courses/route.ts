@@ -1,38 +1,34 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/data";
 
-// GET: optional filter by pageKey
+// GET all courses (or filter by category if you want)
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
-  const pageKey = searchParams.get("pageKey");
+  const category = searchParams.get("category");
 
   const courses = await prisma.course.findMany({
-    where: pageKey ? { pageKey } : undefined,
+    where: category ? { category } : undefined,
     orderBy: { createdAt: "desc" },
   });
 
-  const parsedCourses = courses.map(c => ({
-    ...c,
-    features: JSON.parse(c.features),
-  }));
-
-  return NextResponse.json(parsedCourses);
+  return NextResponse.json(courses);
 }
 
-// POST: create new course
+// POST create course
 export async function POST(req: Request) {
   const body = await req.json();
 
   const course = await prisma.course.create({
     data: {
-      pageKey: body.pageKey,
       title: body.title,
       category: body.category,
-      age: body.age,
+      level: body.level,
+      price: body.price,
+      image: body.image,
       description: body.description,
-      themeKey: body.themeKey,
-      popular: body.popular || false,
-      features: JSON.stringify(body.features || []),
+      features: body.features ?? [],
+      slug: body.slug,
+      popular: body.popular ?? false,
     },
   });
 
