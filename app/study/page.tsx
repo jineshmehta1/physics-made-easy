@@ -54,12 +54,7 @@ export default function StudyMaterialsPage() {
     <main className="bg-slate-50 min-h-screen font-sans">
       
       {/* Reusable Page Banner */}
-      <PageBanner 
-        title="Study" 
-        highlight="Materials" 
-        description="Curated videos and downloadable notes to accelerate your learning."
-        currentPage="Resources"
-      />
+      <PageBanner />
 
       <div className="container mx-auto px-4 md:px-8 max-w-7xl -mt-10 relative z-20 pb-20">
         
