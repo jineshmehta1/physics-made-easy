@@ -1,44 +1,53 @@
 "use client";
 
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   Plus, 
   Minus, 
   HelpCircle, 
-  ArrowUp 
+  MessageCircle,
+  Phone,
+  ChevronDown
 } from "lucide-react";
 
-// --- FAQ Data ---
+// --- FAQ Data (Specific to Physics Made Easy) ---
 const faqData = [
   {
-    question: "Why choose Aacharya Academy over others?",
+    id: 1,
+    question: "What makes 'Physics Made Easy' different from other tuition centers?",
     answer:
-      "We offer a unique blend of holistic education (Robotics, Abacus, Chess) along with core academics (CBSE). Our certified trainers, small batch sizes, and proven track record of national winners set us apart.",
+      "We use the Multiple Intelligences (MI) theory to teach. Led by Mr. Chew (Ex-MOE Scholar & FIDE Instructor), we combine academic rigor with Chess strategy. This helps students not just memorize formulas, but develop the critical thinking skills needed to solve complex exam problems.",
   },
   {
-    question: "What is the ideal age to start skill training?",
+    id: 2,
+    question: "Which levels and boards do you cover?",
     answer:
-      "For skills like Chess and Abacus, 5-7 years is ideal as it builds cognitive foundation. For Robotics, 8+ years is recommended. However, we have beginner programs for all age groups.",
+      "We specialize in Physics for GCE O-Levels, A-Levels (H1/H2), IB (HL/SL), IP, and IGCSE. We also offer lower secondary science coaching to build a strong foundation early on.",
   },
   {
-    question: "Are the classes online or offline?",
+    id: 3,
+    question: "Where are classes held? Do you offer online lessons?",
     answer:
-      "We offer both! Our offline center provides hands-on robotics and classroom learning, while our online programs for Chess and Abacus are optimized for interactive remote learning.",
+      "Physical classes are held at our center in Toa Payoh Central (Lobby H). Yes, we also offer high-quality online lessons for students who prefer learning from home or are based overseas.",
   },
   {
-    question: "Do you provide certification?",
+    id: 4,
+    question: "How does Chess help with Physics?",
     answer:
-      "Yes. Students receive course completion certificates. For Chess, we also prepare students for official FIDE ratings and district/state tournaments.",
+      "Chess teaches pattern recognition, foresight, and disciplined calculation—skills directly transferable to Physics problem-solving. It trains the brain to think continuously and logically, which is crucial for tackling high-level exam questions.",
   },
   {
-    question: "How do I book a demo class?",
+    id: 5,
+    question: "What is your track record for student results?",
     answer:
-      "You can click the 'Book Demo' button on the top right or fill out the enquiry form. Our academic counselor will contact you to schedule a free trial session.",
+      "We have a proven history of excellence: 100% of our O-Level students have scored A/B grades, and 100% of our IB HL Physics students achieved Grade 7. We focus on turning improvements into consistency.",
   },
   {
-    question: "What is the fee structure?",
+    id: 6,
+    question: "Do you offer trial classes?",
     answer:
-      "Fees vary based on the program (School vs. Skills) and duration. Please contact our admission desk for the latest fee chart and scholarship opportunities.",
+      "Yes! We believe in the right fit. You can book a paid trial lesson to experience our teaching style firsthand before committing to a term package. Contact us via WhatsApp to schedule.",
   },
 ];
 
@@ -49,106 +58,146 @@ export default function FaqSection() {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
-    <section className="relative bg-slate-50 py-16 lg:py-24 font-sans overflow-hidden" id="faq">
+    <section className="relative bg-white py-20 lg:py-28 font-sans overflow-hidden" id="faq">
       
-      {/* --- Background Pattern --- */}
+      {/* --- Background Decor --- */}
       <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(#d97706 1px, transparent 1px)', backgroundSize: '32px 32px' }}>
+           style={{ backgroundImage: 'linear-gradient(#0f172a 1px, transparent 1px), linear-gradient(to right, #0f172a 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
       </div>
+      
+      <div className="absolute top-1/4 left-0 w-96 h-96 bg-teal-100/40 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-indigo-100/40 rounded-full blur-[100px] pointer-events-none"></div>
 
-      <div className="container mx-auto px-4 md:px-6 max-w-5xl relative z-10">
+      <div className="container mx-auto px-4 max-w-4xl relative z-10">
         
         {/* --- Header --- */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-amber-100 text-amber-600 mb-6 shadow-sm">
-            <HelpCircle className="w-6 h-6" />
-          </div>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">
-            Frequently Asked <span className="text-amber-500">Questions</span>
-          </h2>
-          <p className="text-slate-600 text-lg max-w-2xl mx-auto">
-            Everything you need to know about our programs, admissions, and teaching methodology.
-          </p>
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 mb-6 shadow-sm border border-teal-100"
+          >
+            <HelpCircle size={24} />
+          </motion.div>
+          <motion.h2 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight"
+          >
+            Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-indigo-600">Questions</span>
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-slate-600 text-lg max-w-xl mx-auto"
+          >
+            Everything you need to know about our methodology, logistics, and results.
+          </motion.p>
         </div>
 
-        {/* --- FAQ Grid --- */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* --- FAQ Accordion --- */}
+        <div className="space-y-4">
           {faqData.map((item, index) => (
-            <div 
+            <motion.div 
               key={index}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
               className={`
-                bg-white rounded-2xl border transition-all duration-300 overflow-hidden
+                group rounded-2xl border transition-all duration-300 overflow-hidden bg-white
                 ${openIndex === index 
-                  ? 'border-amber-400 shadow-xl shadow-amber-900/5 ring-1 ring-amber-400' 
-                  : 'border-slate-200 shadow-sm hover:border-amber-200'
+                  ? 'border-teal-500/30 shadow-lg shadow-teal-900/5 ring-1 ring-teal-500/20' 
+                  : 'border-slate-200 hover:border-teal-300'
                 }
               `}
             >
               <button
                 onClick={() => toggleAccordion(index)}
-                className="w-full flex items-start justify-between p-6 text-left focus:outline-none"
+                className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
               >
-                <span className={`font-bold text-lg pr-4 ${openIndex === index ? 'text-slate-900' : 'text-slate-700'}`}>
-                  {item.question}
-                </span>
+                <div className="flex items-center gap-4">
+                   <span className={`text-sm font-bold w-6 h-6 rounded flex items-center justify-center transition-colors ${openIndex === index ? 'bg-teal-100 text-teal-700' : 'bg-slate-100 text-slate-500'}`}>
+                      {index + 1}
+                   </span>
+                   <span className={`font-bold text-lg md:text-xl pr-4 transition-colors ${openIndex === index ? 'text-teal-900' : 'text-slate-700 group-hover:text-slate-900'}`}>
+                    {item.question}
+                  </span>
+                </div>
                 
                 {/* Icon Toggle */}
                 <div className={`
                   flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300
-                  ${openIndex === index ? 'bg-amber-500 text-white rotate-180' : 'bg-slate-100 text-slate-500'}
+                  ${openIndex === index ? 'bg-teal-600 text-white rotate-180' : 'bg-slate-50 text-slate-400 group-hover:bg-teal-50 group-hover:text-teal-600'}
                 `}>
-                  {openIndex === index ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                  <ChevronDown size={18} />
                 </div>
               </button>
               
               {/* Answer Content */}
-              <div 
-                className={`
-                  px-6 transition-all duration-500 ease-in-out overflow-hidden
-                  ${openIndex === index ? 'max-h-60 pb-6 opacity-100' : 'max-h-0 pb-0 opacity-0'}
-                `}
-              >
-                <p className="text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
-                  {item.answer}
-                </p>
-              </div>
-            </div>
+              <AnimatePresence>
+                {openIndex === index && (
+                  <motion.div 
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  >
+                    <div className="px-6 pb-6 pl-[4.5rem] pr-8">
+                      <p className="text-slate-600 leading-relaxed">
+                        {item.answer}
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           ))}
         </div>
 
-        {/* --- Bottom CTA --- */}
-        <div className="mt-12 text-center bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
-          <p className="text-slate-800 font-semibold text-lg mb-2">
-            Still have questions?
-          </p>
-          <p className="text-slate-500 mb-6">
-            We're here to help. Chat with our admission counselor directly.
-          </p>
-          <a 
-            href="https://wa.me/919876543210" 
-            target="_blank"
-            className="inline-flex items-center justify-center px-6 py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-amber-500 transition-colors shadow-lg"
-          >
-            Contact Support
-          </a>
-        </div>
+        {/* --- Bottom Contact Box --- */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-16 bg-slate-900 rounded-3xl p-8 md:p-12 text-center relative overflow-hidden"
+        >
+          {/* Decor */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-teal-500/20 rounded-full blur-[80px] pointer-events-none"></div>
+          
+          <div className="relative z-10">
+            <h3 className="text-2xl font-bold text-white mb-3">
+                Still have questions?
+            </h3>
+            <p className="text-slate-400 mb-8 max-w-lg mx-auto">
+                Mr. Chew is available to answer your specific queries regarding your child's learning needs.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <a 
+                    href="https://wa.me/6597277419" 
+                    target="_blank"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-teal-600 text-white rounded-xl font-bold hover:bg-teal-500 transition-all shadow-lg hover:shadow-teal-500/20"
+                >
+                    <MessageCircle size={18} />
+                    WhatsApp Us
+                </a>
+                <a 
+                    href="tel:+6597277419" 
+                    className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-slate-800 text-white border border-slate-700 rounded-xl font-bold hover:bg-slate-700 transition-all"
+                >
+                    <Phone size={18} />
+                    +65 9727 7419
+                </a>
+            </div>
+          </div>
+        </motion.div>
 
       </div>
-
-      {/* --- Scroll To Top --- */}
-      <button 
-        onClick={scrollToTop}
-        className="fixed bottom-6 right-6 z-50 w-12 h-12 bg-amber-500 hover:bg-amber-600 rounded-full flex items-center justify-center shadow-lg shadow-amber-500/20 transition-all hover:-translate-y-1 active:scale-95 text-white"
-        aria-label="Scroll to top"
-      >
-        <ArrowUp className="w-6 h-6" strokeWidth={2.5} />
-      </button>
-
     </section>
   );
 }

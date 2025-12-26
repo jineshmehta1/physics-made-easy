@@ -8,87 +8,86 @@ import {
   ChevronLeft, 
   ChevronRight, 
   Maximize2,
-  GraduationCap,
-  BrainCircuit,
-  Gamepad2,
-  Filter
+  Atom,           // Physics
+  Crown,          // Chess
+  Filter,
+  Users
 } from 'lucide-react';
 
-// --- Demo Data ---
-// Using varying aspect ratios for Masonry effect
+// --- Demo Data (Physics & Chess Context) ---
 const galleryData = [
   {
     id: 1,
-    src: "https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=800",
-    category: "Academics",
-    title: "Classroom Focus",
-    description: "Students engaged in interactive learning session.",
+    src: "https://images.unsplash.com/photo-1632571401005-458e9d244591?q=80&w=800&auto=format&fit=crop",
+    category: "Physics",
+    title: "Mastering Kinematics",
+    description: "Students visualizing projectile motion using practical experiments.",
     aspect: "aspect-[4/3]"
   },
   {
     id: 2,
-    src: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?q=80&w=800",
+    src: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?q=80&w=800&auto=format&fit=crop",
     category: "Chess",
-    title: "National Championship",
-    description: "Our U-12 team securing the gold medal.",
+    title: "Strategic Depth",
+    description: "Analyzing Grandmaster openings during our weekend workshop.",
     aspect: "aspect-[3/4]"
   },
   {
     id: 3,
-    src: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=800",
-    category: "Robotics",
-    title: "Bot Building",
-    description: "Final touches on the line-follower robot.",
+    src: "https://images.unsplash.com/photo-1565514020176-db93796d1eb1?q=80&w=800&auto=format&fit=crop",
+    category: "Awards",
+    title: "National Distinction",
+    description: "Receiving the commendation prize for Science excellence.",
     aspect: "aspect-square"
   },
   {
     id: 4,
-    src: "https://images.unsplash.com/photo-1560785496-3c9d27877182?q=80&w=800",
-    category: "Events",
-    title: "Annual Day",
-    description: "Cultural performances by primary students.",
+    src: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800&auto=format&fit=crop",
+    category: "Physics",
+    title: "Small Group Tutoring",
+    description: "Intensive revision session for upcoming O-Levels.",
     aspect: "aspect-[3/4]"
   },
   {
     id: 5,
-    src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800",
-    category: "Academics",
-    title: "Science Fair",
-    description: "Demonstrating physics experiments.",
+    src: "https://images.unsplash.com/photo-1580541832626-d297a73771fa?q=80&w=800&auto=format&fit=crop",
+    category: "Students",
+    title: "Peer Learning",
+    description: "Collaborative problem solving in the study lounge.",
     aspect: "aspect-[4/3]"
   },
   {
     id: 6,
-    src: "https://images.unsplash.com/photo-1588058365548-9feb53b818e0?q=80&w=800",
+    src: "https://images.unsplash.com/photo-1610633389938-f990924c88d4?q=80&w=800&auto=format&fit=crop",
     category: "Chess",
-    title: "Grandmaster Visit",
-    description: "Guest lecture on opening strategies.",
+    title: "Tournament Focus",
+    description: "Critical thinking under pressure at the Inter-School meet.",
     aspect: "aspect-square"
   },
   {
     id: 7,
-    src: "https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?q=80&w=800",
-    category: "Robotics",
-    title: "Tech Expo Winner",
-    description: "Receiving the innovation award.",
+    src: "https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?q=80&w=800&auto=format&fit=crop",
+    category: "Awards",
+    title: "100% Grade 7",
+    description: "Celebrating our IB HL Physics toppers.",
     aspect: "aspect-[3/4]"
   },
   {
     id: 8,
-    src: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800",
-    category: "Events",
-    title: "Graduation Day",
-    description: "Celebrating our outgoing batch.",
+    src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop",
+    category: "Physics",
+    title: "Hands-on Learning",
+    description: "Bridging theory and reality through demonstration.",
     aspect: "aspect-[4/3]"
   },
 ];
 
 const categories = [
   { id: "All", label: "All Moments", icon: Camera },
-  { id: "Academics", label: "Academics", icon: GraduationCap },
-  { id: "Chess", label: "Chess Arena", icon: Gamepad2 },
-  { id: "Robotics", label: "Robotics Lab", icon: BrainCircuit },
-  { id: "Events", label: "Celebrations", icon: Trophy },
+  { id: "Physics", label: "Physics Class", icon: Atom },
+  { id: "Chess", label: "Chess Arena", icon: Crown },
+  { id: "Awards", label: "Hall of Fame", icon: Trophy },
+  { id: "Students", label: "Student Life", icon: Users },
 ];
 
 export default function GallerySection() {
@@ -122,9 +121,9 @@ export default function GallerySection() {
       
       {/* --- Background Decor --- */}
       <div className="absolute top-0 inset-x-0 h-96 bg-gradient-to-b from-white to-transparent pointer-events-none"></div>
-      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-amber-50 rounded-bl-full opacity-50 pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-teal-50 rounded-bl-full opacity-50 pointer-events-none"></div>
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(#d97706 1px, transparent 1px)', backgroundSize: '32px 32px' }}>
+           style={{ backgroundImage: 'linear-gradient(#0f172a 1px, transparent 1px), linear-gradient(to right, #0f172a 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
       </div>
 
       <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
@@ -132,16 +131,16 @@ export default function GallerySection() {
         {/* --- Header --- */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full bg-white border border-slate-200 shadow-sm">
-            <Filter className="w-3.5 h-3.5 text-amber-500" />
+            <Filter className="w-3.5 h-3.5 text-teal-600" />
             <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">
               Gallery
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">
-            Our Campus <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-600">Life</span>
+          <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
+            Our Learning <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-indigo-600">Moments</span>
           </h1>
           <p className="text-slate-600 max-w-2xl mx-auto text-lg leading-relaxed">
-            From intense chess battles to breakthrough robotics projects—explore the vibrant moments that define Aacharya Academy.
+            From the "Aha!" moments in Physics to the checkmates in Chess—explore the journey of our students.
           </p>
         </div>
 
@@ -155,7 +154,7 @@ export default function GallerySection() {
                 flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all duration-300 border
                 ${activeCategory === cat.id 
                   ? 'bg-slate-900 text-white border-slate-900 shadow-lg shadow-slate-900/20 transform scale-105' 
-                  : 'bg-white text-slate-500 border-slate-200 hover:border-amber-400 hover:text-amber-600'
+                  : 'bg-white text-slate-500 border-slate-200 hover:border-teal-400 hover:text-teal-600'
                 }
               `}
             >
@@ -166,12 +165,11 @@ export default function GallerySection() {
         </div>
 
         {/* --- Masonry Grid --- */}
-        {/* 'columns-1 sm:columns-2 lg:columns-3' creates the masonry effect using CSS columns */}
         <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
           {filteredImages.map((image) => (
             <div 
               key={image.id}
-              className="group relative break-inside-avoid rounded-2xl overflow-hidden cursor-zoom-in bg-slate-200 shadow-md hover:shadow-xl transition-all duration-500"
+              className="group relative break-inside-avoid rounded-[1.5rem] overflow-hidden cursor-zoom-in bg-slate-200 shadow-md hover:shadow-xl hover:shadow-teal-900/10 transition-all duration-500"
               onClick={() => setLightboxImage(image)}
             >
               {/* Image */}
@@ -182,9 +180,9 @@ export default function GallerySection() {
               />
 
               {/* Overlay (Appears on Hover) */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                 <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                  <span className="inline-block px-2 py-1 bg-amber-500 text-slate-900 text-[10px] font-bold uppercase tracking-wider rounded-md mb-2">
+                  <span className="inline-block px-2 py-1 bg-teal-500 text-white text-[10px] font-bold uppercase tracking-wider rounded-md mb-2">
                     {image.category}
                   </span>
                   <h3 className="text-white text-lg font-bold leading-tight mb-1">{image.title}</h3>
@@ -255,7 +253,7 @@ export default function GallerySection() {
             {/* Details Sidebar */}
             <div className="w-full md:w-1/4 p-8 bg-white flex flex-col justify-center border-l border-slate-100">
               <div className="mb-auto">
-                <span className="inline-block px-3 py-1 bg-amber-50 text-amber-700 border border-amber-100 rounded-full text-xs font-bold uppercase tracking-wide mb-4">
+                <span className="inline-block px-3 py-1 bg-teal-50 text-teal-700 border border-teal-100 rounded-full text-xs font-bold uppercase tracking-wide mb-4">
                   {lightboxImage.category}
                 </span>
                 <h3 className="text-2xl font-bold text-slate-900 mb-4">{lightboxImage.title}</h3>
@@ -264,7 +262,7 @@ export default function GallerySection() {
 
               <div className="pt-6 border-t border-slate-100 mt-6">
                  <p className="text-xs text-slate-400 uppercase tracking-wider font-bold mb-1">Captured At</p>
-                 <p className="text-sm font-semibold text-slate-700">Aacharya Academy Campus</p>
+                 <p className="text-sm font-semibold text-slate-700">Physics Made Easy Center</p>
               </div>
             </div>
           </div>

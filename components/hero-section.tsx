@@ -1,146 +1,206 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { motion } from "framer-motion";
 import { 
   ArrowRight, 
-  BookOpen,      // For Academics
-  BrainCircuit,  // For Abacus/Mental Math
-  Bot,           // For Robotics
-  Gamepad2,      // For Chess/Games
-  Star, 
+  Atom,           // Physics
+  Brain,          // Multiple Intelligences
+  Trophy,         // Awards/Chess
+  Target,         // Results
   CheckCircle2,
-  GraduationCap
+  GraduationCap,
+  Microscope,
+  Phone
 } from "lucide-react";
+import Link from "next/link";
 
 export default function HeroSection() {
-  const [mounted, setMounted] = useState(false);
+  
+  // Animation Variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { staggerChildren: 0.2, delayChildren: 0.1 }
+    }
+  };
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  };
+
+  const floatAnimation = {
+    y: [-10, 10, -10],
+    transition: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+  };
 
   return (
-    <section className="relative min-h-screen bg-white flex items-center pt-12 pb-16 lg:pt-6 lg:pb-32 overflow-hidden font-sans">
+    <section className="relative min-h-[90vh] bg-white flex items-center overflow-hidden font-sans pt-10 pb-20 lg:py-4">
       
-      {/* --- BACKGROUND DECORATION --- */}
-      {/* 1. Warm Gradient Mesh */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-yellow-100/50 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-amber-50/50 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
-      
-      {/* 2. Geometric Pattern */}
+      {/* --- BACKGROUND ELEMENTS --- */}
+      {/* 1. Scientific Grid */}
       <div className="absolute inset-0 z-0 opacity-[0.03]" 
-           style={{ backgroundImage: 'radial-gradient(#d97706 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
+           style={{ 
+             backgroundImage: 'linear-gradient(#0f172a 1px, transparent 1px), linear-gradient(to right, #0f172a 1px, transparent 1px)', 
+             backgroundSize: '40px 40px' 
+           }}>
       </div>
+
+      {/* 2. Ambient Glows */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-teal-100/40 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-100/40 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
 
       <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl relative z-10">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
           {/* --- LEFT COLUMN: Content --- */}
-          <div className={`lg:col-span-7 space-y-8 transition-all duration-1000 transform ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="lg:col-span-7 space-y-8"
+          >
             
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 border border-amber-200 text-amber-800 font-bold text-xs tracking-wide uppercase mb-2">
+            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 font-bold text-xs tracking-wide uppercase">
               <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-indigo-600"></span>
               </span>
-              Admissions Open for 2024-25
-            </div>
+              Admissions Open: 2025 Intake
+            </motion.div>
 
             {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-5xl leading-[1.1] font-extrabold text-slate-900 tracking-tight">
-              Where <span className="text-amber-600">Academic Excellence</span> <br className="hidden md:block" />
-              Meets Future Skills.
-            </h1>
+            <motion.div variants={itemVariants}>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl leading-[1.1] font-black text-slate-900 tracking-tight mb-4">
+                Master <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-indigo-600">Physics.</span> <br />
+                Conquer <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Chess.</span>
+              </h1>
+              <p className="text-xl font-semibold text-slate-700">
+                With Multiple Intelligences (MI) Theory
+              </p>
+            </motion.div>
 
             {/* Subtext */}
-            <p className="text-lg text-slate-600 max-w-xl leading-relaxed">
-              Aacharya Academy bridges the gap between traditional schooling and modern skill mastery. From <strong>CBSE Curriculum</strong> to <strong>Robotics, Abacus, & Chess</strong> — we shape complete personalities.
-            </p>
+            <motion.div variants={itemVariants}>
+              <p className="text-lg text-slate-600 max-w-xl leading-relaxed">
+                Led by <strong>Mr. Chew</strong> (Ex-MOE Scholar, NIE-Trained, FIDE Instructor). 
+                We blend academic rigor with strategic thinking to help students ace <strong>O/A Levels, IB, & IGCSE</strong> exams.
+              </p>
+            </motion.div>
 
-            {/* Feature Pills (Replacing the old grid) */}
-            <div className="flex flex-wrap gap-3">
+            {/* Feature Pills */}
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-3">
               {[
-                { icon: BookOpen, label: "Primary Schooling" },
-                { icon: BrainCircuit, label: "Abacus & Vedic Math" },
-                { icon: Bot, label: "Robotics & AI" },
-                { icon: Gamepad2, label: "Professional Chess" },
-                { icon: BookOpen, label: "CBSE Coaching" },
+                { icon: Atom, label: "Pure/Combined Physics", color: "text-teal-600", bg: "bg-teal-50", border: "border-teal-100" },
+                { icon: Trophy, label: "FIDE Chess Coaching", color: "text-purple-600", bg: "bg-purple-50", border: "border-purple-100" },
+                { icon: Brain, label: "Multiple Intelligences", color: "text-indigo-600", bg: "bg-indigo-50", border: "border-indigo-100" },
+                { icon: GraduationCap, label: "Career Skills", color: "text-blue-600", bg: "bg-blue-50", border: "border-blue-100" },
               ].map((item, idx) => (
-                <div key={idx} className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-100 shadow-sm rounded-lg text-sm font-semibold text-slate-700 hover:border-amber-300 transition-colors cursor-default">
-                  <item.icon size={18} className="text-amber-500" />
+                <div key={idx} className={`flex items-center gap-2 px-3 py-2 ${item.bg} ${item.border} border rounded-lg text-sm font-bold text-slate-700`}>
+                  <item.icon size={16} className={item.color} />
                   {item.label}
                 </div>
               ))}
-            </div>
+            </motion.div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <button className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-amber-500 text-white rounded-xl font-bold text-lg shadow-lg shadow-amber-500/20 hover:bg-amber-600 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                Book a Free Demo
-                <ArrowRight className="w-5 h-5" />
-              </button>
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 pt-4">
+              <Link href="/contact" className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-900 text-white rounded-xl font-bold text-lg shadow-xl shadow-slate-900/20 hover:bg-teal-600 hover:shadow-teal-600/20 transition-all duration-300">
+                Book a Trial Class
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
               
-              <button className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-slate-700 border-2 border-slate-100 rounded-xl font-bold text-lg hover:border-amber-500 hover:text-amber-600 transition-all duration-300">
-                Explore Courses
-              </button>
-            </div>
+              <Link href="tel:+6597277419" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-slate-700 border-2 border-slate-100 rounded-xl font-bold text-lg hover:border-teal-500 hover:text-teal-700 transition-all duration-300">
+                <Phone size={18} />
+                +65 9727 7419
+              </Link>
+            </motion.div>
 
-            {/* Stat / Social Proof */}
-            <div className="flex items-center gap-2 text-sm font-medium text-slate-500 pt-2">
-              <div className="flex text-amber-500">
-                {[1,2,3,4,5].map(i => <Star key={i} size={16} fill="currentColor" />)}
-              </div>
-              <span>Trusted by 500+ Parents for holistic development.</span>
-            </div>
+            {/* Trust Indicator */}
+            <motion.div variants={itemVariants} className="flex items-center gap-4 pt-2 border-t border-slate-100 mt-4 max-w-md">
+               <div className="flex -space-x-3">
+                  {[1,2,3].map((i) => (
+                    <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-slate-200 overflow-hidden relative">
+                       {/* Placeholder avatars - replace with real images if available */}
+                       <div className="absolute inset-0 bg-slate-300 flex items-center justify-center text-xs font-bold text-slate-500">S{i}</div>
+                    </div>
+                  ))}
+               </div>
+               <div className="text-sm">
+                  <p className="font-bold text-slate-900">Proven Track Record</p>
+                  <p className="text-slate-500">100% Grade A/B in O-Levels</p>
+               </div>
+            </motion.div>
 
-          </div>
+          </motion.div>
 
           {/* --- RIGHT COLUMN: Image & Floating Cards --- */}
-          <div className={`lg:col-span-5 relative mt-12 lg:mt-0 lg:h-[600px] flex items-center justify-center transition-all duration-1000 delay-300 transform ${mounted ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
+          <div className="lg:col-span-5 relative mt-16 lg:mt-0 flex items-center justify-center">
             
-            {/* Background Blob for Image */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-amber-100 to-yellow-50 rounded-[3rem] -rotate-6 scale-90 -z-10 border border-amber-100/50"></div>
+            {/* Animated Background Blob */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-teal-100 to-indigo-100 rounded-full blur-3xl opacity-60 animate-pulse"></div>
 
             {/* Main Image Container */}
-            <div className="relative w-full max-w-[450px] aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl shadow-slate-200/50 border-4 border-white">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              className="relative w-full max-w-[480px] aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl shadow-indigo-900/10 border-[8px] border-white bg-slate-100"
+            >
+              {/* Replace with actual image of Mr Chew or Student */}
               <img 
-                src="/hero.jpg" // Use a photo showing a kid studying or with a robot if available, otherwise general happy student
-                alt="Student learning at Aacharya Academy"
-                className="object-cover w-full h-full hover:scale-105 transition-transform duration-700"
+                src="/student.webp" 
+                alt="Physics and Strategy"
+                className="object-cover w-full h-full"
               />
-              
-              {/* Overlay Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-            </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent">
+                  <div className="absolute bottom-8 left-8 text-white">
+                      <p className="font-bold text-lg">Mr. Chew Kok Mun</p>
+                      <p className="text-sm opacity-90">Founder & Ex-MOE Scholar</p>
+                  </div>
+              </div>
+            </motion.div>
 
-            {/* Floating Card 1: Academics */}
-            <div className="absolute top-10 -left-4 md:-left-12 bg-white p-4 rounded-xl shadow-lg border border-slate-50 flex items-center gap-3 animate-[float_4s_ease-in-out_infinite]">
-              <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
-                <GraduationCap size={20} />
+            {/* Floating Card 1: Results */}
+            <motion.div 
+              animate={floatAnimation}
+              className="absolute top-8 -left-4 bg-white/95 backdrop-blur shadow-xl border border-white p-4 rounded-2xl flex items-center gap-3 max-w-[200px]"
+            >
+              <div className="p-2.5 bg-green-100 text-green-700 rounded-lg">
+                <CheckCircle2 size={24} />
               </div>
               <div>
-                <p className="text-[10px] text-slate-400 font-bold uppercase">Program</p>
-                <p className="text-sm font-bold text-slate-800">Primary School</p>
+                <p className="text-[10px] uppercase font-bold text-slate-400">Success Rate</p>
+                <p className="text-sm font-bold text-slate-900">100% Gr. 7 IB HL</p>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Floating Card 2: Skills */}
-            <div className="absolute bottom-20 -right-4 md:-right-8 bg-white p-4 rounded-xl shadow-lg border border-slate-50 flex items-center gap-3 animate-[float_5s_ease-in-out_infinite_1s]">
-              <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center text-amber-600">
-                <Bot size={20} />
+            {/* Floating Card 2: Chess */}
+            <motion.div 
+              animate={floatAnimation}
+              transition={{ delay: 1 }} // Offset animation
+              className="absolute bottom-20 -right-6 bg-white/95 backdrop-blur shadow-xl border border-white p-4 rounded-2xl flex items-center gap-3"
+            >
+              <div className="p-2.5 bg-purple-100 text-purple-700 rounded-lg">
+                <Trophy size={24} />
               </div>
               <div>
-                <p className="text-[10px] text-slate-400 font-bold uppercase">Skill</p>
-                <p className="text-sm font-bold text-slate-800">Robotics & AI</p>
+                <p className="text-[10px] uppercase font-bold text-slate-400">Certification</p>
+                <p className="text-sm font-bold text-slate-900">FIDE Instructor</p>
               </div>
-            </div>
+            </motion.div>
 
-             {/* Floating Card 3: Success */}
-             <div className="absolute bottom-6 left-8 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-lg shadow-sm border border-slate-100 flex items-center gap-2">
-                <CheckCircle2 size={16} className="text-green-500" />
-                <span className="text-xs font-bold text-slate-700">100% Student Focus</span>
-            </div>
+             {/* Floating Atom Decoration */}
+             <motion.div 
+               animate={{ rotate: 360 }}
+               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+               className="absolute -top-10 -right-10 text-teal-500 opacity-20"
+             >
+                <Atom size={120} strokeWidth={1} />
+             </motion.div>
 
           </div>
         </div>

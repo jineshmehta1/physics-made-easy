@@ -1,252 +1,284 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
-import { Trash2, Plus, Image as ImageIcon } from "lucide-react"
-
-/* ---------------- CONFIG ---------------- */
-
-const CLOUDINARY_CLOUD_NAME = "dx2o9yq2t"
-const CLOUDINARY_UPLOAD_PRESET = "gallery"
-
-const PAGES = [
-  { id: "chess", label: "Chess" },
-  { id: "robotics", label: "Robotics" },
-  { id: "abacus", label: "Abacus" },
-  { id: "coaching", label: "Coaching" },
-  { id: "promaty", label: "Promaty School" },
-]
-
-const CATEGORIES = ["Tournaments", "Classes", "Events", "Camps"]
-
-/* ---------------- COMPONENT ---------------- */
+import { useState, useEffect } from "react";
+import { 
+  addGalleryImage, 
+  editGalleryImage, 
+  deleteGalleryImage, 
+  getGalleryImages 
+} from "@/app/actions/adminActions";
+import ImageUpload from "@/components/admin/ImageUpload";
+import { 
+  Plus, 
+  Trash2, 
+  Pencil, 
+  X, 
+  Image as ImageIcon, 
+  Loader2, 
+  Search 
+} from "lucide-react";
 
 export default function GalleryAdmin() {
-  const router = useRouter()
+  const [images, setImages] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  // Form State
+  const [editingItem, setEditingItem] = useState<any>(null);
+  const [imageUrl, setImageUrl] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const [pageKey, setPageKey] = useState("chess")
-  const [items, setItems] = useState<any[]>([])
-  const [loading, setLoading] = useState(true)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [uploading, setUploading] = useState(false)
-
-  const [formData, setFormData] = useState({
-    pageKey: "chess",
-    title: "",
-    category: "Tournaments",
-    location: "",
-    src: "",
-    type: "photo",
-  })
-
-  /* ---------------- FETCH ---------------- */
-
-  const fetchGallery = async (key: string) => {
-    setLoading(true)
-    const res = await fetch(`/api/gallery?pageKey=${key}`, { cache: "no-store" })
-    const data = await res.json()
-    setItems(data)
-    setLoading(false)
-  }
-
+  // Initial Data Fetch
   useEffect(() => {
-    fetchGallery(pageKey)
-    setFormData(prev => ({ ...prev, pageKey }))
-  }, [pageKey])
+    loadData();
+  }, []);
 
-  /* ---------------- CLOUDINARY UPLOAD ---------------- */
-
-  const uploadToCloudinary = async (file: File) => {
-    const form = new FormData()
-    form.append("file", file)
-    form.append("upload_preset", CLOUDINARY_UPLOAD_PRESET)
-    form.append("folder", "gallery")
-
-    const res = await fetch(
-      `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
-      { method: "POST", body: form }
-    )
-
-    if (!res.ok) throw new Error("Upload failed")
-
-    const data = await res.json()
-    return data.secure_url as string
+  async function loadData() {
+    setIsLoading(true);
+    try {
+      const data = await getGalleryImages();
+      setImages(data);
+    } catch (error) {
+      console.error("Failed to load images", error);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
-  /* ---------------- SUBMIT ---------------- */
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (!formData.src) {
-      alert("Please upload an image")
-      return
+  // Handle Create / Update
+  async function handleSubmit(formData: FormData) {
+    setIsSubmitting(true);
+    
+    // For gallery, image is mandatory on Create, optional on Edit (if keeping same)
+    if (!editingItem && !imageUrl) {
+        alert("Please upload an image.");
+        setIsSubmitting(false);
+        return;
     }
 
-    setIsSubmitting(true)
+    if (imageUrl) {
+        formData.append("src", imageUrl);
+    }
 
-    await fetch("/api/gallery", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    })
-
-    await fetchGallery(pageKey)
-
-    setFormData({
-      pageKey,
-      title: "",
-      category: "Tournaments",
-      location: "",
-      src: "",
-      type: "photo",
-    })
-
-    setIsSubmitting(false)
-    router.refresh()
+    try {
+      if (editingItem) {
+        await editGalleryImage(editingItem.id, formData);
+      } else {
+        await addGalleryImage(formData);
+      }
+      
+      closeModal();
+      await loadData();
+    } catch (error) {
+      console.error("Error saving image", error);
+      alert("Failed to save image.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
-  /* ---------------- DELETE ---------------- */
-
-  const handleDelete = async (id: number) => {
-    if (!confirm("Delete this image?")) return
-    await fetch(`/api/gallery/${id}`, { method: "DELETE" })
-    setItems(prev => prev.filter(item => item.id !== id))
+  // Handle Delete
+  async function handleDelete(id: number) {
+    if (confirm("Are you sure you want to delete this image?")) {
+      await deleteGalleryImage(id);
+      loadData();
+    }
   }
 
-  /* ---------------- UI ---------------- */
+  // Modal Helpers
+  function openAdd() {
+    setEditingItem(null);
+    setImageUrl("");
+    setIsModalOpen(true);
+  }
+
+  function openEdit(item: any) {
+    setEditingItem(item);
+    setImageUrl(item.src);
+    setIsModalOpen(true);
+  }
+
+  function closeModal() {
+    setIsModalOpen(false);
+    setEditingItem(null);
+    setImageUrl("");
+  }
+
+  // Filter Logic
+  const filteredImages = images.filter(img => 
+    img.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    img.category.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
-    <div className="space-y-8 pb-20">
-
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <h2 className="text-3xl font-bold text-slate-800">
-          Gallery Manager
-        </h2>
-
-        <select
-          value={pageKey}
-          onChange={e => setPageKey(e.target.value)}
-          className="p-2.5 border rounded-lg bg-white font-semibold"
+    <div className="min-h-screen pb-20">
+      
+      {/* --- HEADER --- */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+        <div>
+          <h1 className="text-3xl font-black text-slate-900 flex items-center gap-3">
+            <ImageIcon className="text-indigo-600" size={32} />
+            Gallery Manager
+          </h1>
+          <p className="text-slate-500 mt-1">Curate photos for Physics, Chess, and Events.</p>
+        </div>
+        
+        <button 
+          onClick={openAdd} 
+          className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-indigo-200 transition-all hover:-translate-y-1"
         >
-          {PAGES.map(p => (
-            <option key={p.id} value={p.id}>{p.label}</option>
-          ))}
-        </select>
+          <Plus size={20} /> Add New Photo
+        </button>
       </div>
 
-      {/* Add Form */}
-      <div className="bg-white p-6 rounded-2xl shadow-sm border">
-        <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-          <Plus className="w-5 h-5 text-amber-500" />
-          Add Image ({pageKey})
-        </h3>
-
-        <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-6">
-          <div className="space-y-4">
-            <input
-              placeholder="Title"
-              className="w-full p-3 border rounded-lg"
-              value={formData.title}
-              onChange={e => setFormData({ ...formData, title: e.target.value })}
-              required
-            />
-
-            <div className="grid grid-cols-2 gap-4">
-              <select
-                className="p-3 border rounded-lg bg-white"
-                value={formData.category}
-                onChange={e =>
-                  setFormData({ ...formData, category: e.target.value })
-                }
-              >
-                {CATEGORIES.map(c => (
-                  <option key={c}>{c}</option>
-                ))}
-              </select>
-
-              <input
-                placeholder="Location"
-                className="w-full p-3 border rounded-lg"
-                value={formData.location}
-                onChange={e =>
-                  setFormData({ ...formData, location: e.target.value })
-                }
-                required
-              />
-            </div>
-          </div>
-
-          {/* Upload */}
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Upload Image</label>
-
-            <div className="border-2 border-dashed rounded-lg p-4 bg-slate-50 flex flex-col items-center">
-              {formData.src ? (
-                <img src={formData.src} className="h-32 rounded mb-2 object-cover" />
-              ) : (
-                <ImageIcon className="w-8 h-8 text-slate-400 mb-2" />
-              )}
-
-              <input
-                type="file"
-                accept="image/*"
-                disabled={uploading}
-                onChange={async e => {
-                  const file = e.target.files?.[0]
-                  if (!file) return
-
-                  setUploading(true)
-                  const url = await uploadToCloudinary(file)
-                  setFormData(prev => ({ ...prev, src: url }))
-                  setUploading(false)
-                }}
-              />
-
-              {uploading && (
-                <p className="text-xs text-slate-500 mt-2">Uploading...</p>
-              )}
-            </div>
-          </div>
-
-          <button
-            disabled={isSubmitting}
-            className="md:col-span-2 bg-amber-500 text-white font-bold py-3 rounded-lg hover:bg-amber-600 disabled:opacity-50"
-          >
-            {isSubmitting ? "Saving..." : "Add to Gallery"}
-          </button>
-        </form>
+      {/* --- SEARCH BAR --- */}
+      <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm mb-8 flex items-center gap-3">
+        <Search className="text-slate-400" size={20} />
+        <input 
+          type="text" 
+          placeholder="Search by title or category..." 
+          className="flex-1 outline-none text-slate-700 placeholder:text-slate-400"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
       </div>
 
-      {/* Gallery List */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {loading ? (
-          <p>Loading...</p>
-        ) : items.length === 0 ? (
-          <p className="col-span-full text-center text-slate-400">
-            No images for this page
-          </p>
-        ) : (
-          items.map(item => (
-            <div key={item.id} className="bg-white border rounded-xl overflow-hidden">
-              <div className="aspect-square relative">
-                <img src={item.src} className="w-full h-full object-cover" />
-                <button
-                  onClick={() => handleDelete(item.id)}
-                  className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full"
+      {/* --- GALLERY GRID --- */}
+      {isLoading ? (
+        <div className="p-12 flex justify-center items-center text-indigo-600">
+          <Loader2 size={40} className="animate-spin" />
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {filteredImages.length === 0 ? (
+            <div className="col-span-full p-12 text-center text-slate-500 italic bg-white rounded-2xl border border-slate-200">
+              No images found. Upload one to get started.
+            </div>
+          ) : (
+            filteredImages.map((img) => (
+              <div key={img.id} className="group bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col">
+                
+                {/* Image Container */}
+                <div className="relative aspect-square overflow-hidden bg-slate-100">
+                  <img 
+                    src={img.src} 
+                    alt={img.title} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                  />
+                  
+                  {/* Hover Overlay Actions */}
+                  <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3 backdrop-blur-sm">
+                    <button 
+                      onClick={() => openEdit(img)} 
+                      className="p-3 bg-white text-indigo-600 rounded-full hover:bg-indigo-50 transition-colors shadow-lg"
+                      title="Edit"
+                    >
+                      <Pencil size={18} />
+                    </button>
+                    <button 
+                      onClick={() => handleDelete(img.id)} 
+                      className="p-3 bg-white text-red-600 rounded-full hover:bg-red-50 transition-colors shadow-lg"
+                      title="Delete"
+                    >
+                      <Trash2 size={18} />
+                    </button>
+                  </div>
+
+                  {/* Category Tag */}
+                  <div className="absolute top-3 left-3">
+                    <span className="px-2 py-1 bg-slate-900/80 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider rounded-md">
+                        {img.category}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Details */}
+                <div className="p-4 flex flex-col flex-grow">
+                  <h3 className="font-bold text-slate-900 truncate" title={img.title}>{img.title}</h3>
+                  <p className="text-slate-500 text-sm mt-1 line-clamp-2">{img.description || "No description"}</p>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      )}
+
+      {/* --- ADD / EDIT MODAL --- */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-white rounded-3xl w-full max-w-lg shadow-2xl flex flex-col max-h-[90vh]">
+            
+            {/* Modal Header */}
+            <div className="p-6 border-b border-slate-100 flex justify-between items-center">
+              <h2 className="text-2xl font-black text-slate-900">
+                {editingItem ? "Edit Photo" : "Upload Photo"}
+              </h2>
+              <button onClick={closeModal} className="p-2 hover:bg-slate-100 rounded-full text-slate-400 hover:text-slate-600">
+                <X size={24} />
+              </button>
+            </div>
+            
+            {/* Modal Body */}
+            <form action={handleSubmit} className="p-6 space-y-6 overflow-y-auto">
+              
+              <div className="space-y-2">
+                <label className="block text-sm font-bold text-slate-700">Photo <span className="text-red-500">*</span></label>
+                <ImageUpload value={imageUrl} onChange={setImageUrl} />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-bold text-slate-700">Title</label>
+                <input 
+                  name="title" 
+                  defaultValue={editingItem?.title} 
+                  required 
+                  placeholder="e.g. Science Fair 2024"
+                  className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-medium" 
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-bold text-slate-700">Category</label>
+                <select 
+                  name="category" 
+                  defaultValue={editingItem?.category || "Physics"} 
+                  className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none font-medium appearance-none"
                 >
-                  <Trash2 size={16} />
+                  <option value="Physics Classes">Physics Classes</option>
+                  <option value="Chess Lessons">Chess Lessons</option>
+                  <option value="Awards">Awards</option>
+                  <option value="Student Activities">Student Activities</option>
+                </select>
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-sm font-bold text-slate-700">Description</label>
+                <textarea 
+                  name="description" 
+                  defaultValue={editingItem?.description} 
+                  rows={3} 
+                  placeholder="Brief context about the image..."
+                  className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all font-medium resize-none" 
+                />
+              </div>
+
+              <div className="pt-2">
+                <button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-indigo-200 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting && <Loader2 size={18} className="animate-spin" />}
+                  {editingItem ? "Save Changes" : "Upload to Gallery"}
                 </button>
               </div>
-              <div className="p-3">
-                <p className="font-bold truncate">{item.title}</p>
-                <p className="text-xs text-slate-500">{item.category}</p>
-              </div>
-            </div>
-          ))
-        )}
-      </div>
+
+            </form>
+          </div>
+        </div>
+      )}
+
     </div>
-  )
+  );
 }

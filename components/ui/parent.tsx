@@ -15,7 +15,7 @@ export default function AboutSection() {
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-100 text-amber-800 font-bold text-xs uppercase tracking-wider mb-4 border border-amber-200">
-             <Star size={12} fill="currentColor" /> The Aacharya Difference
+             <Star size={12} fill="currentColor" /> The Difference
           </div>
           <h3 className="text-4xl md:text-5xl font-black text-slate-900">
             Why Parents <span className="text-amber-500 underline decoration-wavy decoration-amber-200 underline-offset-4">Trust Us?</span>

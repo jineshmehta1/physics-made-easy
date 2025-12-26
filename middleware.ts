@@ -5,8 +5,15 @@ import type { NextRequest } from "next/server";
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // 🚫 Skip NextAuth routes completely
+  // 1. Skip NextAuth routes
   if (pathname.startsWith("/api/auth")) {
+    return NextResponse.next();
+  }
+
+  // 2. ⚠️ FIX: Skip UploadThing Route
+  // UploadThing sends a POST webhook to this URL. It has no session cookies,
+  // so we must allow it to pass through. Internal security is handled by UploadThing's secret.
+  if (pathname.startsWith("/api/uploadthing")) {
     return NextResponse.next();
   }
 

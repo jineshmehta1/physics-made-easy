@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Lock, Mail } from "lucide-react";
+import { Lock, Mail, Atom, ArrowRight, Loader2 } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -40,47 +40,63 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-100">
-      <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-slate-200">
+    <div className="min-h-screen flex items-center justify-center bg-slate-900 relative overflow-hidden font-sans">
+      
+      {/* --- Background Effects --- */}
+      <div className="absolute inset-0 opacity-[0.03]" 
+           style={{ backgroundImage: 'linear-gradient(#14b8a6 1px, transparent 1px), linear-gradient(to right, #14b8a6 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
+      </div>
+      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+      <div className="bg-white/5 backdrop-blur-xl p-8 md:p-10 rounded-3xl shadow-2xl w-full max-w-md border border-white/10 relative z-10">
+        
+        {/* Header */}
         <div className="text-center mb-8">
-          <div className="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Lock className="text-white w-6 h-6" />
+          <div className="w-16 h-16 bg-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-teal-500/20">
+            <Atom className="text-white w-8 h-8 animate-[spin_10s_linear_infinite]" />
           </div>
-          <h1 className="text-2xl font-bold text-slate-900">Admin Access</h1>
-          <p className="text-slate-500 text-sm">Enter your credentials to manage the site</p>
+          <h1 className="text-2xl font-black text-white tracking-tight">Admin Portal</h1>
+          <p className="text-slate-400 text-sm mt-2">Physics Made Easy Academy</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {error && (
-            <div className="bg-red-50 text-red-600 text-sm p-3 rounded-lg text-center">
-              {error}
-            </div>
-          )}
+        {/* Error Message */}
+        {error && (
+          <div className="bg-red-500/10 border border-red-500/20 text-red-200 text-sm p-4 rounded-xl text-center mb-6 animate-in fade-in slide-in-from-top-2">
+            {error}
+          </div>
+        )}
 
-          <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">Email</label>
-            <div className="relative">
-              <Mail className="absolute left-3 top-2.5 h-5 w-5 text-slate-400" />
+        <form onSubmit={handleSubmit} className="space-y-5">
+          
+          <div className="space-y-2">
+            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Email Address</label>
+            <div className="relative group">
+              <div className="absolute left-4 top-3.5 text-slate-500 group-focus-within:text-teal-400 transition-colors">
+                <Mail size={18} />
+              </div>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none"
-                placeholder="admin@chess.com"
+                className="w-full pl-11 pr-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder:text-slate-600 focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-all font-medium"
+                placeholder="admin@physicsmadeeasy.com"
                 required
               />
             </div>
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">Password</label>
-            <div className="relative">
-              <Lock className="absolute left-3 top-2.5 h-5 w-5 text-slate-400" />
+          <div className="space-y-2">
+            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Password</label>
+            <div className="relative group">
+              <div className="absolute left-4 top-3.5 text-slate-500 group-focus-within:text-teal-400 transition-colors">
+                <Lock size={18} />
+              </div>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none"
+                className="w-full pl-11 pr-4 py-3 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder:text-slate-600 focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-all font-medium"
                 placeholder="••••••••"
                 required
               />
@@ -90,11 +106,27 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-amber-500 text-white font-bold py-2.5 rounded-lg hover:bg-amber-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-teal-600 hover:bg-teal-500 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-teal-500/20 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed group mt-2"
           >
-            {loading ? "Verifying..." : "Sign In"}
+            {loading ? (
+              <Loader2 className="w-5 h-5 animate-spin" />
+            ) : (
+              <>
+                Sign In
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </>
+            )}
           </button>
         </form>
+
+        {/* Footer */}
+        <div className="mt-8 text-center border-t border-white/5 pt-6">
+          <p className="text-xs text-slate-500">
+            Authorized personnel only. <br />
+            © {new Date().getFullYear()} Physics Made Easy.
+          </p>
+        </div>
+
       </div>
     </div>
   );

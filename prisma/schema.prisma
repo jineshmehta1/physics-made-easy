@@ -1,6 +1,5 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../lib/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -10,48 +9,59 @@ datasource db {
 
 model Course {
   id          Int      @id @default(autoincrement())
-  pageKey     String
   title       String
-  category    String
-  age         String
+  category    String   // 'Physics', 'Chess', 'Skills'
+  level       String
+  price       String
+  image       String   // Cloudinary URL
   description String
-  features    String
-  themeKey    String
+  features    String[]
+  slug        String   @unique
   popular     Boolean  @default(false)
   createdAt   DateTime @default(now())
 }
 
-model GalleryItem {
+model BlogPost {
   id        Int      @id @default(autoincrement())
-  pageKey   String
-  category  String
-  type      String
-  src       String
   title     String
-  location  String
-  createdAt DateTime @default(now())
+  excerpt   String
+  content   String   // Markdown or HTML
+  category  String   // 'Physics', 'Chess', 'Study Tips'
+  readTime  String
+  image     String
+  slug      String   @unique
+  featured  Boolean  @default(false)
+  date      DateTime @default(now())
 }
 
-model Review {
+model GalleryImage {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  category    String   // 'Physics', 'Chess', 'Awards'
+  src         String   // Cloudinary URL
+  createdAt   DateTime @default(now())
+}
+
+
+model Enquiry {
+  id          Int      @id @default(autoincrement())
+  parentName  String
+  studentName String?
+  email       String
+  phone       String
+  subject     String   // e.g. 'O-Level Physics'
+  message     String
+  status      String   @default("New") // 'New', 'Contacted', 'Closed'
+  notes       String?  // Admin internal notes
+  createdAt   DateTime @default(now())
+}
+
+model StudyMaterial {
   id        Int      @id @default(autoincrement())
-  pageKey   String
-  name      String
-  role      String
-  content   String
-  rating    Int
-  date      String
+  title     String
+  type      String   // 'Video' or 'PDF'
+  category  String   // 'Physics', 'Chess', 'Maths'
+  link      String   // Google Drive View Link or YouTube URL
   createdAt DateTime @default(now())
-}
-
-model SuccessStory {
-  id             Int      @id @default(autoincrement())
-  pageKey        String
-  name           String
-  role           String
-  image          String
-  videoThumbnail String
-  quote          String
-  story          String
-  stats          String
-  createdAt      DateTime @default(now())
 }

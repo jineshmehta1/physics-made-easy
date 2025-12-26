@@ -7,6 +7,11 @@ import  FeaturesSection  from "@/components/features-section"
 import AchievementsSection from "@/components/ui/AchievementsSection"
 import WhyChooseUsSection from "@/components/why-choose"
 import LearningEnvironment from "@/components/ui/learning"
+import PhilosophySection from "@/components/philoshophy"
+import LeadInstructorSection from "@/components/lead"
+import ResultsSection from "@/components/result"
+import ResourcesSection from "@/components/material"
+import GallerySection from "@/components/gallery"
 
 
 export default function HomePage() {
@@ -16,9 +21,12 @@ export default function HomePage() {
         <HeroSection />
         <WhyChooseUsSection/>
         <CoursesSection />
+        <PhilosophySection/>
+        <ResultsSection/>
+        <LeadInstructorSection/>
         <TestimonialsSection />
-        <LearningEnvironment/>
-        <AchievementsSection/>
+        <GallerySection/>
+        <ResourcesSection/>
         <FaqSection />
         <DemoBookingCTA />
       </main>

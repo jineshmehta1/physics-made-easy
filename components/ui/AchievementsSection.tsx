@@ -102,7 +102,7 @@ const AchievementsSection: React.FC = () => {
             </div>
             
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-none mb-4">
-              Aacharya's <br />
+              
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-yellow-500">
                 Achievements
               </span>

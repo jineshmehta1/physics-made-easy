@@ -60,7 +60,7 @@ export default function WhyChooseUsSection() {
         {/* Headline */}
         <div className="mb-16 md:mb-20">
             <span className="px-4 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 font-bold text-xs uppercase tracking-wider mb-4 inline-block">
-               The Aacharya Difference
+               The Difference
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tight mt-4">
             Why Parents <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-600">Trust Us?</span>
