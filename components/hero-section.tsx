@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, easeInOut, easeLinear } from "framer-motion";
 import { 
   ArrowRight, 
   Atom,           // Physics
@@ -28,19 +28,23 @@ export default function HeroSection() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: easeInOut } }
   };
 
   const floatAnimation = {
     y: [-10, 10, -10],
-    transition: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+    transition: { duration: 4, repeat: Infinity, ease: easeInOut }
+  };
+
+  const rotateAnimation = {
+    rotate: 360,
+    transition: { duration: 20, repeat: Infinity, ease: easeLinear }
   };
 
   return (
     <section className="relative min-h-[90vh] bg-white flex items-center overflow-hidden font-sans pt-10 pb-20 lg:py-4">
       
       {/* --- BACKGROUND ELEMENTS --- */}
-      {/* 1. Scientific Grid */}
       <div className="absolute inset-0 z-0 opacity-[0.03]" 
            style={{ 
              backgroundImage: 'linear-gradient(#0f172a 1px, transparent 1px), linear-gradient(to right, #0f172a 1px, transparent 1px)', 
@@ -48,7 +52,6 @@ export default function HeroSection() {
            }}>
       </div>
 
-      {/* 2. Ambient Glows */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-teal-100/40 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-100/40 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
 
@@ -62,7 +65,6 @@ export default function HeroSection() {
             animate="visible"
             className="lg:col-span-7 space-y-8"
           >
-            
             {/* Badge */}
             <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-700 font-bold text-xs tracking-wide uppercase">
               <span className="relative flex h-2.5 w-2.5">
@@ -93,7 +95,7 @@ export default function HeroSection() {
 
             {/* Feature Pills */}
             <motion.div variants={itemVariants} className="flex flex-wrap gap-3">
-              {[
+              {[ 
                 { icon: Atom, label: "Pure/Combined Physics", color: "text-teal-600", bg: "bg-teal-50", border: "border-teal-100" },
                 { icon: Trophy, label: "FIDE Chess Coaching", color: "text-purple-600", bg: "bg-purple-50", border: "border-purple-100" },
                 { icon: Brain, label: "Multiple Intelligences", color: "text-indigo-600", bg: "bg-indigo-50", border: "border-indigo-100" },
@@ -124,7 +126,6 @@ export default function HeroSection() {
                <div className="flex -space-x-3">
                   {[1,2,3].map((i) => (
                     <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-slate-200 overflow-hidden relative">
-                       {/* Placeholder avatars - replace with real images if available */}
                        <div className="absolute inset-0 bg-slate-300 flex items-center justify-center text-xs font-bold text-slate-500">S{i}</div>
                     </div>
                   ))}
@@ -147,10 +148,9 @@ export default function HeroSection() {
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.8, ease: easeInOut }}
               className="relative w-full max-w-[480px] aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl shadow-indigo-900/10 border-[8px] border-white bg-slate-100"
             >
-              {/* Replace with actual image of Mr Chew or Student */}
               <img 
                 src="/student.webp" 
                 alt="Physics and Strategy"
@@ -181,7 +181,7 @@ export default function HeroSection() {
             {/* Floating Card 2: Chess */}
             <motion.div 
               animate={floatAnimation}
-              transition={{ delay: 1 }} // Offset animation
+              transition={{ delay: 1, duration: 4, repeat: Infinity, ease: easeInOut }} // explicit transition
               className="absolute bottom-20 -right-6 bg-white/95 backdrop-blur shadow-xl border border-white p-4 rounded-2xl flex items-center gap-3"
             >
               <div className="p-2.5 bg-purple-100 text-purple-700 rounded-lg">
@@ -195,8 +195,7 @@ export default function HeroSection() {
 
              {/* Floating Atom Decoration */}
              <motion.div 
-               animate={{ rotate: 360 }}
-               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+               animate={rotateAnimation}
                className="absolute -top-10 -right-10 text-teal-500 opacity-20"
              >
                 <Atom size={120} strokeWidth={1} />
