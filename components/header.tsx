@@ -107,9 +107,13 @@ const Header: React.FC = () => {
           
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 md:w-12 md:h-12 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-600/30 group-hover:scale-105 transition-transform duration-300">
-                <AtomIcon className="w-6 h-6 md:w-7 md:h-7 text-white animate-[spin_10s_linear_infinite]" />
-            </div>
+           <div className="">
+  <img
+    src="/logo.webp"
+    alt="Logo"
+    className="w-6 h-6 md:w-12 md:h-12 object-contain"
+  />
+</div>
 
             <div className="flex flex-col">
               <span className="font-black text-xl md:text-2xl text-slate-900 leading-none tracking-tight group-hover:text-indigo-700 transition-colors">
