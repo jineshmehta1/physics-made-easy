@@ -15,7 +15,7 @@ export default function ResultsSection() {
   
   const stats = [
     {
-      value: "100%",
+      value: "95%",
       label: "GCE O Levels A/B",
       subtext: "Consistent Distinction",
       icon: Target,
@@ -23,7 +23,7 @@ export default function ResultsSection() {
       bg: "bg-emerald-400/10"
     },
     {
-      value: "100%",
+      value: "95%",
       label: "IB HL Physics Grade 7",
       subtext: "Perfect Score Record",
       icon: Trophy,

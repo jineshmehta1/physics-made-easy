@@ -6,8 +6,8 @@ import { Trophy, Award, Medal, Star, Target, Crown, CheckCircle2, TrendingUp, At
 export default function AchievementsSection() {
   // --- Data based on Physics Made Easy context ---
   const stats = [
-    { label: "O-Level A/B Grade", value: "100%", icon: <Target /> },
-    { label: "IB HL Physics Gr. 7", value: "100%", icon: <Trophy /> },
+    { label: "O-Level A/B Grade", value: "95%", icon: <Target /> },
+    { label: "IB HL Physics Gr. 7", value: "95%", icon: <Trophy /> },
     { label: "Years Experience", value: "20+", icon: <Award /> },
     { label: "FIDE Rated Coach", value: "Yes", icon: <Crown /> },
   ];
@@ -17,7 +17,7 @@ export default function AchievementsSection() {
       year: '2024',
       title: 'Academic Excellence',
       subtitle: 'GCE O-Levels & IB',
-      description: 'Maintained our streak of 100% A/B grades in O-Levels and 100% Grade 7 in IB HL Physics.',
+      description: 'Maintained our streak of 95% A/B grades in O-Levels and 95% Grade 7 in IB HL Physics.',
       icon: <Star className="w-6 h-6 text-white" />,
       bg: "bg-slate-900",
       accent: "border-teal-500"

@@ -104,7 +104,7 @@ const CoachCtaSection: React.FC = () => {
                </div>
                <div>
                   <p className="text-sm font-black text-slate-900">Proven Results</p>
-                  <p className="text-xs text-slate-500 font-bold">100% Distinction</p>
+                  <p className="text-xs text-slate-500 font-bold">95% Distinction</p>
                </div>
             </div>
 

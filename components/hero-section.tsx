@@ -141,7 +141,7 @@ export default function HeroSection() {
                </div>
                <div className="text-sm">
                   <p className="font-bold text-slate-900">Proven Track Record</p>
-                  <p className="text-slate-500">100% Grade A/B in O-Levels</p>
+                  <p className="text-slate-500">95% Grade A/B in O-Levels</p>
                </div>
             </motion.div>
 

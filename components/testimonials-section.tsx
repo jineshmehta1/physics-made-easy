@@ -15,9 +15,9 @@ import {
 const testimonials = [
   {
     id: 1,
-    name: "HCI Student",
+    name: "Lex",
     role: "A-Level Physics",
-    text: "Mr. Chew is a dedicated and efficient Physics tutor. The comprehensive notes and didactic teaching style helped me internalize concepts. Under his guidance, I scored 85% for Prelims and an A for A Levels.",
+    text: "Mr Chew taught me Additional Mathematics for Olevels and is a kind and patient teacher. He managed to make the subject a lot more manageable for me, helping me to improve from a C6 to an A1.",
     rating: 5,
     initials: "HC",
     icon: Atom, // Physics Icon
@@ -26,9 +26,9 @@ const testimonials = [
   },
   {
     id: 2,
-    name: "Ryan's Parent",
-    role: "RI IP Physics Student",
-    text: "Ryan will always be thankful for your guidance. Your passion helped motivate him when he found Physics tough. He is and will always be grateful for your help on the subject.",
+    name: "Ethan Lau",
+    role: "Student",
+    text: "Mr Chew is an exceedingly patient and kind tutor who went above and beyond to help me in physics. He made asking questions about the subject really easy, which in turn made it significantly less tedious and more fun. His efforts helped me to achieve the excellent grades I got in physics.",
     rating: 5,
     initials: "RP",
     icon: Zap, // Energy/Physics Icon
@@ -37,9 +37,9 @@ const testimonials = [
   },
   {
     id: 3,
-    name: "Samuel's Mother",
-    role: "Parent (Special Needs Support)",
-    text: "He has improved both his confidence and grades after only a couple of months of lessons. Mr. Chew's patience with ADHD students is truly commendable.",
+    name: "Yu Tao",
+    role: "Student",
+    text: "Mr Chew has helped me greatly during my tutoring lessons with him. He is able to answer any questions I might have very well and in a way that's easy to understand. He also gives good materials such as notes and practice questions!",
     rating: 5,
     initials: "SM",
     icon: Brain, // Cognitive/MI Icon
@@ -48,9 +48,9 @@ const testimonials = [
   },
   {
     id: 4,
-    name: "EJC Student",
-    role: "JC Physics",
-    text: "A very professional teacher who provides excellent materials. Mr. Chew helps grasp key concepts quickly. The revision lessons were clearly presented and helped me score 90% for Paper 3.",
+    name: "Renee Fong Wenning",
+    role: "A-Level Physics",
+    text: "I didn’t like Physics to begin with but Mr Chew opened my eyes to many new things and concepts. He made Physics so easy to learn. Leading up to my exams, Mr  Chew never failed to answer my queries and made sure i understood his explanation before moving on to other questions. My Physics grade improved tremendously in the A-levels. Im so grateful for his help.",
     rating: 5,
     initials: "EJ",
     icon: Microscope, // Science Icon
@@ -78,7 +78,7 @@ export default function TestimonialsSection() {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-50 border border-slate-200 shadow-sm text-slate-600 text-xs font-bold uppercase tracking-widest mb-4">
             <Sparkles className="w-3.5 h-3.5 text-teal-500" />
-            <span>Student & Parent Reviews</span>
+            <span>What Our Google Reviews Say</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight mb-6">
             Real Results. <br />

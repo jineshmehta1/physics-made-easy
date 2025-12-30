@@ -41,7 +41,7 @@ const faqData = [
     id: 5,
     question: "What is your track record for student results?",
     answer:
-      "We have a proven history of excellence: 100% of our O-Level students have scored A/B grades, and 100% of our IB HL Physics students achieved Grade 7. We focus on turning improvements into consistency.",
+      "We have a proven history of excellence: 95% of our O-Level students have scored A/B grades, and 95% of our IB HL Physics students achieved Grade 7. We focus on turning improvements into consistency.",
   },
   {
     id: 6,

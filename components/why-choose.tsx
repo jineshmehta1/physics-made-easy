@@ -27,7 +27,7 @@ export default function WhyChooseUsSection() {
     },
     {
       title: "Proven Track Record",
-      description: "100% of our students scored Grade 7 in IB HL Physics and A/B in O-Levels. Results speak for themselves.",
+      description: "95% of our students scored Grade 7 in IB HL Physics and A/B in O-Levels. Results speak for themselves.",
       icon: <Award className="w-6 h-6 text-amber-500" />,
       color: "amber",
     },
