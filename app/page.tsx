@@ -12,6 +12,7 @@ import LeadInstructorSection from "@/components/lead"
 import ResultsSection from "@/components/result"
 import ResourcesSection from "@/components/material"
 import GallerySection from "@/components/gallery"
+import SuccessStories from "@/components/sucess"
 
 
 export default function HomePage() {
@@ -20,10 +21,11 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <WhyChooseUsSection/>
+        <LeadInstructorSection/>
         <CoursesSection />
         <PhilosophySection/>
+        <SuccessStories/>
         <ResultsSection/>
-        <LeadInstructorSection/>
         <TestimonialsSection />
         <GallerySection/>
         <ResourcesSection/>
