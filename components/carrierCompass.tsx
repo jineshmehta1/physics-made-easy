@@ -130,7 +130,7 @@ export default function CareerCompass() {
   // --- New: WhatsApp Handler ---
   const contactMrChew = () => {
     const topMatch = getTopTracks()[0];
-    const message = `Hi Mr. Chew! I just finished the Physics Career Compass assessment. 
+    const message = `Hi Mr. Chew! I just finished the Your Career Compass assessment. 
     
 My Top Match: ${topMatch.name}
     
@@ -162,7 +162,7 @@ I would like to book a consultation to discuss my career roadmap!`;
               <div className="w-20 h-20 bg-teal-500 rounded-3xl flex items-center justify-center text-white mx-auto mb-8 shadow-lg">
                 <Target size={40} />
               </div>
-              <h1 className="text-4xl md:text-5xl font-black mb-6">Physics Career <span className="text-teal-600">Compass</span></h1>
+              <h1 className="text-4xl md:text-5xl font-black mb-6">Your Career <span className="text-teal-600">Compass</span></h1>
               <p className="text-slate-600 text-lg mb-10 max-w-xl mx-auto">Discover your ideal career path based on the WEF 2025 Skills Framework.</p>
               <button onClick={() => setStep(1)} className="bg-slate-900 text-white px-10 py-5 rounded-2xl font-bold text-xl hover:bg-teal-600 transition-all shadow-xl flex items-center gap-3 mx-auto">
                 Start Assessment <ChevronRight />
