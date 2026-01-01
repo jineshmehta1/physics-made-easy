@@ -13,6 +13,8 @@ import ResultsSection from "@/components/result"
 import ResourcesSection from "@/components/material"
 import GallerySection from "@/components/gallery"
 import SuccessStories from "@/components/sucess"
+import CareerGuidance from "@/components/carrier"
+import CareerCompass from "@/components/carrierCompass"
 
 
 export default function HomePage() {
@@ -22,6 +24,8 @@ export default function HomePage() {
         <HeroSection />
         <WhyChooseUsSection/>
         <LeadInstructorSection/>
+        <CareerGuidance/>
+        <CareerCompass/>
         <CoursesSection />
         <PhilosophySection/>
         <SuccessStories/>
