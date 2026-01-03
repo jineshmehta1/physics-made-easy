@@ -86,11 +86,16 @@ export default async function BlogDetailPage({ params }: Props) {
                   <span>Cornelius Chew</span>
                </div>
                <div className="flex items-center gap-2">
-                  <Calendar size={18} className="text-teal-500" />
-                  <time dateTime={post.date}>
-                    {new Date(post.date).toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' })}
-                  </time>
-               </div>
+  <Calendar size={18} className="text-teal-500" />
+  <time dateTime={new Date(post.date).toISOString()}>
+    {new Date(post.date).toLocaleDateString(undefined, {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    })}
+  </time>
+</div>
+
                <div className="flex items-center gap-2">
                   <Clock size={18} className="text-teal-500" />
                   <span>{post.readTime}</span>
