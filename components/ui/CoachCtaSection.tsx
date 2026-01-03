@@ -65,7 +65,7 @@ const CoachCtaSection: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/contact" className="w-full sm:w-auto">
                 <button className="w-full group bg-slate-900 hover:bg-teal-600 text-white font-bold py-4 px-8 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-teal-500/20 hover:-translate-y-1">
-                  Book Trial Class
+                  Book Free Trial
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
               </Link>

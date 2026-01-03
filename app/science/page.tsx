@@ -20,7 +20,7 @@ import {
 const strategies = [
   {
     title: "Semantic Training",
-    description: "Physics is a foreign language. We explicitly teach the difference between everyday words and their precise scientific meanings.",
+    description: "Science is a foreign language. We explicitly teach the difference between everyday words and their precise scientific meanings.",
     icon: Languages,
     color: "text-teal-600",
     bg: "bg-teal-50"
@@ -107,7 +107,7 @@ export default function ScienceUnderstandingPage() {
              <span>Decoding Science</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">
-            Physics is a <br/>
+            Science is a <br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-indigo-400">
               Foreign Language.
             </span>

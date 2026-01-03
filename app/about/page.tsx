@@ -16,8 +16,8 @@ export default function AboutPage() {
       <AchievementsSection />
       <TeamSection />
       <CoachCtaSection />
-      <FaqSection />
       <TestimonialsSection />
+      <FaqSection />
       <DemoBookingCTA />
     </div>
   );

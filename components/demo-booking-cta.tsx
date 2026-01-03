@@ -53,7 +53,7 @@ export default function CTASection() {
             <Link href="https://wa.me/6597277419" target="_blank" className="w-full sm:w-auto">
               <button className="group w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 bg-teal-600 text-white rounded-xl font-bold hover:bg-teal-500 transition-all shadow-lg shadow-teal-900/20 hover:-translate-y-0.5">
                 <MessageCircle size={18} />
-                Book Trial Class
+                Book Free Trial
               </button>
             </Link>
             

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Phone, 
   Mail, 
@@ -11,103 +12,136 @@ import {
   Smartphone, 
   Send, 
   Loader2, 
-  CheckCircle2 
+  CheckCircle2,
+  Clock,
+  ExternalLink
 } from 'lucide-react';
-import { submitEnquiry } from '@/app/actions/adminActions'; // Import the Server Action
+import { submitEnquiry } from '@/app/actions/adminActions';
 
 const ContactSection: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  // Handle Form Submission
+  // SEO: Local Business & Contact Schema
+  const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Physics Made Easy",
+    "image": "/logo.png",
+    "@id": "https://physicsmadeeasy.sg",
+    "url": "https://physicsmadeeasy.sg",
+    "telephone": "+6597277419",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "186 Toa Payoh Central, Lobby H 02-430",
+      "addressLocality": "Toa Payoh",
+      "postalCode": "310186",
+      "addressCountry": "SG"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "09:00",
+      "closes": "21:00"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+65-9727-7419",
+      "contactType": "customer service",
+      "areaServed": "SG",
+      "availableLanguage": "English"
+    }
+  };
+
   async function handleSubmit(formData: FormData) {
     setIsSubmitting(true);
     try {
-      await submitEnquiry(formData); // Call backend
-      setIsSuccess(true);            // Show success message
+      await submitEnquiry(formData);
+      setIsSuccess(true);
     } catch (error) {
-      console.error(error);
-      alert("Something went wrong. Please try again or WhatsApp us.");
+      alert("Something went wrong. Please WhatsApp +65 9727 7419 directly.");
     } finally {
       setIsSubmitting(false);
     }
   }
 
   return (
-    <section className="relative py-24 bg-white overflow-hidden font-sans" id="contact">
+    <section className="relative py-12 lg:py-20 bg-white overflow-hidden font-sans" id="contact">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }} />
       
-      {/* --- Background Elements --- */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-slate-50 -skew-x-12 translate-x-32 z-0"></div>
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-teal-100/50 rounded-full blur-3xl z-0"></div>
-      
-      <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
+      {/* Background Micro-Decor */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
+        <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:32px_32px]" />
+        <div className="absolute bottom-0 left-0 w-[40vw] h-[40vw] bg-indigo-50 rounded-full blur-[120px] -translate-x-1/2 translate-y-1/2" />
+      </div>
+
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
         
-        {/* --- Header --- */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-50 border border-teal-100 shadow-sm mb-4">
-             <MessageSquare className="w-4 h-4 text-teal-600" />
-             <span className="text-xs font-bold text-teal-700 uppercase tracking-widest">Enquiries Open</span>
+        {/* --- Header: Optimized for scannability --- */}
+        <div className="flex flex-col md:flex-row items-end justify-between gap-6 mb-12">
+          <div className="max-w-2xl text-center md:text-left">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 text-white text-[10px] font-black uppercase tracking-[0.2em] mb-4"
+            >
+              <MessageSquare size={14} className="text-teal-400 fill-teal-400" /> Admissions 2026 Open
+            </motion.div>
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 leading-[1.1] tracking-tight">
+              Let&apos;s Secure Your <br className="hidden md:block"/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-indigo-600">Academic Future.</span>
+            </h2>
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">
-             Start Your Journey <br />
-             <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-indigo-600">
-               With Physics Made Easy.
-             </span>
-          </h2>
-          <p className="text-slate-500 max-w-xl mx-auto text-lg">
-             Have questions about our Physics tuition or Chess coaching? Fill out the form and our team will get in touch shortly.
+          <p className="text-slate-500 font-bold text-sm max-w-xs md:text-right hidden lg:block">
+            Response time: Usually within 2 hours during business sessions.
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+        <div className="grid lg:grid-cols-12 gap-8 items-stretch">
           
-          {/* --- LEFT: Contact Info Card --- */}
-          <div className="w-full lg:w-5/12">
-            <div className="bg-slate-900 rounded-[2.5rem] p-8 md:p-12 text-white relative overflow-hidden shadow-2xl shadow-slate-900/20 h-full flex flex-col justify-between">
+          {/* --- LEFT: Authoritative Contact Card --- */}
+          <div className="lg:col-span-5 h-full">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              className="bg-slate-900 rounded-[2.5rem] p-8 lg:p-12 text-white relative overflow-hidden shadow-2xl h-full flex flex-col"
+            >
+               <div className="absolute top-0 right-0 w-64 h-64 bg-teal-500/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2" />
                
-               {/* Decor */}
-               <div className="absolute top-0 right-0 w-64 h-64 bg-teal-500/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2"></div>
-               <div className="absolute bottom-0 left-0 w-64 h-64 bg-indigo-500/20 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2"></div>
-
-               <div className="relative z-10">
-                  <h3 className="text-2xl font-bold mb-2">Contact Information</h3>
-                  <p className="text-slate-400 mb-10 text-sm">Reach out to us directly via phone or email.</p>
-
-                  <div className="space-y-8">
-                     {/* Phone */}
-                     <div className="flex items-start gap-4 group">
-                        <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-teal-600 group-hover:border-teal-500 transition-colors duration-300">
-                           <Phone className="w-5 h-5 text-teal-400 group-hover:text-white transition-colors" />
+               <div className="relative z-10 flex-grow">
+                  <h3 className="text-2xl font-black mb-8 tracking-tight">Support Hub</h3>
+                  
+                  <div className="space-y-6">
+                     {/* Phone/WA */}
+                     <a href="https://wa.me/6597277419" className="flex items-center gap-5 group cursor-pointer">
+                        <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-teal-500 transition-all">
+                           <Smartphone className="w-5 h-5 text-teal-400 group-hover:text-white" />
                         </div>
                         <div>
-                           <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Call / WhatsApp</p>
-                           <a href="tel:+6597277419" className="text-lg font-medium text-white hover:text-teal-400 transition-colors cursor-pointer block">
-                             +65 9727 7419
-                           </a>
+                           <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">WhatsApp / Call</p>
+                           <p className="text-lg font-bold group-hover:text-teal-400 transition-colors">+65 9727 7419</p>
                         </div>
-                     </div>
+                     </a>
 
                      {/* Email */}
-                     <div className="flex items-start gap-4 group">
-                        <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-teal-600 group-hover:border-teal-500 transition-colors duration-300">
-                           <Mail className="w-5 h-5 text-teal-400 group-hover:text-white transition-colors" />
+                     <a href="mailto:chewkm2001@yahoo.com" className="flex items-center gap-5 group cursor-pointer">
+                        <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-indigo-500 transition-all">
+                           <Mail className="w-5 h-5 text-indigo-400 group-hover:text-white" />
                         </div>
                         <div>
-                           <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Email Us</p>
-                           <a href="mailto:chewkm2001@yahoo.com" className="text-lg font-medium text-white hover:text-teal-400 transition-colors cursor-pointer break-all block">
-                             chewkm2001@yahoo.com
-                           </a>
+                           <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Email Enquiries</p>
+                           <p className="text-lg font-bold group-hover:text-indigo-400 transition-colors break-all">chewkm2001@yahoo.com</p>
                         </div>
-                     </div>
+                     </a>
 
                      {/* Location */}
-                     <div className="flex items-start gap-4 group">
-                        <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-teal-600 group-hover:border-teal-500 transition-colors duration-300">
-                           <MapPin className="w-5 h-5 text-teal-400 group-hover:text-white transition-colors" />
+                     <div className="flex items-center gap-5 group">
+                        <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                           <MapPin className="w-5 h-5 text-slate-400" />
                         </div>
                         <div>
-                           <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Main Center</p>
-                           <p className="text-lg font-medium text-white leading-snug">
+                           <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Main Center</p>
+                           <p className="text-sm font-bold text-slate-300 leading-snug">
                               186 Toa Payoh Central, <br /> Lobby H 02-430, Singapore
                            </p>
                         </div>
@@ -115,144 +149,108 @@ const ContactSection: React.FC = () => {
                   </div>
                </div>
 
-               <div className="relative z-10 pt-12 mt-8 border-t border-white/10">
-                  <p className="text-slate-400 text-sm italic">
-                    "Teaching for understanding, not just for exams."
-                  </p>
+               {/* Hours & Verification */}
+               <div className="relative z-10 pt-8 mt-12 border-t border-white/10 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <Clock size={16} className="text-teal-500" />
+                    <span className="text-xs font-bold text-slate-400 uppercase tracking-tighter">Mon - Sun: 9am - 9pm</span>
+                  </div>
+                  <CheckCircle2 size={20} className="text-teal-500/50" />
                </div>
-
-            </div>
+            </motion.div>
           </div>
 
-          {/* --- RIGHT: The Form --- */}
-          <div className="w-full lg:w-7/12">
-            <div className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 h-full">
-               
+          {/* --- RIGHT: Smart Enquiry Form --- */}
+          <div className="lg:col-span-7">
+            <div className="bg-slate-50 rounded-[2.5rem] p-8 lg:p-12 border border-slate-100 h-full">
+               <AnimatePresence mode="wait">
                {isSuccess ? (
-                 <div className="h-full flex flex-col items-center justify-center text-center animate-in fade-in zoom-in duration-500">
-                    <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6">
-                       <CheckCircle2 className="w-10 h-10 text-green-600" />
+                 <motion.div 
+                   key="success"
+                   initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
+                   className="h-full flex flex-col items-center justify-center text-center py-12"
+                 >
+                    <div className="w-20 h-20 bg-teal-500 text-white rounded-full flex items-center justify-center mb-6 shadow-2xl shadow-teal-500/40">
+                       <CheckCircle2 className="w-10 h-10" />
                     </div>
-                    <h3 className="text-3xl font-black text-slate-900 mb-3">Message Sent!</h3>
-                    <p className="text-slate-500 max-w-sm mx-auto mb-8 text-lg">
-                       Thank you for reaching out. We have received your enquiry and will get back to you shortly.
-                    </p>
-                    <button 
-                      onClick={() => setIsSuccess(false)}
-                      className="text-teal-600 font-bold hover:text-teal-800 hover:underline transition-colors"
-                    >
-                      Send another message
-                    </button>
-                 </div>
+                    <h3 className="text-3xl font-black text-slate-900 mb-2">Enquiry Received</h3>
+                    <p className="text-slate-500 max-w-xs mx-auto mb-8 font-medium">Mr. Chew or our coordinator will contact you shortly.</p>
+                    <button onClick={() => setIsSuccess(false)} className="text-teal-600 font-black text-xs uppercase tracking-widest hover:underline">New Submission</button>
+                 </motion.div>
                ) : (
-                 <form action={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                       
-                       {/* Parent Name */}
-                       <div className="space-y-2">
-                          <label className="text-sm font-bold text-slate-700 ml-1">Parent Name <span className="text-red-500">*</span></label>
-                          <div className="relative group">
-                             <User className="absolute left-4 top-3.5 w-5 h-5 text-slate-400 group-focus-within:text-teal-500 transition-colors" />
-                             <input 
-                               name="parentName"
-                               type="text" 
-                               required
-                               placeholder="Enter your name" 
-                               className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-all font-medium text-slate-900 placeholder:text-slate-400"
-                             />
-                          </div>
+                 <form action={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    
+                    {/* Parent Name */}
+                    <div className="space-y-1.5">
+                       <label htmlFor="parentName" className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Parent Name</label>
+                       <div className="relative">
+                          <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                          <input id="parentName" name="parentName" type="text" required placeholder="John Doe" 
+                            className="w-full pl-11 pr-4 py-3.5 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 outline-none transition-all font-bold text-slate-900" />
                        </div>
-
-                       {/* Student Name */}
-                       <div className="space-y-2">
-                          <label className="text-sm font-bold text-slate-700 ml-1">Student Name</label>
-                          <div className="relative group">
-                             <User className="absolute left-4 top-3.5 w-5 h-5 text-slate-400 group-focus-within:text-teal-500 transition-colors" />
-                             <input 
-                               name="studentName"
-                               type="text" 
-                               placeholder="Enter child's name" 
-                               className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-all font-medium text-slate-900 placeholder:text-slate-400"
-                             />
-                          </div>
-                       </div>
-
-                       {/* Email */}
-                       <div className="space-y-2">
-                          <label className="text-sm font-bold text-slate-700 ml-1">Email Address <span className="text-red-500">*</span></label>
-                          <div className="relative group">
-                             <AtSign className="absolute left-4 top-3.5 w-5 h-5 text-slate-400 group-focus-within:text-teal-500 transition-colors" />
-                             <input 
-                               name="email"
-                               type="email" 
-                               required
-                               placeholder="example@gmail.com" 
-                               className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-all font-medium text-slate-900 placeholder:text-slate-400"
-                             />
-                          </div>
-                       </div>
-
-                       {/* Phone */}
-                       <div className="space-y-2">
-                          <label className="text-sm font-bold text-slate-700 ml-1">Phone Number <span className="text-red-500">*</span></label>
-                          <div className="relative group">
-                             <Smartphone className="absolute left-4 top-3.5 w-5 h-5 text-slate-400 group-focus-within:text-teal-500 transition-colors" />
-                             <input 
-                               name="phone"
-                               type="tel" 
-                               required
-                               placeholder="+65 9123 4567" 
-                               className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-all font-medium text-slate-900 placeholder:text-slate-400"
-                             />
-                          </div>
-                       </div>
-
-                       {/* Subject Interest */}
-                       <div className="md:col-span-2 space-y-2">
-                          <label className="text-sm font-bold text-slate-700 ml-1">Interested In</label>
-                          <select 
-                            name="subject"
-                            className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-all font-medium text-slate-900 cursor-pointer"
-                          >
-                             <option value="GCE O-Level Physics">GCE O-Level Physics</option>
-                             <option value="A-Level H2 Physics">A-Level H2 Physics</option>
-                             <option value="IB HL/SL Physics">IB HL/SL Physics</option>
-                             <option value="Chess Coaching">Chess Coaching</option>
-                             <option value="General Enquiry">Other / General Enquiry</option>
-                          </select>
-                       </div>
-
-                       {/* Message */}
-                       <div className="md:col-span-2 space-y-2">
-                          <label className="text-sm font-bold text-slate-700 ml-1">Message / Query</label>
-                          <textarea 
-                            name="message"
-                            rows={4}
-                            required
-                            placeholder="Tell us about your requirements..." 
-                            className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 transition-all font-medium text-slate-900 placeholder:text-slate-400 resize-none"
-                          ></textarea>
-                       </div>
-
                     </div>
 
-                    {/* Submit Button */}
-                    <div className="pt-4">
+                    {/* Student Name */}
+                    <div className="space-y-1.5">
+                       <label htmlFor="studentName" className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Student Name</label>
+                       <div className="relative">
+                          <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300" />
+                          <input id="studentName" name="studentName" type="text" placeholder="Optional" 
+                            className="w-full pl-11 pr-4 py-3.5 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 outline-none transition-all font-bold text-slate-900" />
+                       </div>
+                    </div>
+
+                    {/* Email */}
+                    <div className="space-y-1.5">
+                       <label htmlFor="email" className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Email</label>
+                       <div className="relative">
+                          <AtSign className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                          <input id="email" name="email" type="email" required placeholder="example@gmail.com" 
+                            className="w-full pl-11 pr-4 py-3.5 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 outline-none transition-all font-bold text-slate-900" />
+                       </div>
+                    </div>
+
+                    {/* Phone */}
+                    <div className="space-y-1.5">
+                       <label htmlFor="phone" className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Mobile No.</label>
+                       <div className="relative">
+                          <Smartphone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                          <input id="phone" name="phone" type="tel" required placeholder="+65" 
+                            className="w-full pl-11 pr-4 py-3.5 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 outline-none transition-all font-bold text-slate-900" />
+                       </div>
+                    </div>
+
+                    {/* Subject */}
+                    <div className="md:col-span-2 space-y-1.5">
+                       <label htmlFor="subject" className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Interested Subject</label>
+                       <select id="subject" name="subject" className="w-full px-5 py-3.5 bg-white border border-slate-200 rounded-2xl focus:border-teal-500 outline-none transition-all font-bold text-slate-900 cursor-pointer">
+                          <option>GCE O-Level Physics</option>
+                          <option>A-Level H2 Physics</option>
+                          <option>IB HL/SL Physics</option>
+                          <option>FIDE Chess Coaching</option>
+                          <option>General Enquiry</option>
+                       </select>
+                    </div>
+
+                    {/* Message */}
+                    <div className="md:col-span-2 space-y-1.5">
+                       <label htmlFor="message" className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Message</label>
+                       <textarea id="message" name="message" rows={3} required placeholder="How can Mr. Chew help?" 
+                          className="w-full px-5 py-4 bg-white border border-slate-200 rounded-2xl focus:border-teal-500 outline-none transition-all font-bold text-slate-900 resize-none" />
+                    </div>
+
+                    <div className="md:col-span-2 pt-4">
                        <button 
                          type="submit" 
                          disabled={isSubmitting}
-                         className="w-full md:w-auto bg-slate-900 hover:bg-teal-600 text-white font-bold py-4 px-10 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-slate-900/10 hover:shadow-teal-600/20 hover:-translate-y-1 disabled:opacity-70 disabled:cursor-not-allowed"
+                         className="w-full group bg-slate-900 hover:bg-teal-600 text-white font-black py-4 px-10 rounded-2xl flex items-center justify-center gap-3 transition-all active:scale-95 disabled:opacity-50"
                        >
-                          {isSubmitting ? (
-                            <Loader2 className="w-5 h-5 animate-spin" />
-                          ) : (
-                            <>Send Message <Send className="w-5 h-5" /></>
-                          )}
+                          {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : <>Send Strategic Enquiry <Send size={18} /></>}
                        </button>
                     </div>
-
                  </form>
                )}
+               </AnimatePresence>
             </div>
           </div>
 
