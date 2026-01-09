@@ -15,6 +15,7 @@ import GallerySection from "@/components/gallery"
 import SuccessStories from "@/components/sucess"
 import CareerGuidance from "@/components/carrier"
 import CareerCompass from "@/components/carrierCompass"
+import PeterLohMentorProfile from "@/components/advisor"
 
 
 export default function HomePage() {
@@ -24,6 +25,7 @@ export default function HomePage() {
         <HeroSection />
         <WhyChooseUsSection/>
         <LeadInstructorSection/>
+        <PeterLohMentorProfile/>
         <CareerGuidance/>
         <CareerCompass/>
         <CoursesSection />
