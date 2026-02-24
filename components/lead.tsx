@@ -81,7 +81,7 @@ export default function LeadInstructorSection() {
             {/* Main Image Wrapper */}
             <div className="relative rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-[8px] border-white aspect-[4/5] z-10">
               <Image 
-                src="/image.png" 
+                src="/new-profile.jpeg" 
                 alt="Mr. Chew Kok Mun - Physics Specialist & MOE Scholar" 
                 fill
                 className="object-cover transition-transform duration-1000 group-hover:scale-105"
