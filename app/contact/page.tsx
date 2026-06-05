@@ -1,4 +1,7 @@
+import { buildPageMetadata } from "@/lib/seo";
 import DemoBookingCTA from "@/components/demo-booking-cta";
+
+export const metadata = buildPageMetadata("/contact");
 import ColorfulFAQSection from "@/components/pagesfaq";
 import FaqSection from "@/components/stats-section";
 import PageBanner from "@/components/ui/ContactBanner";

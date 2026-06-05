@@ -1,4 +1,7 @@
+import { buildPageMetadata } from "@/lib/seo";
 import DemoBookingCTA from "@/components/demo-booking-cta";
+
+export const metadata = buildPageMetadata("/curriculum");
 import CoursesSection from "@/components/events-preview";
 import TestimonialsSection from "@/components/testimonials-section";
 import Curriculum from "@/components/ui/CarriclulamBanner";

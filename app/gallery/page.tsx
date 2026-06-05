@@ -1,5 +1,8 @@
+import { buildPageMetadata } from "@/lib/seo";
 import GalleryBanner from "@/components/ui/GalleryBanner";
 import GallerySection from "@/components/ui/GallerySection";
+
+export const metadata = buildPageMetadata("/gallery");
 
 export default function GalleryPage() {
   return (
